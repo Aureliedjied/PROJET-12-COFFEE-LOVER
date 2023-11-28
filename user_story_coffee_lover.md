@@ -6,7 +6,7 @@
 
 | En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| visiteur | dès la page home aux articles le saviez-vous | - |
+| visiteur | dès la page home aux articles "le saviez-vous?" | - |
 | visiteur | aux categories dès la page home | - |
 | visiteur | à deux articles mis en avant dès la home page (affichage random) | - |
 | visiteur | aux liens réseaux sociaux, mentions légales et contact à la fin de chaque page | - |
@@ -15,7 +15,7 @@
 | visiteur | être redirigé vers la page connexion/inscription si je clique sur le lien de chaque quiz qui se trouve à la fin de chaque page articles | - |
 | visiteur | être redirigé vers la page connexion/inscription si je clique sur le lien de chaque quiz qui se trouve à la fin de chaque page catégories | - |
 | visiteur | à la liste des articles concernés quand je clique sur une catégorie | - |
-| visiteur | à chaque articles en détail quand je clique dessus | - |
+| visiteur | à chaque article en détail quand je clique dessus | - |
 | visiteur | à la page connexion/inscription quand je clique dessus | - |
 | visiteur | | |
 
@@ -25,9 +25,8 @@
 |--|--|--|
 | Utilisateur | me connecter via la page de connexion/inscription  | - |
 | Utilisateur | accéder au quiz via la navbar | - |
-| Utilisateur | accéder à mes resultat et recompense via la navbar | - |
+| Utilisateur | accéder à mes resultats et récompenses via la navbar | - |
 | Utilisateur | accéder au quiz qui se trouve à la fin de chaque pages articles | - |
-| Utilisateur | accéder au quiz qui se trouve à la fin de chaque pages catégories | - |
 | Utilisateur | faire les quiz | - |
 | Utilisateur | Si j'ai plus de 60% de bonne réponse j'obtiens une fiche méthode d'extration en récompense | |
 | Utilisateur | Si j'ai moins de 60% de bonne réponse je suis redirigé vers la page catégorie du quiz après avoir été bloqué pendant 5 seconde par un GIF et une musique entétante| |
@@ -47,9 +46,9 @@
 | Manager | rajouter des quiz | |
 | Manager | supprimer des quiz | |
 | Manager | modifier des quiz | |
-| Manager | rajouter des fiches méthode d'extraction | |
-| Manager | supprimer des fiches méthode d'extraction | |
-| Manager | modifier des fiches méthode d'extraction | |
+| Manager | rajouter des fiches méthode d'extraction (récompense) | |
+| Manager | supprimer des fiches méthode d'extraction (récompense) | |
+| Manager | modifier des fiches méthode d'extraction (récompense) | |
 | Manager | rajouter des GIF et musique | |
 | Manager | supprimer des GIF et musique | |
 | Manager | modifier des GIF et musique | |
