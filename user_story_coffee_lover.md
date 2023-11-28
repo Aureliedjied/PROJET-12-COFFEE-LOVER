@@ -1,72 +1,132 @@
 # **USER STORIES - COFFEELOVER**
 
-# FRONT
+# FRONT-OFFICE
 
-## Visiteur
+## Home 
 
 | En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| visiteur | dès la page home aux articles "le saviez-vous?" | - |
-| visiteur | aux categories dès la page home | - |
-| visiteur | à deux articles mis en avant dès la home page (affichage random) | - |
-| visiteur | aux liens réseaux sociaux, mentions légales et contact à la fin de chaque page | - |
-| visiteur | à la navbar tout le long de ma navigation | - |
-| visiteur | aux categories, la page connexion/inscription depuis la navbar | - |
-| visiteur | être redirigé vers la page connexion/inscription si je clique sur le lien de chaque quiz qui se trouve à la fin de chaque page articles | - |
-| visiteur | être redirigé vers la page connexion/inscription si je clique sur le lien de chaque quiz qui se trouve à la fin de chaque page catégories | - |
-| visiteur | à la liste des articles concernés quand je clique sur une catégorie | - |
-| visiteur | à chaque article en détail quand je clique dessus | - |
-| visiteur | à la page connexion/inscription quand je clique dessus | - |
-| visiteur | | |
-
-## Utilisateur
-
-| En tant que | Je veux | Afin de (si besoin/nécessaire) |
-|--|--|--|
-| Utilisateur | me connecter via la page de connexion/inscription  | - |
+| visiteur | à tous les articles "le saviez-vous?" | - |
+| visiteur | aux categories  | - |
+| visiteur | à deux articles randoms mis en avant  | - |
+| Utilisateur | accéder aux categories via la navbar | - |
+| visiteur | être redirigé vers la page connexion/inscription via la navbar | accéder à chaque quiz |
+| Utilisateur | accéder à la page de mon profil via la navbar | - |
 | Utilisateur | accéder au quiz via la navbar | - |
-| Utilisateur | accéder à mes resultats et récompenses via la navbar | - |
-| Utilisateur | accéder au quiz qui se trouve à la fin de chaque pages articles | - |
-| Utilisateur | faire les quiz | - |
-| Utilisateur | Si j'ai plus de 60% de bonne réponse j'obtiens une fiche méthode d'extration en récompense | |
-| Utilisateur | Si j'ai moins de 60% de bonne réponse je suis redirigé vers la page catégorie du quiz après avoir été bloqué pendant 5 seconde par un GIF et une musique entétante| |
-| Utilisateur | | |
-| Utilisateur | | |
-| Utilisateur | | |
+| Manager | accéder au backoffice via la navbar | - |
+| visiteur | aux liens réseaux sociaux, mentions légales et contact en bas de chaque page | - |
 
-# BACK 
-
-## Manager
+## Catégories
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Manager | avoir accès au backoffice après ma connexion | |
-| Manager | rajouter des articles | |
-| Manager | supprimer des articles | |
-| Manager | modifier des articles | |
-| Manager | rajouter des quiz | |
-| Manager | supprimer des quiz | |
-| Manager | modifier des quiz | |
-| Manager | rajouter des fiches méthode d'extraction (récompense) | |
-| Manager | supprimer des fiches méthode d'extraction (récompense) | |
-| Manager | modifier des fiches méthode d'extraction (récompense) | |
-| Manager | rajouter des GIF et musique | |
-| Manager | supprimer des GIF et musique | |
-| Manager | modifier des GIF et musique | |
+| visiteur | à la liste des articles d'une catégorie | - |
+
+
+## Articles
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| visiteur | à chaque article en détail | - |
+| Utilisateur | accéder au quiz qui se trouve à la fin de chaque pages articles | - |
+
+
+## Quiz
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Utilisateur | faire les quiz | - |
+| Utilisateur | une fiche méthode d'extration en récompense si j'ai plus de 60% de bonnes réponses | - |
+| Utilisateur | être redirigé vers la page catégorie du quiz après avoir été bloqué pendant 5 secondes par un GIF et une musique entétante si j'ai moins de 60% de bonnes réponses | - |
+| visiteur | être rediriger vers la page connexion/inscription | - |
+| | | |
+
+## Mon profil
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Utilisateur | y retrouver mes informations personnelles, mes scores et la liste de mes récompenses | - |
+| | | |
+
+## Récompenses
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Utilisateur | y retrouver le détail de chacune de mes récompenses (fiche méthode d'extraction de café) | - |
+| | | |
+
+## Inscription
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Visiteur | m'inscrire | |
+| | | |
+
+## Connexion
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Utilisateur | pouvoir me connecter | - |
+
+
+
+# BACK-OFFICE
+
+## Home back-office
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Manager | avoir accès au backoffice avec accès rapide au fonctionnalité | |
 | Manager | | |
 
 
-## Admin
+## Quiz
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Admin | rajouter utilisateur | |
-| Admin | supprimer utilisateur | |
-| Admin | modifier utilisateur | |
-| Admin | | |
+| Manager | rajouter des quiz | |
+| Manager | supprimer des quiz | |
+| Manager | modifier des quiz | |
 
-## 
+
+## Articles
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
+| Manager | rajouter des articles | |
+| Manager | supprimer des articles | |
+| Manager | modifier des articles | |
+| | | |
+
+## Categories
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| | | |
+
+## Récompenses
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Manager | rajouter des fiches méthode d'extraction (récompense) | |
+| Manager | supprimer des fiches méthode d'extraction (récompense) | |
+| Manager | modifier des fiches méthode d'extraction (récompense) | |
+| | | |
+
+## Gif/Musique
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Manager | rajouter des GIF et musique | |
+| Manager | supprimer des GIF et musique | |
+| Manager | modifier des GIF et musique | |
+| | | |
+
+## Utilisateur (rajout manager/admin)
+
+| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Admin | rajouter un utilisateur avec des droits | |
+| Admin | supprimer un utilisateur avec des droits | |
+| Admin | modifier un utilisateur avec des droits | |
 | | | |
