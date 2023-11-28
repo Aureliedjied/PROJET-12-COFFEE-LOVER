@@ -40,6 +40,7 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
+| Manager | avoir accès au backoffice après ma connexion | |
 | Manager | rajouter des articles | |
 | Manager | supprimer des articles | |
 | Manager | modifier des articles | |
