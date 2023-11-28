@@ -6,40 +6,48 @@
 
 | En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| visiteur | à tous les articles "le saviez-vous?" | - |
-| visiteur | aux categories  | - |
-| visiteur | à deux articles randoms mis en avant  | - |
-| Utilisateur | accéder aux categories via la navbar | - |
-| visiteur | être redirigé vers la page connexion/inscription via la navbar | accéder à chaque quiz |
-| Utilisateur | accéder à la page de mon profil via la navbar | - |
-| Utilisateur | accéder au quiz via la navbar | - |
-| Manager | accéder au backoffice via la navbar | - |
-| visiteur | aux liens réseaux sociaux, mentions légales et contact en bas de chaque page | - |
+| Visiteur | à tous les articles "le saviez-vous?" | - |
+| Visiteur | aux categories  | - |
+| Visiteur | à deux articles randoms mis en avant  | - |
+| Utilisateur | aux categories via la navbar | - |
+| Visiteur | à la page connexion/inscription via la redirection | accéder à chaque quiz |
+| Utilisateur | à la page de mon profil via la navbar | - |
+| Utilisateur | au quiz via la navbar | - |
+| Manager | au backoffice via la navbar | - |
+| Visiteur | aux liens réseaux sociaux, mentions légales et contact en bas de chaque page | - |
 
 ## Catégories
 
-| En tant que | Je veux | Afin de (si besoin/nécessaire) |
+| En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| visiteur | à la liste des articles d'une catégorie | - |
+| Visiteur | à la liste des articles d'une catégorie | - |
 
 
 ## Articles
 
+| En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
+|--|--|--|
+| Visiteur | à chaque article en détail | - |
+| Utilisateur | au quiz qui se trouve à la fin de chaque page article | - |
+
+
+## liste des Quiz via la navbar
+
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| visiteur | à chaque article en détail | - |
-| Utilisateur | accéder au quiz qui se trouve à la fin de chaque pages articles | - |
+| Utilisateur | accèder a la liste des quizs disponibles | - |
+| Visiteur | être redirigé vers la page connexion/inscription | - |
 
 
-## Quiz
+## Quiz via la page article
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Utilisateur | faire les quiz | - |
+| Utilisateur | faire un quiz parmis la liste | - |
 | Utilisateur | une fiche méthode d'extration en récompense si j'ai plus de 60% de bonnes réponses | - |
 | Utilisateur | être redirigé vers la page catégorie du quiz après avoir été bloqué pendant 5 secondes par un GIF et une musique entétante si j'ai moins de 60% de bonnes réponses | - |
-| visiteur | être rediriger vers la page connexion/inscription | - |
-| | | |
+| Visiteur | être redirigé vers la page connexion/inscription | - |
+
 
 ## Mon profil
 
@@ -78,7 +86,7 @@
 |--|--|--|
 | Manager | accèder à la liste des Quiz, Articles, Recompenses, GIF/Musique, Catégories | |
 | Admin | accèder aux rôles des utilisateurs  | |
-| Manager | | |
+
 
 
 ## Quiz
