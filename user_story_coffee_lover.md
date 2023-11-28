@@ -76,7 +76,8 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Manager | avoir accès au backoffice avec accès rapide au fonctionnalité | |
+| Manager | accèder à la liste des Quiz, Articles, Recompenses, GIF/Musique, Catégories | |
+| Admin | accèder aux rôles des utilisateurs  | |
 | Manager | | |
 
 
@@ -101,6 +102,9 @@
 ## Categories
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
+| Manager | rajouter des categories | |
+| Manager | supprimer des categories | |
+| Manager | modifier des categories | |
 |--|--|--|
 | | | |
 
@@ -126,7 +130,7 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Admin | rajouter un utilisateur avec des droits | |
-| Admin | supprimer un utilisateur avec des droits | |
-| Admin | modifier un utilisateur avec des droits | |
+| Admin | rajouter un rôle à un utilisateur | |
+| Admin | supprimer un rôle à un utilisateur | |
+| Admin | modifier un rôle à un utilisateur | |
 | | | |
