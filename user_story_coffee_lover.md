@@ -1,4 +1,4 @@
-**USER STORIES - COFFEELOVER**
+# **USER STORIES - COFFEELOVER**
 
 # FRONT
 
@@ -6,19 +6,14 @@
 
 | En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
-
 | visiteur | dès la page home aux articles le saviez-vous | - |
 | visiteur | aux categories dès la page home | - |
 | visiteur | à deux articles mis en avant dès la home page (affichage random) | - |
-
 | visiteur | aux liens réseaux sociaux, mentions légales et contact à la fin de chaque page | - |
 | visiteur | à la navbar tout le long de ma navigation | - |
 | visiteur | aux categories, la page connexion/inscription depuis la navbar | - |
-
 | visiteur | être redirigé vers la page connexion/inscription si je clique sur le lien de chaque quiz qui se trouve à la fin de chaque page articles | - |
 | visiteur | être redirigé vers la page connexion/inscription si je clique sur le lien de chaque quiz qui se trouve à la fin de chaque page catégories | - |
-
-
 | visiteur | à la liste des articles concernés quand je clique sur une catégorie | - |
 | visiteur | à chaque articles en détail quand je clique dessus | - |
 | visiteur | à la page connexion/inscription quand je clique dessus | - |
@@ -28,7 +23,6 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-
 | Utilisateur | me connecter via la page de connexion/inscription  | - |
 | Utilisateur | accéder au quiz via la navbar | - |
 | Utilisateur | accéder à mes resultat et recompense via la navbar | - |
@@ -47,7 +41,6 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-
 | Manager | rajouter des articles | |
 | Manager | supprimer des articles | |
 | Manager | modifier des articles | |
@@ -67,7 +60,6 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-
 | Admin | rajouter utilisateur | |
 | Admin | supprimer utilisateur | |
 | Admin | modifier utilisateur | |
@@ -77,5 +69,4 @@
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-
 | | | |
