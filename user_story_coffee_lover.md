@@ -7,14 +7,13 @@
 | En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
 | Visiteur | à tous les articles "le saviez-vous?" | - |
-| Visiteur | aux categories  | - |
+| Visiteur | aux categories d'articles | - |
 | Visiteur | à deux articles randoms mis en avant  | - |
-| Utilisateur | aux categories via la navbar | - |
-| Visiteur | à la page connexion/inscription via la redirection | accéder à chaque quiz |
-| Utilisateur | à la page de mon profil via la navbar | - |
-| Utilisateur | au quiz via la navbar | - |
-| Manager | au backoffice via la navbar | - |
-| Visiteur | aux liens réseaux sociaux, mentions légales et contact en bas de chaque page | - |
+| Visiteur | à la page connexion/inscription | accéder à chaque quiz |
+| Utilisateur | à la page de mon profil  | - |
+| Utilisateur | au quiz  | - |
+| Manager | au backoffice  | - |
+| Visiteur | aux liens réseaux sociaux, mentions légales et contact  | - |
 
 ## Catégories
 
@@ -23,7 +22,7 @@
 | Visiteur | à la liste des articles d'une catégorie | - |
 
 
-## Articles
+## Article
 
 | En tant que | Je veux accéder | Afin de (si besoin/nécessaire) |
 |--|--|--|
@@ -31,7 +30,7 @@
 | Utilisateur | au quiz qui se trouve à la fin de chaque page article | - |
 
 
-## liste des Quiz via la navbar
+## liste des Quiz
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
@@ -54,27 +53,27 @@
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
 | Utilisateur | y retrouver mes informations personnelles, mes scores et la liste de mes récompenses | - |
-| | | |
+
 
 ## Récompenses
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
 | Utilisateur | y retrouver le détail de chacune de mes récompenses (fiche méthode d'extraction de café) | - |
-| | | |
+
 
 ## Inscription
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
 | Visiteur | m'inscrire | |
-| | | |
+
 
 ## Connexion
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
-| Utilisateur | pouvoir me connecter | - |
+| Visiteur | me connecter pour passer en mode utilisateur | - |
 
 
 
@@ -105,16 +104,16 @@
 | Manager | rajouter des articles | |
 | Manager | supprimer des articles | |
 | Manager | modifier des articles | |
-| | | |
+
 
 ## Categories
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
+|--|--|--|
 | Manager | rajouter des categories | |
 | Manager | supprimer des categories | |
 | Manager | modifier des categories | |
-|--|--|--|
-| | | |
+
 
 ## Récompenses
 
@@ -123,7 +122,7 @@
 | Manager | rajouter des fiches méthode d'extraction (récompense) | |
 | Manager | supprimer des fiches méthode d'extraction (récompense) | |
 | Manager | modifier des fiches méthode d'extraction (récompense) | |
-| | | |
+
 
 ## Gif/Musique
 
@@ -132,7 +131,7 @@
 | Manager | rajouter des GIF et musique | |
 | Manager | supprimer des GIF et musique | |
 | Manager | modifier des GIF et musique | |
-| | | |
+
 
 ## Utilisateur (rajout manager/admin)
 
@@ -141,4 +140,4 @@
 | Admin | rajouter un rôle à un utilisateur | |
 | Admin | supprimer un rôle à un utilisateur | |
 | Admin | modifier un rôle à un utilisateur | |
-| | | |
+
