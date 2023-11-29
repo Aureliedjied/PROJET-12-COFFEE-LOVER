@@ -30,7 +30,7 @@
 | Utilisateur | au quiz qui se trouve à la fin de chaque page article | - |
 
 
-## liste des Quiz
+## Liste des Quiz
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
