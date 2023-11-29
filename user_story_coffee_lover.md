@@ -38,7 +38,7 @@
 | Visiteur | être redirigé vers la page connexion/inscription | - |
 
 
-## Quiz via la page article
+## Quiz 
 
 | En tant que | Je veux | Afin de (si besoin/nécessaire) |
 |--|--|--|
