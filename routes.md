@@ -36,10 +36,19 @@
 
 | Route| Description |
 |--|--|
-| /back-office|  page d’accueil du backoffice affichant la liste des entités. | - |
-| /back-office/entites |  page affichant la liste de l’entité choisie (article, quizz, méthodes d’extraction, GIF/Musique) avec lien d’ajout, de modification et bouton suppression. | - |
-| /back-office/entite/ajouter |   page permettant d’ajouter un élément dans l’entité. | - |
-| /back-office/entite/id/modifier |   page permettant de modifier un élément sélectionné dans l’entité. | - |
+| /back-office|  page d’accueil du backoffice affichant la liste des articles, quizzs et méthodes | - |
+| /back-office/articles |  page affichant la liste des articles avec lien d’ajout, de modification et bouton suppression. | - |
+| /back-office/quizs |  page affichant la liste des articles avec lien d’ajout, de modification et bouton suppression. | - |
+| /back-office/methodes |  page affichant la liste des méthodes avec lien d’ajout, de modification et bouton suppression. | - |
+| /back-office/gif-musiques |  page affichant la liste des GIFs et musiques avec lien d’ajout, de modification et bouton suppression. | - |
+| /back-office/article/ajouter |   page permettant d’ajouter un article | - |
+| /back-office/article/id/modifier |   page permettant de modifier un article | - |
+| /back-office/quiz/ajouter |   page permettant d’ajouter un quiz | - |
+| /back-office/quiz/id/modifier |   page permettant de modifier un quiz | - |
+| /back-office/methode/ajouter |   page permettant d’ajouter une fiche méthode | - |
+| /back-office/methode/id/modifier |   page permettant de modifier une fiche méthode | - |
+| /back-office/gif-musique/ajouter |   page permettant d’ajouter un un GIF et/ou une musique | - |
+| /back-office/gif-musique/id/modifier |   page permettant de modifier un GIF et/ou une musique | - |
 
 # BACKOFFICE : ADMIN
 
