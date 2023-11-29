@@ -29,8 +29,9 @@
 
 | Route| Description |
 |--|--|
-| /les-quizs|  page affichant les quiz de toutes les catégories. | - |
+| /quiz|  page affichant les quiz de toutes les catégories. | - |
 | /categorie/:titre-quiz  |  quiz sur la catégorie générée aléatoirement. | - |
+
 
 # BACKOFFICE : MANAGER
 
@@ -38,17 +39,19 @@
 |--|--|
 | /back-office|  page d’accueil du backoffice affichant la liste des articles, quizzs et méthodes | - |
 | /back-office/articles |  page affichant la liste des articles avec lien d’ajout, de modification et bouton suppression. | - |
-| /back-office/quizs |  page affichant la liste des articles avec lien d’ajout, de modification et bouton suppression. | - |
-| /back-office/methodes |  page affichant la liste des méthodes avec lien d’ajout, de modification et bouton suppression. | - |
-| /back-office/gif-musiques |  page affichant la liste des GIFs et musiques avec lien d’ajout, de modification et bouton suppression. | - |
 | /back-office/article/ajouter |   page permettant d’ajouter un article | - |
 | /back-office/article/id/modifier |   page permettant de modifier un article | - |
+| /back-office/quiz |  page affichant la liste des articles avec lien d’ajout, de modification et bouton suppression. | - |
 | /back-office/quiz/ajouter |   page permettant d’ajouter un quiz | - |
 | /back-office/quiz/id/modifier |   page permettant de modifier un quiz | - |
+| /back-office/methodes |  page affichant la liste des méthodes avec lien d’ajout, de modification et bouton suppression. | - |
 | /back-office/methode/ajouter |   page permettant d’ajouter une fiche méthode | - |
 | /back-office/methode/id/modifier |   page permettant de modifier une fiche méthode | - |
+| /back-office/gif-musiques |  page affichant la liste des GIFs et musiques avec lien d’ajout, de modification et bouton suppression. | - |
 | /back-office/gif-musique/ajouter |   page permettant d’ajouter un un GIF et/ou une musique | - |
 | /back-office/gif-musique/id/modifier |   page permettant de modifier un GIF et/ou une musique | - |
+
+
 
 # BACKOFFICE : ADMIN
 
