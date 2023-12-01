@@ -1,0 +1,8 @@
+.navbar {
+    background: linear-gradient(to right, #533732, #a88b80); 
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px; 
+}
