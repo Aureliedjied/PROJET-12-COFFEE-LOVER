@@ -29,8 +29,6 @@ class Play
      */
     private $score;
 
-
-
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="play")
      */
