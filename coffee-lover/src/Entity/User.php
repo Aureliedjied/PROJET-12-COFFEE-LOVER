@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,38 @@ class User
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="User")
+     */
+    private $articles;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Reward::class, inversedBy="users")
+     */
+    private $reward;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Play::class, mappedBy="user")
+     */
+    private $play;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Quiz::class, mappedBy="user")
+     */
+    private $quiz;
+
+
+
+
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+        $this->reward = new ArrayCollection();
+        $this->play = new ArrayCollection();
+        $this->quiz = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +137,120 @@ class User
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUser() === $this) {
+                $article->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Reward>
+     */
+    public function getReward(): Collection
+    {
+        return $this->reward;
+    }
+
+    public function addReward(Reward $reward): self
+    {
+        if (!$this->reward->contains($reward)) {
+            $this->reward[] = $reward;
+        }
+
+        return $this;
+    }
+
+    public function removeReward(Reward $reward): self
+    {
+        $this->reward->removeElement($reward);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Play>
+     */
+    public function getPlay(): Collection
+    {
+        return $this->play;
+    }
+
+    public function addPlay(Play $play): self
+    {
+        if (!$this->play->contains($play)) {
+            $this->play[] = $play;
+            $play->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlay(Play $play): self
+    {
+        if ($this->play->removeElement($play)) {
+            // set the owning side to null (unless already changed)
+            if ($play->getUser() === $this) {
+                $play->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Quiz>
+     */
+    public function getQuiz(): Collection
+    {
+        return $this->quiz;
+    }
+
+    public function addQuiz(Quiz $quiz): self
+    {
+        if (!$this->quiz->contains($quiz)) {
+            $this->quiz[] = $quiz;
+            $quiz->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuiz(Quiz $quiz): self
+    {
+        if ($this->quiz->removeElement($quiz)) {
+            // set the owning side to null (unless already changed)
+            if ($quiz->getUser() === $this) {
+                $quiz->setUser(null);
+            }
+        }
 
         return $this;
     }

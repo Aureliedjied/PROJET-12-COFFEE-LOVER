@@ -27,6 +27,11 @@ class Response
      */
     private $is_correct;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="response")
+     */
+    private $question;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Response
     public function setIsCorrect(?bool $is_correct): self
     {
         $this->is_correct = $is_correct;
+
+        return $this;
+    }
+
+    public function getQuestion(): ?Question
+    {
+        return $this->question;
+    }
+
+    public function setQuestion(?Question $question): self
+    {
+        $this->question = $question;
 
         return $this;
     }

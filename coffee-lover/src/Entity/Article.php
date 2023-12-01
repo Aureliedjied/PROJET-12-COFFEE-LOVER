@@ -62,6 +62,11 @@ class Article
      */
     private $subtitle;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="articles")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,18 @@ class Article
     public function setSubtitle(?string $subtitle): self
     {
         $this->subtitle = $subtitle;
+
+        return $this;
+    }
+
+    public function getUser(): ?user
+    {
+        return $this->user;
+    }
+
+    public function setUser(?user $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
