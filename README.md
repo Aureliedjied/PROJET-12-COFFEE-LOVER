@@ -2,7 +2,7 @@
 
 ##Start with a 
 ```
-compose install
+composer install
 ```
  
 ##Create the .env.local file 
