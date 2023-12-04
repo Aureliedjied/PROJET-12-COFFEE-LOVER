@@ -45,7 +45,7 @@ class User
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="User")
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="user")
      */
     private $articles;
 
