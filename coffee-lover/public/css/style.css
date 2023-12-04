@@ -6,3 +6,8 @@
     color: white !important;
     font-size: 18px; 
 }
+
+.container-fluid {
+    background: linear-gradient(to right, #533732, #a88b80); 
+}
+
