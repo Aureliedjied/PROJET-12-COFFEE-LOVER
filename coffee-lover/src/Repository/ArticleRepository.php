@@ -41,7 +41,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findHomeArticle($saviezVous)
     {
-        // Méthode pour récuperer l'article le saviez-vous dans la table article en BDD
+        //  which retrieves articles " Le saviez vous ? " from article table in database 
         return $this->createQueryBuilder('a')
             ->where('a.tag = :saviezvous')
             ->setParameter('saviezvous', $saviezVous)
@@ -51,7 +51,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findRandomArticles()
     {
-        // Méthode pour récuperer deux articles en mode random dans la table article en BDD
+        // Méthod which retrieves 2 random articles from database
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '

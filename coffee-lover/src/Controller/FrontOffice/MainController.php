@@ -14,14 +14,14 @@ class MainController extends AbstractController
      */
     public function home(ArticleRepository $articleRepository): Response
     {
-        // récuperation de l'article le saviez-vous dans la table article dans la BDD
+        // retrieve articles from database
         $saviezVous = "home";
         $homeArticle = $articleRepository->findHomeArticle($saviezVous);
 
-        // récuperation de deux articles dans la bdd en mode random 
+        // methode which retrieves 2 random articles
         $randomArticle = $articleRepository->findRandomArticles();
         dump($homeArticle);
-        // retourne les articles à la vue twig home
+        // return articles to the view
         return $this->render('main/index.html.twig', [
             'homeArticle' => $homeArticle,
             'randomArticle' => $randomArticle
