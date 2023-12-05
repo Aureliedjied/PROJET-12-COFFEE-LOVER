@@ -27,14 +27,12 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/categorie/{title}", name="app_article_show")
+     * composer sensio for transform id in title
      * @ParamConverter("article", options={"mapping": {"title": "title"}})
      */
     public function show(Article $article)
     {
-        // Retrieving an article based on its title from the database.
-
-        // $article = $articleRepository->find($title);
-
+        
         // Error page if the article does not exist."
             if ($article === null) {
                 return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
