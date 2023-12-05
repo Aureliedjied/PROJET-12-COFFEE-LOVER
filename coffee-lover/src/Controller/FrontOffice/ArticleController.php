@@ -14,6 +14,7 @@ class ArticleController extends AbstractController
      */
     public function list(ArticleRepository $articleRepository): Response
     {
+        // Display all articles related to a tag from the database.
         $articles = 'torrefaction';
         $tagArticle = $articleRepository->findAllByTag($articles);
 
@@ -23,17 +24,21 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/categorie/:title-article/{id}", name="app_article_show")
+     * @Route("/categorie/{title}", name="app_article_show")
      */
-    public function show($id, ArticleRepository $articleRepository)
+    public function show($article)
     {
-        $article = $articleRepository->find($id);
+        // Retrieving an article based on its title from the database.
 
+        // $article = $articleRepository->find($title);
+
+        // Error page if the article does not exist."
             if ($article === null) {
                 return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
             }
         return $this->render('article/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'title' => $title
         ]);
     }
 }

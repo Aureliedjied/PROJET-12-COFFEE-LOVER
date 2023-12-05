@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
+{% block title %}Articles{% endblock %}
 
 {% block body %}
 
@@ -13,13 +13,13 @@
 			<div class="row g-4">
               
             {% for article in tagArticle %}
-				<div class="col-12">
-					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5{% endif %} article-card">
+				<div class="col-12"></br>
+					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5â{% endif %} article-card">
 						<div class="col-xs-12 col-md-6">
                         
 							<div class="img-wrapper position-relative bsb-hover-push">
 								<a href="#!">
-									<img class="img-fluid rounded" loading="lazy" src="images/test.png" alt="Sports">
+									<img class="img-fluid rounded" src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" >
 								</a>
 							</div>
 						</div>
@@ -29,8 +29,8 @@
 								<h2 class="h3 mb-3">
 									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 								</h2>
-								<p class="mb-3">Learning how to skateboard can be a simultaneously exciting and terrifying experience. Explore the 20 top tips for beginner skaters.</p>
-								<a class="btn btn-primary btn-sm btn-read-more" href="#!" target="_self">Read More</a>
+								<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
+								<a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_article_show', {'title':article.title}) }}">Lire la suite</a>
 							</div>
 						</div>
 					</div>
@@ -53,7 +53,7 @@
 									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 								</h2>
 								<p class="mb-3">You think the Wright Brothers were impressive? Hot air balloons were carrying people through the air almost a century before the Wright Brothers were even born.</p>
-								<a class="btn btn-primary btn-sm btn-read-more-coffee" href="#!" target="_self">Read More</a>
+								<a class="btn btn-primary btn-sm btn-read-more-coffee" href="#!" target="_self">Lire la suite</a>
 							</div>
                             
 						</div>
