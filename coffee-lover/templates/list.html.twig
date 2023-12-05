@@ -21,7 +21,7 @@
 
     <div class="card text-bg-dark ">
         <img src="{{cdn_base_url}}zhqKfMm/bannerV2.png" class="img-fluid h-auto w-auto" alt="Banner">
-        <div class="card-img-overlay">
+        <div class="card-img-overlay d-none d-lg-block">
             <h5 class="card-title text-center fs-1 fw-bolder" id="Coffee Lover">Coffee Lover</h5>
         </div>
     
@@ -50,11 +50,14 @@
 				</button>
 					<div class="d-flex d-lg-none">
 						<div class="me-3">
-							<span class="bi bi-person-fill" style="font-size: 2rem"></span>
+							<a href="#"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
 						</div>
 					</div>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a href="{{path('app_home')}}"><span class="bi bi-cup-hot pr-4" style="font-size: 2rem" ></span></a>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Culture et récolte</a>
 						</li>
@@ -79,6 +82,7 @@
 					<div class="d-none d-lg-flex">
 						<div class="me-3">
 							<a class="nav-link" href="#">Connexion</a>
+							
 						</div>
 					</div>
 				</div>
