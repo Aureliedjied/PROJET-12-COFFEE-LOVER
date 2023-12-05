@@ -2,9 +2,11 @@
 
 namespace App\Controller\FrontOffice;
 
+use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArticleController extends AbstractController
@@ -25,8 +27,9 @@ class ArticleController extends AbstractController
 
     /**
      * @Route("/categorie/{title}", name="app_article_show")
+     * @ParamConverter("article", options={"mapping": {"title": "title"}})
      */
-    public function show($article)
+    public function show(Article $article)
     {
         // Retrieving an article based on its title from the database.
 
@@ -38,7 +41,6 @@ class ArticleController extends AbstractController
             }
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'title' => $title
         ]);
     }
 }
