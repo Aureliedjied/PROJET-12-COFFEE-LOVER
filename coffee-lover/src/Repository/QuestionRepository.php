@@ -39,6 +39,23 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
+    public function findRandom()
+    {
+         $conn = $this->getEntityManager()->getConnection();
+ 
+         // récupère les films, range dans le désordre et retournes en qu'un
+         $sql = '
+         SELECT * FROM movie
+         ORDER BY RAND ( )
+         LIMIT 10
+             ';
+ 
+         $resultSet = $conn->executeQuery($sql);
+ 
+         // returns the result
+         return $resultSet->fetchAssociative();
+     }
+
 //    /**
 //     * @return Question[] Returns an array of Question objects
 //     */

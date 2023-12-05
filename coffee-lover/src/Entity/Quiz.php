@@ -39,6 +39,11 @@ class Quiz
      */
     private $questions;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $link;
+
     public function __construct()
     {
         $this->play = new ArrayCollection();
@@ -130,6 +135,18 @@ class Quiz
     public function removeQuestion(Question $question): self
     {
         $this->questions->removeElement($question);
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(?string $link): self
+    {
+        $this->link = $link;
 
         return $this;
     }

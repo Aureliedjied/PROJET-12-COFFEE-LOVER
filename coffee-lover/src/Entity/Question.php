@@ -25,7 +25,7 @@ class Question
     private $text_question;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Quiz::class, mappedBy="question")
+     * @ORM\ManyToMany(targetEntity=Quiz::class, mappedBy="questions")
      */
     private $quizzes;
 
@@ -38,6 +38,11 @@ class Question
     {
         $this->quizzes = new ArrayCollection();
         $this->response = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->text_question;
     }
 
     public function getId(): ?int
