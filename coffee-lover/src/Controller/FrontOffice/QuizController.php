@@ -35,7 +35,7 @@ class QuizController extends AbstractController
 
         // Si le film demandé n'existe pas getMovieById($id) va me retourner null
         if ($quiz === null) {
-            throw $this->createNotFoundException('Quiz non trouvé');
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
         return $this->render('quiz/show.html.twig', [
             'quiz' => $quiz,

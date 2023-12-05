@@ -43,7 +43,7 @@ class QuestionRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        // récupère les films, range dans le désordre et retournes en qu'un
+        // keep 10 questions random when quiz_id = section
         $sql = '
          SELECT * FROM question
          WHERE quiz_id = :quiz
