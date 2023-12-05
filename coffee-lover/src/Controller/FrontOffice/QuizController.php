@@ -14,9 +14,9 @@ class QuizController extends AbstractController
      * @Route("/les-quizs", name="app_quiz_list")
      */
     public function list(QuizRepository $quizRepository): Response
-    {   
+    {
         $quizs = $quizRepository->findAll();
-        
+
         return $this->render('quiz/list.html.twig', [
             'quizs' => $quizs,
         ]);
@@ -31,7 +31,7 @@ class QuizController extends AbstractController
     {
 
         // depuis la methode custom faite sur le casting repository on recupere les castings d'un film
-         $quiz = $quizRepository->find($quiz);
+        $quiz = $quizRepository->findRandomQuestionByQuiz($quiz);
 
         // Si le film demandé n'existe pas getMovieById($id) va me retourner null
         if ($quiz === null) {
@@ -41,9 +41,4 @@ class QuizController extends AbstractController
             'quiz' => $quiz,
         ]);
     }
-
-
-
-
-
 }

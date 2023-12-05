@@ -39,45 +39,50 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandom()
+    public function findRandomQuestionByQuiz()
     {
-         $conn = $this->getEntityManager()->getConnection();
- 
-         // récupère les films, range dans le désordre et retournes en qu'un
-         $sql = '
-         SELECT * FROM movie
+        $conn = $this->getEntityManager()->getConnection();
+
+        // récupère les films, range dans le désordre et retournes en qu'un
+        $sql = '
+         SELECT * FROM question
+         WHERE quiz_id = :quiz
          ORDER BY RAND ( )
-         LIMIT 10
+         LIMIT :limit
              ';
- 
-         $resultSet = $conn->executeQuery($sql);
- 
-         // returns the result
-         return $resultSet->fetchAssociative();
-     }
 
-//    /**
-//     * @return Question[] Returns an array of Question objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('q.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Question
-//    {
-//        return $this->createQueryBuilder('q')
-//            ->andWhere('q.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $resultSet = $conn->executeQuery($sql);
+
+        // returns the result
+        return $resultSet->fetchAssociative();
+    }
+
+
+
+
+    //    /**
+    //     * @return Question[] Returns an array of Question objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('q.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Question
+    //    {
+    //        return $this->createQueryBuilder('q')
+    //            ->andWhere('q.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
