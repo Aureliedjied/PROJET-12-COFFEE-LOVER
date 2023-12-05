@@ -15,8 +15,9 @@ class MainController extends AbstractController
     public function home(ArticleRepository $articleRepository): Response
     {
         // retrieve articles from database
-        $saviezVous = "home";
-        $homeArticle = $articleRepository->findHomeArticle($saviezVous);
+        $home = "home";
+        // $homeArticle = $articleRepository->findHomeArticle($saviezVous);
+        $homeArticle = $articleRepository->findAllByTag($home);
 
         // methode which retrieves 2 random articles
         $randomArticle = $articleRepository->findRandomArticles();

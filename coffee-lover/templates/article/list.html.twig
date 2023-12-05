@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+
+{# List of articles divised by 2, for each container #}
+
+
+  
+        <section class="py-3 py-md-5">
+		<div class="container overflow-hidden">
+			<div class="row g-4">
+              {% set halfCount = tagArticle|length / 2 %}
+            {% for article in tagArticle|slice(0, halfCount) %}
+				<div class="col-12">
+					<div class="row align-items-center gx-md-4 gx-xl-5 article-card">
+						<div class="col-xs-12 col-md-6">
+                        
+							<div class="img-wrapper position-relative bsb-hover-push">
+								<a href="#!">
+									<img class="img-fluid rounded" loading="lazy" src="images/test.png" alt="Sports">
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<div>
+								<p class="text-secondary mb-1">Nov 11, 2022</p>
+								<h2 class="h3 mb-3">
+									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
+								</h2>
+								<p class="mb-3">Learning how to skateboard can be a simultaneously exciting and terrifying experience. Explore the 20 top tips for beginner skaters.</p>
+								<a class="btn btn-primary btn-sm btn-read-more" href="#!" target="_self">Read More</a>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+            
+            {% for article in tagArticle|slice(halfCount) %}
+				<div class="col-12">
+					<div class="row align-items-center flex-row-reverse gx-md-4 gx-xl-5 article-card">
+						<div class="col-xs-12 col-md-6">
+							<div class="img-wrapper position-relative bsb-hover-push">
+								<a href="#!">
+									<img class="img-fluid rounded" loading="lazy" src="images/test.png" alt="Travel">
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<div>
+								<p class="text-secondary mb-1">Oct 9, 2022</p>
+								<h2 class="h3 mb-3">
+									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
+								</h2>
+								<p class="mb-3">You think the Wright Brothers were impressive? Hot air balloons were carrying people through the air almost a century before the Wright Brothers were even born.</p>
+								<a class="btn btn-primary btn-sm btn-read-more-coffee" href="#!" target="_self">Read More</a>
+							</div>
+                            
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+            
+		</div>   
+	</section>
+{% endblock %}

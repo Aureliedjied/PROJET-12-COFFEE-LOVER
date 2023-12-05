@@ -39,15 +39,25 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-    public function findHomeArticle($saviezVous)
+    // method which find articles by their category ( tagName in database )
+    public function findAllByTag($tagName)
     {
-        //  which retrieves articles " Le saviez vous ? " from article table in database 
         return $this->createQueryBuilder('a')
-            ->where('a.tag = :saviezvous')
-            ->setParameter('saviezvous', $saviezVous)
+            ->Where('a.tag = :tagName')
+            ->setParameter('tagName', $tagName)
             ->getQuery()
             ->getResult();
     }
+
+    // public function findHomeArticle($saviezVous)
+    // {
+    //     //  which retrieves article " Le saviez vous ? " from article table in database 
+    //     return $this->createQueryBuilder('a')
+    //         ->where('a.tag = :saviezvous')
+    //         ->setParameter('saviezvous', $saviezVous)
+    //         ->getQuery()
+    //         ->getResult();
+    // }
 
     public function findRandomArticles()
     {
