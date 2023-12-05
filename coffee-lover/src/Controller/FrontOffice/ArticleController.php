@@ -21,4 +21,19 @@ class ArticleController extends AbstractController
             'tagArticle' => $tagArticle,
         ]);
     }
+
+    /**
+     * @Route("/categorie/:title-article/{id}", name="app_article_show")
+     */
+    public function show($id, ArticleRepository $articleRepository)
+    {
+        $article = $articleRepository->find($id);
+
+            if ($article === null) {
+                return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+            }
+        return $this->render('article/show.html.twig', [
+            'article' => $article
+        ]);
+    }
 }

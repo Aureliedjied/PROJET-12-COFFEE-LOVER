@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{article.title}}
+{% endblock %}
+
+{% block body %}
+
+<section class="features-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-6">
+          <div class="text-container">
+            <h2 class="section-title">Le café ...</h2>
+            <p class="section-text">Maecenas volutpat blandit aliquam etiam erat. Convallis convallis tellus id interdum velit laoreet id donec. Mauris in aliquam sem fringilla. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper.</p>
+            <div class="section-btn">
+              <a class="btn btn-primary-outline" href="#">Voir plus</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="image-container">
+            <img src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

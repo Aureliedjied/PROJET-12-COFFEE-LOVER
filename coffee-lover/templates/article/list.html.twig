@@ -11,10 +11,10 @@
         <section class="py-3 py-md-5">
 		<div class="container overflow-hidden">
 			<div class="row g-4">
-              {% set halfCount = tagArticle|length / 2 %}
-            {% for article in tagArticle|slice(0, halfCount) %}
+              
+            {% for article in tagArticle %}
 				<div class="col-12">
-					<div class="row align-items-center gx-md-4 gx-xl-5 article-card">
+					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5{% endif %} article-card">
 						<div class="col-xs-12 col-md-6">
                         
 							<div class="img-wrapper position-relative bsb-hover-push">
@@ -37,8 +37,7 @@
                     {% endfor %}
 				</div>
             
-            {% for article in tagArticle|slice(halfCount) %}
-				<div class="col-12">
+				{# <div class="col-12">
 					<div class="row align-items-center flex-row-reverse gx-md-4 gx-xl-5 article-card">
 						<div class="col-xs-12 col-md-6">
 							<div class="img-wrapper position-relative bsb-hover-push">
@@ -59,8 +58,8 @@
                             
 						</div>
 					</div>
-				</div>
-                {% endfor %}
+				</div> #}
+
 			</div>
             
 		</div>   
