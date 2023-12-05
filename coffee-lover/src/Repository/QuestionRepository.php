@@ -72,6 +72,7 @@ class QuestionRepository extends ServiceEntityRepository
     //     */
     //    public function findByExampleField($value): array
     //    {
+
     //        return $this->createQueryBuilder('q')
     //            ->andWhere('q.exampleField = :val')
     //            ->setParameter('val', $value)
