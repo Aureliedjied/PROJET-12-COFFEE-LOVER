@@ -39,23 +39,29 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandomQuestionByQuiz()
+    public function findRandomQuestionByQuiz($quiz, $limit = 10)
     {
         $conn = $this->getEntityManager()->getConnection();
 
         // keep 10 questions random when quiz_id = section
         $sql = '
-         SELECT * FROM question
-         WHERE quiz_id = :quiz
+         SELECT *, quiz.title AS,quiz_title FROM question 
+         JOIN quiz_question ON question.id = quiz_question.question_id 
+         JOIN quiz ON quiz_question.quiz_id = quiz.id
+         WHERE quiz_question.quiz_id = :quiz
          ORDER BY RAND ( )
          LIMIT :limit
              ';
 
 
-        $resultSet = $conn->executeQuery($sql);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue('quiz', $quiz);
+        $stmt->bindValue('limit', $limit, \PDO::PARAM_INT);
+
+        $resultSet = $stmt->executeQuery();
 
         // returns the result
-        return $resultSet->fetchAssociative();
+        return $resultSet->fetchAllAssociative();
     }
 
 
@@ -66,6 +72,7 @@ class QuestionRepository extends ServiceEntityRepository
     //     */
     //    public function findByExampleField($value): array
     //    {
+
     //        return $this->createQueryBuilder('q')
     //            ->andWhere('q.exampleField = :val')
     //            ->setParameter('val', $value)

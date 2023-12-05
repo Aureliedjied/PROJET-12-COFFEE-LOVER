@@ -4,9 +4,10 @@ namespace App\Controller\FrontOffice;
 
 use App\Entity\Quiz;
 use App\Repository\QuizRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class QuizController extends AbstractController
 {
@@ -27,11 +28,11 @@ class QuizController extends AbstractController
      *
      * @Route("/{title}/quiz/{id}", name="app_quiz_show", methods={"GET"})
      */
-    public function show(Quiz $quiz, QuizRepository $quizRepository)
+    public function show(Quiz $quiz, QuestionRepository $questionRepository)
     {
 
         // depuis la methode custom faite sur le casting repository on recupere les castings d'un film
-        $quiz = $quizRepository->findRandomQuestionByQuiz($quiz);
+        $quiz = $questionRepository->findRandomQuestionByQuiz($quiz);
 
         // Si le film demandé n'existe pas getMovieById($id) va me retourner null
         if ($quiz === null) {
