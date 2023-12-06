@@ -27,8 +27,8 @@ class QuizController extends AbstractController
     /**
      * details of a section
      *
-     * @Route("/{title}/quiz", name="app_quiz_show", methods={"GET"})
-     * @ParamConverter("quiz", options={"mapping": {"title": "title"}})
+     * @Route("/{title}/quiz/{id}", name="app_quiz_show", methods={"GET"})
+     * 
      */
     public function show(Quiz $quiz, QuizRepository $quizRepository, QuestionRepository $questionRepository)
     {
