@@ -56,24 +56,22 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie') }}">Culture et récolte</a>
+							<a class="nav-link" href="{{ path('app_categorie', {'tag':'culture'})}}">Culture et récolte</a>
+							
 							{# <a href="{{path('app_categorie',{id:article.id, tag:article.tag})}}">
 							<a href="{{path('app_quiz_show',{id:quiz.id, title:quiz.link})}}"> #}
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie')}}">Transformation</a>
+							<a class="nav-link" href="{{ path('app_categorie', {'tag':'transformation'})}}">Transformation</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie') }}">Torréfaction et méthodes</a>
+							<a class="nav-link" href="{{ path('app_categorie', {'tag':'torrefaction'})}}">Torréfaction et méthodes</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie') }}">Café de spécialité</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#{{ path('app_categorie') }}>Café de spécialité</a>
+							<a class="nav-link" href="{{ path('app_categorie', {'tag':'cafe'})}}">Café de spécialité</a>
 						</li>
                         <li class="nav-item">
-							<a class="nav-link " href="#">QUIZ</a>
+							<a class="nav-link" href="#">QUIZ</a>
 						</li>
 					</ul>
 					{# search form for desktop device #}

@@ -9,26 +9,32 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/{tag}")
+ * @ParamConverter("article", options={"mapping": {"tag": "tag"}})
+ */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/categorie", name="app_categorie")
+     * @Route("/", name="app_categorie")
      */
-    public function list(ArticleRepository $articleRepository): Response
+    
+    public function list(ArticleRepository $articleRepository, Article $article): Response
     {
         // Display all articles related to a tag from the database.
-        $articles = 'torrefaction';
-        $tagArticle = $articleRepository->findAllByTag($articles);
+        
+        $articles = $articleRepository->findAllByTag(['tag'=>$article->getTag()]);
 
         return $this->render('article/list.html.twig', [
-            'tagArticle' => $tagArticle,
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * @Route("/categorie/{title}", name="app_article_show")
+     * @Route("/{title}", name="app_article_show")
      * composer sensio for transform id in title
      * @ParamConverter("article", options={"mapping": {"title": "title"}})
+     * 
      */
     public function show(Article $article)
     {
@@ -41,4 +47,14 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
+    // public function list(ArticleRepository $articleRepository): Response
+    // {
+    //     // Display all articles related to a tag from the database.
+    //     $articles = 'transformation';
+    //     $tagArticle = $articleRepository->findAllByTag($articles);
+
+    //     return $this->render('article/list.html.twig', [
+    //         'tagArticle' => $tagArticle,
+    //     ]);
+    // }
 }
