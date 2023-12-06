@@ -39,30 +39,32 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandomQuestionByQuiz($quiz, $limit = 10)
+    public function findRandomQuestionByQuiz($quizId, $limit = 10)
     {
-        $conn = $this->getEntityManager()->getConnection();
+        $entityManager = $this->getEntityManager();
 
-        // keep 10 questions random when quiz_id = section
-        $sql = '
-         SELECT *, quiz.title AS,quiz_title FROM question 
-         JOIN quiz_question ON question.id = quiz_question.question_id 
-         JOIN quiz ON quiz_question.quiz_id = quiz.id
-         WHERE quiz_question.quiz_id = :quiz
-         ORDER BY RAND ( )
-         LIMIT :limit
-             ';
+        // Step 1: Retrieve all question IDs for the specified quiz
+        $ids = $entityManager->createQuery(
+            'SELECT q.id FROM App\Entity\Question q 
+         JOIN q.quizzes quiz
+         WHERE quiz.id = :quizId'
+        )->setParameter('quizId', $quizId)
+            ->getResult();
 
+        // Step 2: Shuffle and limit the IDs
+        $ids = array_column($ids, 'id');
+        shuffle($ids);
+        $ids = array_slice($ids, 0, $limit);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue('quiz', $quiz);
-        $stmt->bindValue('limit', $limit, \PDO::PARAM_INT);
-
-        $resultSet = $stmt->executeQuery();
-
-        // returns the result
-        return $resultSet->fetchAllAssociative();
+        // Step 3: Load the questions and their corresponding responses
+        return $entityManager->createQuery(
+            'SELECT q, r FROM App\Entity\Question q
+         LEFT JOIN q.responses r
+         WHERE q.id IN (:ids)'
+        )->setParameter('ids', $ids)
+            ->getResult();
     }
+
 
 
 

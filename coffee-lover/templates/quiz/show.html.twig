@@ -1,33 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Coffee Lover Quiz "categorie"{% endblock %}
-
+{% block title %}
+  Coffee Lover Quiz "categorie"
+{% endblock %}
 {% block body %}
-    <div class=" container-fluid ">
-        <div class="row mb-4">
-                <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{quiz.title}}"</h2> 
-        </div>
-
-        {% for  question in quiz.question %}
-    <h3>{{question.getTextQuestion}}</h3>
-    {% for response in question.response %}
-    <p>{{response.getTextResponse}}</p>
-    {% endfor %}
-{% endfor %}
-           
-                <div class="row">
-              
-                    <div class="col-auto mx-auto mb-4 ">
-                        <div class="card" style="width: 18rem;">
-                            <a href="#"><img src="https://i.ibb.co/vXdCWV7/DALL-E-2023-11-22-15-53-02-A-charming-and-animated-scene-inspired-by-Pixar-s-style-showing-a-cartoon.png" class="card-img-top" alt="test">
-                            <div class="card-body">
-                                <p class="card-text fw-bold text-center">{{quiz.title}}</p>
-                            </div></a>
-                        </div>
-                    </div>
-                   
-                </div>
+  {{ dump(questions) }}
+  {{ dump(quiz) }}
+  <div class="container-fluid">
+    <div class="row mb-4">
+      <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{ quiz.title }}"</h2>
     </div>
-    
-        
+
+    <form action="#" method="post">
+      <div class="container mt-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            {% for question in questions %}
+              <div class="mb-3">
+                <h4>{{ question.getTextQuestion }}</h4>
+                {% for response in question.responses %}
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="responses[{{ question.id }}]" id="response{{ response.id }}" value="{{ response.id }}" />
+                    <label class="form-check-label" for="response{{ response.id }}">{{ response.getTextResponse }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Soumettre</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-auto mx-auto mb-4">
+        <div class="card" style="width: 18rem;">
+          <a href="#">
+            <img src="https://i.ibb.co/vXdCWV7/DALL-E-2023-11-22-15-53-02-A-charming-and-animated-scene-inspired-by-Pixar-s-style-showing-a-cartoon.png" class="card-img-top" alt="test" />
+            <div class="card-body">
+              <p class="card-text fw-bold text-center">{{ quiz.title }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

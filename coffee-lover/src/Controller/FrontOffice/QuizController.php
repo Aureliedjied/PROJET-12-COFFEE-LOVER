@@ -3,6 +3,7 @@
 namespace App\Controller\FrontOffice;
 
 use App\Entity\Quiz;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Repository\QuizRepository;
 use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,20 +27,28 @@ class QuizController extends AbstractController
     /**
      * details of a section
      *
-     * @Route("/{title}/quiz/{id}", name="app_quiz_show", methods={"GET"})
+     * @Route("/{title}/quiz", name="app_quiz_show", methods={"GET"})
+     * @ParamConverter("quiz", options={"mapping": {"title": "title"}})
      */
-    public function show(Quiz $quiz, QuestionRepository $questionRepository)
+    public function show(Quiz $quiz, QuizRepository $quizRepository, QuestionRepository $questionRepository)
     {
 
-        // depuis la methode custom faite sur le casting repository on recupere les castings d'un film
-        $quiz = $questionRepository->findRandomQuestionByQuiz($quiz);
 
-        // Si le film demandé n'existe pas getMovieById($id) va me retourner null
+        if (!$quiz) {
+            // Gérer le cas où le quiz n'existe pas
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+        }
+
+
+        $questions = $questionRepository->findRandomQuestionByQuiz($quiz, $limit = 10);
+
+
         if ($quiz === null) {
             return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
         return $this->render('quiz/show.html.twig', [
             'quiz' => $quiz,
+            'questions' => $questions
         ]);
     }
 }

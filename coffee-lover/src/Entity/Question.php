@@ -32,12 +32,12 @@ class Question
     /**
      * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question")
      */
-    private $response;
+    private $responses;
 
     public function __construct()
     {
         $this->quizzes = new ArrayCollection();
-        $this->response = new ArrayCollection();
+        $this->responses = new ArrayCollection();
     }
 
     public function __toString()
@@ -92,15 +92,15 @@ class Question
     /**
      * @return Collection<int, Response>
      */
-    public function getResponse(): Collection
+    public function getResponses(): Collection
     {
-        return $this->response;
+        return $this->responses;
     }
 
     public function addResponse(Response $response): self
     {
-        if (!$this->response->contains($response)) {
-            $this->response[] = $response;
+        if (!$this->responses->contains($response)) {
+            $this->responses[] = $response;
             $response->setQuestion($this);
         }
 
@@ -109,7 +109,7 @@ class Question
 
     public function removeResponse(Response $response): self
     {
-        if ($this->response->removeElement($response)) {
+        if ($this->responses->removeElement($response)) {
             // set the owning side to null (unless already changed)
             if ($response->getQuestion() === $this) {
                 $response->setQuestion(null);
