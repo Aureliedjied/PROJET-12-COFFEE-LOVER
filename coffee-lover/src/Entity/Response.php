@@ -28,7 +28,7 @@ class Response
     private $is_correct;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="response")
+     * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="responses")
      */
     private $question;
 
