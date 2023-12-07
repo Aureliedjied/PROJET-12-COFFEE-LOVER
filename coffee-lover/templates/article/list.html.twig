@@ -13,7 +13,8 @@
 			<div class="row g-4">
               
             {% for article in articles %}
-				<div class="col-12"></br>
+				<div class="col-12">
+				</br>
 					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5â{% endif %} article-card">
 						<div class="col-xs-12 col-md-6">
                         
@@ -25,7 +26,7 @@
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div>
-								<p class="text-secondary mb-1">Nov 11, 2022</p>
+								<p class="text-secondary mb-1">{{article.getCreatedAt|date("d-m-Y")}}</p>
 								<h2 class="h3 mb-3">
 									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 								</h2>
@@ -37,28 +38,7 @@
                     {% endfor %}
 				</div>
             
-				{# <div class="col-12">
-					<div class="row align-items-center flex-row-reverse gx-md-4 gx-xl-5 article-card">
-						<div class="col-xs-12 col-md-6">
-							<div class="img-wrapper position-relative bsb-hover-push">
-								<a href="#!">
-									<img class="img-fluid rounded" loading="lazy" src="images/test.png" alt="Travel">
-								</a>
-							</div>
-						</div>
-						<div class="col-xs-12 col-md-6">
-							<div>
-								<p class="text-secondary mb-1">Oct 9, 2022</p>
-								<h2 class="h3 mb-3">
-									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
-								</h2>
-								<p class="mb-3">You think the Wright Brothers were impressive? Hot air balloons were carrying people through the air almost a century before the Wright Brothers were even born.</p>
-								<a class="btn btn-primary btn-sm btn-read-more-coffee" href="#!" target="_self">Lire la suite</a>
-							</div>
-                            
-						</div>
-					</div>
-				</div> #}
+				
 
 			</div>
             

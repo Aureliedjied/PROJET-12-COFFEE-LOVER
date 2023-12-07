@@ -76,6 +76,19 @@ class ArticleRepository extends ServiceEntityRepository
         return $stmt->fetchAllAssociative();
     }
 
+    // Méthode pour la recherche d'articles :
+    public function searchArticle(?string $keyword)
+    {
+        // Gérer les espaces :
+        $keyword = trim($keyword);
+
+        return $this->createQueryBuilder('a')
+            ->where('LOWER(a.title) LIKE :keyword')
+            ->setParameter('keyword', '%' . strtolower($keyword) . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Article[] Returns an array of Article objects
     //     */
