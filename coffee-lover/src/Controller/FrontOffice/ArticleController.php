@@ -47,14 +47,4 @@ class ArticleController extends AbstractController
             'article' => $article,
         ]);
     }
-    // public function list(ArticleRepository $articleRepository): Response
-    // {
-    //     // Display all articles related to a tag from the database.
-    //     $articles = 'transformation';
-    //     $tagArticle = $articleRepository->findAllByTag($articles);
-
-    //     return $this->render('article/list.html.twig', [
-    //         'tagArticle' => $tagArticle,
-    //     ]);
-    // }
 }
