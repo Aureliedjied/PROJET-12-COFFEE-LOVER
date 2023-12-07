@@ -4,27 +4,28 @@
   Coffee Lover Quiz "categorie"
 {% endblock %}
 {% block body %}
+  {{ dump(questions) }}
+  {{ dump(quiz) }}
   <div class="container-fluid">
     <div class="row mb-4">
       <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{ quiz.title }}"</h2>
     </div>
 
-    <form action="#" method="post">
+    <form action="{{ path('app_quiz_show', { id: quiz.id, title: quiz.title }) }}" method="post">
       <div class="container mt-4 mb-4">
         <div class="card">
           <div class="card-body">
-            {% for question in questions %}
-              <div class="mb-3">
-                <h4>{{ question.getTextQuestion }}</h4>
-                {% for response in question.responses %}
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="responses[{{ question.id }}]" id="response{{ response.id }}" value="{{ response.id }}" />
-                    <label class="form-check-label" for="response{{ response.id }}">{{ response.getTextResponse }}</label>
-                  </div>
-                {% endfor %}
-              </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary">Soumettre</button>
+            <div class="mb-3">
+              <h4>{{ questions.getTextQuestion }}</h4>
+              {% for response in questions.responses %}
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="responses[{{ questions.id }}]" id="response{{ response.id }}" value="{{ response.id }}" />
+                  <label class="form-check-label" for="response{{ response.id }}">{{ response.getTextResponse }}</label>
+                </div>
+              {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">suivant</button>
           </div>
         </div>
       </div>
