@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuizController extends AbstractController
 {
     /**
-     * @Route("/les-quizs", name="app_quiz_list")
+     * @Route("/les-quiz", name="app_quiz_list")
      */
     public function list(QuizRepository $quizRepository): Response
     {

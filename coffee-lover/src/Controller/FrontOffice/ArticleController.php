@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/", name="app_categorie")
+     * @Route("/articles", name="app_categorie")
      */
     
     public function list(ArticleRepository $articleRepository, Article $article): Response
