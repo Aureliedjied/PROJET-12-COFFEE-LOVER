@@ -2,7 +2,7 @@
 
 namespace App\Controller\FrontOffice;
 
-use App\Entity\Article;
+
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

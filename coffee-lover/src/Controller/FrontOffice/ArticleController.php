@@ -6,24 +6,23 @@ use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
- * @Route("/{tag}")
- * @ParamConverter("article", options={"mapping": {"tag": "tag"}})
+ * @Route("/articles")
+ * 
  */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/articles", name="app_categorie")
+     * @Route("/{tag}", name="app_categorie")
      */
-    
+
     public function list(ArticleRepository $articleRepository, Article $article): Response
     {
         // Display all articles related to a tag from the database.
-        
-        $articles = $articleRepository->findAllByTag(['tag'=>$article->getTag()]);
+
+        $articles = $articleRepository->findAllByTag(['tag' => $article->getTag()]);
 
         return $this->render('article/list.html.twig', [
             'articles' => $articles,
@@ -31,18 +30,16 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{title}", name="app_article_show")
-     * composer sensio for transform id in title
-     * @ParamConverter("article", options={"mapping": {"title": "title"}})
+     * @Route("/{tag}/{title}", name="app_article_show")
      * 
      */
     public function show(Article $article)
     {
-        
+
         // Error page if the article does not exist."
-            if ($article === null) {
-                return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
-            }
+        if ($article === null) {
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+        }
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
