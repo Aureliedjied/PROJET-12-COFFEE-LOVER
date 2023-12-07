@@ -54,16 +54,16 @@
               <a href="{{ path('app_home') }}"><span id="cup" class="bi bi-cup-hot pr-4" style="font-size: 2rem"></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Culture et récolte</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Transformation</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Torréfaction et méthodes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Café de spécialité</a>
+              	<a class="nav-link" href="{{ path('app_categorie', {'tag':'Botanique et culture'})}}">Botanique et culture</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_categorie', {'tag':'Récolte et transformation'})}}">Récolte et transformation</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_categorie', {'tag':'Torréfaction et méthodes d\'extraction'})}}">Torréfaction et méthodes d'extraction</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('app_categorie', {'tag':'Café de spécialité'})}}">Café de spécialité</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ path('app_quiz_list') }}">QUIZ</a>
@@ -83,55 +83,7 @@
       </div>
     </nav>
 
-<<<<<<< HEAD
     {% block body %}
-=======
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<button class="navbar-toggler btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="bi bi-list" style="font-size: 2rem"></span>
-				</button>
-					<div class="d-flex d-lg-none">
-						<div class="me-3">
-							<span class="bi bi-person-fill" style="font-size: 2rem"></span>
-						</div>
-					</div>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie', {'tag':'Botanique et culture'})}}">Botanique et culture</a>
-							
-							{# <a href="{{path('app_categorie',{id:article.id, tag:article.tag})}}">
-							<a href="{{path('app_quiz_show',{id:quiz.id, title:quiz.link})}}"> #}
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie', {'tag':'Récolte et transformation'})}}">Récolte et transformation</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie', {'tag':'Torréfaction et méthodes d\'extraction'})}}">Torréfaction et méthodes d'extraction</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_categorie', {'tag':'Café de spécialité'})}}">Café de spécialité</a>
-						</li>
-                        <li class="nav-item">
-							<a class="nav-link" href="#">QUIZ</a>
-						</li>
-					</ul>
-					{# search form for desktop device #}
-					<form class="d-none d-lg-flex form-inline ms-auto">
-						<input class="form-control " type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-dark " type="submit">Recherche</button>
-					</form>
-					<div class="d-none d-lg-flex">
-						<div class="me-3">
-							<a class="nav-link" href="#">Connexion</a>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</nav>
->>>>>>> articleController
 
     {% endblock %}
 
