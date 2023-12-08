@@ -39,15 +39,7 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-    // method which find articles by their category ( tagName in database )
-    public function findAllByTag($tagName)
-    {
-        return $this->createQueryBuilder('a')
-            ->Where('a.tag = :tagName')
-            ->setParameter('tagName', $tagName)
-            ->getQuery()
-            ->getResult();
-    }
+
 
     // public function findHomeArticle($saviezVous)
     // {
@@ -67,7 +59,7 @@ class ArticleRepository extends ServiceEntityRepository
         $sql = '
     SELECT * FROM article
     ORDER BY RAND()
-    LIMIT 2;
+    LIMIT 3;
     ';
 
         $stmt = $conn->executeQuery($sql);

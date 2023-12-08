@@ -1,3 +1,5 @@
+<h1>{{ dd(article) }}</h1>
+
 {% extends 'base.html.twig' %}
 
 {% block title %}
@@ -5,7 +7,7 @@
 {% endblock %}
 
 {% block body %}
-  <section class="features-section">
+  <section class="features-section mb-4">
     <div class="container text-center mx-auto">
       <h2 class="section-title mb-6">{{ article.title }}</h2>
       <div class="row justify-content-center">

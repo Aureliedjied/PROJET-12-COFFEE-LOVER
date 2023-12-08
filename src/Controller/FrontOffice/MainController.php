@@ -17,17 +17,13 @@ class MainController extends AbstractController
      */
     public function home(ArticleRepository $articleRepository): Response
     {
-        // retrieve articles from database
-        $home = "home";
-        // $homeArticle = $articleRepository->findHomeArticle($saviezVous);
-        $homeArticle = $articleRepository->findAllByTag($home);
+
 
         // methode which retrieves 2 random articles
         $randomArticle = $articleRepository->findRandomArticles();
-        dump($homeArticle);
+
         // return articles to the view
         return $this->render('main/index.html.twig', [
-            'homeArticle' => $homeArticle,
             'randomArticle' => $randomArticle
         ]);
     }
