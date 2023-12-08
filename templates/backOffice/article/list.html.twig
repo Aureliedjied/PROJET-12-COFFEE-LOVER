@@ -1,0 +1,38 @@
+{% extends 'backOffice/base.html.twig' %}
+
+{% block title %}
+  Liste des articles
+{% endblock %}
+
+{% block body %}
+    <section class="features-section mb-4">
+        <div class="container text mx-auto">
+            <h2 class="section-title mb-8">Liste des articles</h2>
+                <table class="row justify-content-center table-hover ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Actions</th> 
+                        </tr>
+                    </thead>
+                <tbody>
+            {% for article in articles %}
+        <tr>
+            <td class="text-secondary mb-3">{{ article.id }}</td>
+            <td class="section mb-3">{{ article.title }}</td>
+            <td class="text-secondary mb-3">{{ article.getCreatedAt|date('d-m-Y') }}</td>
+            <td>
+                <a href="#" class="btn btn-outline-secondary btn-rounded mb-3">Editer</a>
+                <a href="#" class="btn btn-outline-secondary btn-rounded mb-3">Supprimer</a>
+            </td>
+        </tr>
+            {% endfor %}
+                    </thead>
+    </div>
+                </tbody>
+                </table>
+
+                    <a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="#">Ajouter un nouvel article</a>
+    </section>
+{% endblock %}
