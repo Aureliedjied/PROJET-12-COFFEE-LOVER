@@ -35,12 +35,15 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{categorySlug}/{articleSlug}", name="app_article_show")
      */
-    public function show(Article $article)
+    public function show(string $articleSlug, ArticleRepository $articleRepository)
     {
-        // Error page if the article does not exist."
-        if ($article === null) {
+        $article = $articleRepository->findOneBy(['slug' => $articleSlug]);
+
+        if (!$article) {
+            // Gérer l'absence de l'article
             return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);

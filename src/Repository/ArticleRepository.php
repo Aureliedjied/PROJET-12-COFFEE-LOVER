@@ -57,9 +57,13 @@ class ArticleRepository extends ServiceEntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-    SELECT * FROM article
-    ORDER BY RAND()
-    LIMIT 3;
+        SELECT article.*, 
+        category.title AS category_title, 
+        category.slug AS category_slug
+        FROM article
+        LEFT JOIN category ON article.category_id = category.id
+        ORDER BY RAND()
+        LIMIT 3;
     ';
 
         $stmt = $conn->executeQuery($sql);
