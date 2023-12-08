@@ -52,10 +52,6 @@ class Article
      */
     private $slug;
 
-    /**
-     * @ORM\Column(type="string", length=128)
-     */
-    private $tag;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -66,6 +62,12 @@ class Article
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="articles")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -156,17 +158,6 @@ class Article
         return $this;
     }
 
-    public function getTag(): ?string
-    {
-        return $this->tag;
-    }
-
-    public function setTag(string $tag): self
-    {
-        $this->tag = $tag;
-
-        return $this;
-    }
 
     public function getSubtitle(): ?string
     {
@@ -188,6 +179,18 @@ class Article
     public function setUser(?user $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
