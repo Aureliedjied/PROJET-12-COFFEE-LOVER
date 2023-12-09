@@ -1,13 +1,13 @@
 {% extends 'back-office/base.html.twig' %}
 
 {% block title %}
-  Liste des categories
+  Liste des quiz
 {% endblock %}
 
 {% block body %}
     <section class="features-section mb-4">
         <div class="container text mx-auto">
-            <h2 class="section-title mb-8">Liste des categories</h2>
+            <h2 class="section-title mb-8">Liste des quiz</h2>
                 <table class="row justify-content-center table-hover ">
                     <thead class="thead-dark">
                         <tr>
@@ -17,11 +17,12 @@
                         </tr>
                     </thead>
                 <tbody>
-            {% for category in categories %}
+            {% for quiz in quizs %}
                 
                     <tr>
-                        <td class="text-secondary mb-3">{{ category.id }}</td>
-                        <td class="section mb-3">{{ category.title }}</td>
+                        <td class="text-secondary mb-3">{{ quiz.id }}</td>
+                        <td class="section-title mb-3">{{ quiz.title }}</td>
+                        <td class="section mb-3">{{ quiz.title }}</td>
                                                 
                         <td>
                             <a href="#" class="btn btn-outline-secondary btn-rounded mb-3">Editer</a>
@@ -33,6 +34,6 @@
         </div>
                 </tbody>
                 </table>
-                    <a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="#">Ajouter une nouvelle categorie</a>
+                    <a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="#">Ajouter un quiz</a>
     </section>
 {% endblock %}
