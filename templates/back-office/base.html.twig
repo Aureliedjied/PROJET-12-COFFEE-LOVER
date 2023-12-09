@@ -54,10 +54,10 @@
               <a href="{{ path('app_home') }}"><span id="cup" class="bi bi-cup-hot pr-4" style="font-size: 2rem"></span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Utilisateur</a>
+              <a class="nav-link" href="{{ path('app_back_users') }}">Utilisateur</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Article</a>
+              <a class="nav-link" href="{{ path('app_back_articles') }}">Article</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Quiz</a>
@@ -67,6 +67,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Gestion des GIF/Musique</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_back_office') }}">Backoffice</a>
             </li>
           </ul>
           {# search form for desktop device #}
