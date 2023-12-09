@@ -22,7 +22,7 @@ class QuizController extends AbstractController
     {
         $quizs = $quizRepository->findAll();
 
-        return $this->render('quiz/list.html.twig', [
+        return $this->render('front-office/quiz/list.html.twig', [
             'quizs' => $quizs,
         ]);
     }
@@ -65,7 +65,7 @@ class QuizController extends AbstractController
 
         $currentQuestion = $questions[$offset];
 
-        return $this->render('quiz/show.html.twig', [
+        return $this->render('front-office/quiz/show.html.twig', [
             'quiz' => $quiz,
             'questions' => $currentQuestion
         ]);

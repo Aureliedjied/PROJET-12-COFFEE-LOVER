@@ -28,7 +28,7 @@
 										<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 									</h2>
 								<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
-								<a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_article_show', {'categorySlug': article.slug, 'articleSlug': article.slug}) }}">Lire la suite</a>
+								<a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_article_show', {'categorySlug': article.category_slug, 'articleSlug': article.slug}) }}">Lire la suite</a>
 								</div>
 							</div>
 						</div>

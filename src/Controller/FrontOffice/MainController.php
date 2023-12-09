@@ -23,7 +23,7 @@ class MainController extends AbstractController
         $randomArticle = $articleRepository->findRandomArticles();
 
         // return articles to the view
-        return $this->render('main/index.html.twig', [
+        return $this->render('front-office/main/index.html.twig', [
             'randomArticle' => $randomArticle
         ]);
     }

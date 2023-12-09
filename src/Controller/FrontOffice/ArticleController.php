@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
         $articles = $articleRepository->findBy([
             'category' => $category,
         ]);
-        return $this->render('article/list.html.twig', [
+        return $this->render('front-office/article/list.html.twig', [
             'articles' => $articles,
         ]);
     }
@@ -44,7 +44,7 @@ class ArticleController extends AbstractController
             return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
 
-        return $this->render('article/show.html.twig', [
+        return $this->render('front-office/article/show.html.twig', [
             'article' => $article,
         ]);
     }
