@@ -15,7 +15,6 @@ class CategoryBackOfficeController extends AbstractController
     public function list(CategoryRepository $categoryRepository): Response
     {
        
-
         return $this->render('back-office/category/list.html.twig', [
             'categories' => $categoryRepository->findAll(),
         ]);
@@ -26,13 +25,13 @@ class CategoryBackOfficeController extends AbstractController
      *
      * @Route("/back-office/categories/delete/{id}", name="app_back_categories_delete")
      */
-    public function delete($id, CategoryRepository $categoryRepository)
-    {
-        // On recupere la categorie
-        $category = $categoryRepository->find($id);
+    // public function delete($id, CategoryRepository $categoryRepository)
+    // {
+    //     // On recupere la categorie
+    //     $category = $categoryRepository->find($id);
         
-        $categoryRepository->remove($category, $flush = true);
+    //     $categoryRepository->remove($category, $flush = true);
         
-        return $this->redirectToRoute("app_back_categories");
-    }
+    //     return $this->redirectToRoute("app_back_categories");
+    // }
 }

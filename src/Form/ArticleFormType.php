@@ -3,7 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -11,17 +17,46 @@ class ArticleFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('title')
-            ->add('content')
-            ->add('updated_at')
-            ->add('created_at')
+            $builder
+            ->add('title', TextType::class, [
+                'label' => 'Titre de l\'article',
+                'attr' => [
+                'placeholder' => 'Saisissez le titre ici',
+            ],
+            ])
+            ->add('content', TextareaType::class, [
+            'label' => 'Contenu de l\'article',
+            'attr' => [
+                'placeholder' => 'Saisissez le contenu ici',
+                'rows' => 8
+            ],
+            ])
+            ->add('updated_at', DateTimeType::class, [
+                'label' => 'Date de mise à jour',
+                'widget' => 'single_text', 
+            ])
+            ->add('created_at', DateTimeType::class, [
+                'label' => 'Date de création',
+                'widget' => 'single_text',
+            ])
             ->add('source')
-            ->add('picture')
+            ->add('picture', UrlType::class, [
+                'label' => 'Image de l\'article',
+                'help' => 'Une URL en http:// ou https://'
+            ])
             ->add('slug')
-            ->add('subtitle')
+            ->add('subtitle', TextType::class, [
+                'attr' => [
+                'placeholder' => 'Ex: La méthode d\'extraction'
+                ],
+                'label' => 'Libéllé'
+            ])
             ->add('user')
-            ->add('category')
+            ->add('category', EntityType::class, [
+                'class' => Category::class, 
+                'choice_label' => 'name',
+                'placeholder' => 'Sélectionnez une catégorie', 
+            ]);
         ;
     }
 
