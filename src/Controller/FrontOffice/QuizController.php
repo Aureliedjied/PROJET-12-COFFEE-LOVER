@@ -28,7 +28,7 @@ class QuizController extends AbstractController
     }
 
     /**
-     * details of a section
+     * question display
      *
      * @Route("/les-quiz/{title}/{id}", name="app_quiz_show", methods={"GET"})
      * 
