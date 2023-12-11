@@ -19,6 +19,14 @@ use Symfony\Runtime\Symfony\Component\HttpFoundation\ResponseRuntime;
 
 class QuizController extends AbstractController
 {
+    private $playRepository;
+
+    public function __construct(PlayRepository $playRepository)
+    {
+        $this->playRepository = $playRepository;
+    }
+
+
     /**
      * @Route("/les-quiz", name="app_quiz_list")
      */
@@ -49,7 +57,7 @@ class QuizController extends AbstractController
         // Checks whether the user has started a new quiz or is continuing the same one.
         if ($currentQuizId !== $id) {
             // If this is a new quiz, load 10 random questions and reset the offset.
-            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 3);
+            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 10);
             $sessionInterface->set('questions', $questions);
             //initialize score
             $sessionInterface->set('score', 0);
@@ -155,14 +163,18 @@ class QuizController extends AbstractController
     public function saveUserScore($score, $quiz)
     {
         $user = $this->getUser();
-        dump('utilisateur' . $user);
         if (!$user) {
             // Si aucun utilisateur n'est connecté, redirigez-le vers la page de connexion
             return $this->redirectToRoute('app_home');
         }
 
         $play = new Play();
-        // $play->setUser($user);
+        $play->setUser($user);
         $play->setQuiz($quiz);
+        $play->setStatus(1);
+        $play->setScore($score);
+
+
+        $this->playRepository->add($play, true);
     }
 }
