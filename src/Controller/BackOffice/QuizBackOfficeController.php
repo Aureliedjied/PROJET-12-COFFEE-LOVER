@@ -20,8 +20,8 @@ class QuizBackOfficeController extends AbstractController
 
         return $this->render('back-office/quiz/list.html.twig', [
             'quizs' => $quizRepository->findAll(),
-            'questions' => $questionRepository->find($questionId),
-            'responses' => $responseRepository->find($questionId),
+            // 'questions' => $questionRepository->find($questionId),
+            // 'responses' => $responseRepository->find($questionId),
 
            
         ]);

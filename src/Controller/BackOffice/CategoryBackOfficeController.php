@@ -20,4 +20,19 @@ class CategoryBackOfficeController extends AbstractController
             'categories' => $categoryRepository->findAll(),
         ]);
     }
+
+    /**
+     * delete category
+     *
+     * @Route("/back-office/categories/delete/{id}", name="app_back_categories_delete")
+     */
+    public function delete($id, CategoryRepository $categoryRepository)
+    {
+        // On recupere la categorie
+        $category = $categoryRepository->find($id);
+        
+        $categoryRepository->remove($category, $flush = true);
+        
+        return $this->redirectToRoute("app_back_categories");
+    }
 }

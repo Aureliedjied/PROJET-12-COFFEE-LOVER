@@ -75,14 +75,30 @@
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="searchTerm" />
             <button class="btn btn-outline-dark ms-2" type="submit">Recherche</button>
           </form>
-          <div class="d-none d-lg-flex">
-            <div class="me-3">
-              <a class="nav-link" href="#">Connexion</a>
+      {% if app.user %}
+            <div class="d-none d-lg-flex">
+                <div class="me-3">
+                    <a class="nav-link" href="#">Mon Profil</a>
+                </div>
+                <div class="me-3 dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Options
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+                    </div>
+                </div>
             </div>
+        {% else %}
+      <div class="d-none d-lg-flex">
+          <div class="me-3">
+            <a class="nav-link" href="{{ path('app_security_login') }}">Connexion</a>
           </div>
         </div>
-      </div>
-    </nav>
+      {% endif %}
+    </div>
+  </div>
+</nav>
     {# ajout de la div container pour la recherche : #}
     <div id="search-results"></div>
     {% block body %}

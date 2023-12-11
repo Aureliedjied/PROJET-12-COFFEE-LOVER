@@ -20,4 +20,19 @@ class ArticleBackOfficeController extends AbstractController
             'articles' => $articleRepository->findAll(),
         ]);
     }
+
+    /**
+     * delete article
+     *
+     * @Route("/back-office/articles/delete/{id}", name="app_back_articles_delete")
+     */
+    public function delete($id, ArticleRepository $articleRepository)
+    {
+        // On recupere l'article
+        $article = $articleRepository->find($id);
+        
+        $articleRepository->remove($article, $flush = true);
+        
+        return $this->redirectToRoute("app_back_articles");
+    }
 }

@@ -24,7 +24,7 @@
             <td class="text-secondary mb-3">{{ article.getCreatedAt|date('d-m-Y') }}</td>
             <td>
                 <a href="#" class="btn btn-outline-secondary btn-rounded mb-3">Editer</a>
-                <a href="#" class="btn btn-outline-secondary btn-rounded mb-3">Supprimer</a>
+                <a href="{{ path('app_back_articles_delete') }}" class="btn btn-outline-secondary btn-rounded mb-3">Supprimer</a>
             </td>
         </tr>
             {% endfor %}
