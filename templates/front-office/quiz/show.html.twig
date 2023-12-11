@@ -6,13 +6,14 @@
 {% block body %}
   {# {{ dump(questions) }} #}
 
-  <div class="container-fluid">
-    <div class="row mb-4">
+  <div class="container-fluid mt-2">
+    <div id="scroll-point"> </br> </div>
+    <div class="row mb-4" id="scroll-point">
       <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{ quiz.title }}"</h2>
     </div>
 
     <form action="{{ path('app_quiz_submit', { id: quiz.id, title: quiz.title }) }}" method="post">
-      <div class="container mt-4 mb-4" id="scroll-point">
+      <div class="container mt-4 mb-4">
         <div class="card">
           <div class="card-body">
             <div class="mb-3">
