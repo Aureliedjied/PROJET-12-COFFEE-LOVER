@@ -39,7 +39,7 @@ class QuestionRepository extends ServiceEntityRepository
         }
     }
 
-    public function findRandomQuestionByQuiz($quizId, $limit = 10)
+    public function findRandomQuestionByQuiz($quizId, $limit = 3)
     {
         $entityManager = $this->getEntityManager();
 

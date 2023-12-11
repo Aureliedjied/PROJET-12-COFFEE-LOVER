@@ -2,11 +2,15 @@
 
 namespace App\Controller\FrontOffice;
 
+use App\Entity\Play;
 use App\Entity\Quiz;
+use App\Repository\PlayRepository;
 use App\Repository\QuizRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\ResponseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -45,7 +49,7 @@ class QuizController extends AbstractController
         // Checks whether the user has started a new quiz or is continuing the same one.
         if ($currentQuizId !== $id) {
             // If this is a new quiz, load 10 random questions and reset the offset.
-            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 10);
+            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 3);
             $sessionInterface->set('questions', $questions);
             //initialize score
             $sessionInterface->set('score', 0);
@@ -75,7 +79,7 @@ class QuizController extends AbstractController
             'quiz' => $quiz,
             'questions' => $currentQuestion,
             'score' => $score,
-            'offset' => $offset,
+            'offset' => $offset + 1,
 
         ]);
     }
@@ -111,7 +115,7 @@ class QuizController extends AbstractController
         $offset++;
         $sessionInterface->set('offset', $offset);
 
-        if ($offset >= 10) {
+        if ($offset >= 11) {
             return $this->redirectToRoute('app_quiz_result', [
                 'title' => $quiz->getTitle(),
                 'id' => $quiz->getId()
@@ -138,12 +142,23 @@ class QuizController extends AbstractController
         // Récupérer le score de la session
         $score = $sessionInterface->get('score', 0);
 
-
+        $this->saveUserScore($score, $quiz);
 
         // Envoyer les données au template Twig
         return $this->render('front-office/quiz/result.html.twig', [
             'quiz' => $quiz,
             'score' => $score,
         ]);
+    }
+
+
+    public function saveUserScore($score, $quiz)
+    {
+        $user = $this->getUser();
+        dump('utilisateur' . $user);
+        if (!$user) {
+            // Si aucun utilisateur n'est connecté, redirigez-le vers la page de connexion
+            return $this->redirectToRoute('app_home');
+        }
     }
 }
