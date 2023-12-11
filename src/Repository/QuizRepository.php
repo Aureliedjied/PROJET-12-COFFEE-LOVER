@@ -38,6 +38,28 @@ class QuizRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findQuestionResponseByQuiz($quizId)
+    {
+        $entityManager = $this->getEntityManager();
+
+        // Step 1: Retrieve all question IDs for the specified quiz
+        $ids = $entityManager->createQuery(
+            'SELECT q.id FROM App\Entity\Question q 
+         JOIN q.quizzes quiz
+         WHERE quiz.id = :quizId'
+        )->setParameter('quizId', $quizId)
+            ->getResult();
+
+        
+
+        // Step 2: Load the questions and their corresponding responses
+        return $entityManager->createQuery(
+            'SELECT q, r FROM App\Entity\Question q
+         LEFT JOIN q.responses r
+         WHERE q.id IN (:ids)'
+        )->setParameter('ids', $ids)
+            ->getResult();
+    }
 
 //    /**
 //     * @return Quiz[] Returns an array of Quiz objects
