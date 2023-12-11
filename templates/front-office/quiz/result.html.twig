@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Résultat du quiz
+{% endblock %}
+
+{% block body %}
+  <h1 class="text-center my-5">Résultat de votre Quiz</h1>
+
+  <div class="card mx-auto" style="width: 35rem;">
+    <img src="https://i.ibb.co/BBgBkwG/cup-of-coffee.png" class="card-img-top" alt="Cat end quiz" />
+    <div class="card-body text-center">
+      <h5 class="card-title">{{ quiz.title }}</h5>
+      <p class="card-text">Vous avez terminé ce quiz avec un résultat de : {{ score }} /10</p>
+      <a href="{{ path('app_home') }}" class="btn btn-primary">Retour à l'accueil</a>
+    </div>
+
+    {% if score > 6 %}
+      <h2>Votre carte récompense</h2>
+      <div class="card-unstyled">
+        <img src="https://i.ibb.co/P565nCn/DALL-E-2023-11-22-15-13-50-An-automatic-espresso-machine-reminiscent-of-a-De-Longhi-model-placed-on.png" class="card-img-top" alt="Cat end quiz" />
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
