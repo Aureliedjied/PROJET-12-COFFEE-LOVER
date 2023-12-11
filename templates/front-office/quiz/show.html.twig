@@ -4,14 +4,15 @@
   Coffee Lover Quiz "categorie"
 {% endblock %}
 {% block body %}
-  {{ dump(questions) }}
-  {{ dump(quiz) }}
-  <div class="container-fluid">
-    <div class="row mb-4">
+  {# {{ dump(questions) }} #}
+
+  <div class="container-fluid mt-2">
+    <div id="scroll-point"> </br> </div>
+    <div class="row mb-4" id="scroll-point">
       <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{ quiz.title }}"</h2>
     </div>
 
-    <form action="{{ path('app_quiz_show', { id: quiz.id, title: quiz.title }) }}" method="post">
+    <form action="{{ path('app_quiz_submit', { id: quiz.id, title: quiz.title }) }}" method="post">
       <div class="container mt-4 mb-4">
         <div class="card">
           <div class="card-body">
@@ -19,10 +20,14 @@
               <h4>{{ questions.getTextQuestion }}</h4>
               {% for response in questions.responses %}
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="responses[{{ questions.id }}]" id="response{{ response.id }}" value="{{ response.id }}" />
+                  <input class="form-check-input" type="radio" name="response" id="response{{ response.id }}" value="{{ response.id }}" />
                   <label class="form-check-label" for="response{{ response.id }}">{{ response.getTextResponse }}</label>
                 </div>
               {% endfor %}
+            </div>
+            <div>
+              <p>Score actuel: {{ score }} / 10</p>
+              <p>Question: {{ offset }}/10</p>
             </div>
 
             <button type="submit" class="btn btn-primary">suivant</button>
