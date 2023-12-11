@@ -160,5 +160,9 @@ class QuizController extends AbstractController
             // Si aucun utilisateur n'est connecté, redirigez-le vers la page de connexion
             return $this->redirectToRoute('app_home');
         }
+
+        $play = new Play();
+        // $play->setUser($user);
+        $play->setQuiz($quiz);
     }
 }
