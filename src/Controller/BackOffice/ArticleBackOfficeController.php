@@ -5,6 +5,7 @@ namespace App\Controller\BackOffice;
 use App\Entity\Article;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,7 +41,7 @@ class ArticleBackOfficeController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/articles/ajouter", name="app_back_articles_add")
+     * @Route("/back-office/articles/ajouter", name="app_back_articles_add", methods={"GET", "POST"})
      */
     public function create(Request $request, ArticleRepository $articleRepository)
     {
@@ -70,5 +71,34 @@ class ArticleBackOfficeController extends AbstractController
         ]);
     }
 
-    
+     /**
+     * @Route("/back-office/articles/{id}/modifier", name="app_back_articles_edit", methods={"GET", "POST"})
+     */
+    public function edit($id, Request $request, ArticleRepository $articleRepository): Response
+    {
+        $article = $articleRepository->find($id);
+
+        if (!$article) {
+            return $this->render('front/errors/404.html.twig');
+        }
+
+        $form = $this->createForm(ArticleFormType::class, $article);
+        $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                // !gérer le slug
+            // On rentre dans le if SI le formulaire a été soumis
+            // C'est donc ici qu'on va envoyer les données de $form dans la bdd
+            // J'envoie $article en bdd, true => pour faire le flush
+                $articleRepository->add($article, true);
+
+            return $this->redirectToRoute('app_back_articles');
+        }
+
+        return $this->renderForm('back-office/article/edit.html.twig', [
+            'article' => $article,
+            'form' => $form
+        ]);
+    }
 }

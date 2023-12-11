@@ -23,7 +23,7 @@
             <td class="section mb-3">{{ article.title }}</td>
             <td class="text-secondary mb-3">{{ article.getCreatedAt|date('d-m-Y') }}</td>
             <td>
-                <a href="#" class="btn btn-outline-secondary btn-rounded mb-3">Editer</a>
+                <a href="{{ path('app_back_articles_edit', {'id' :article.id}) }}" class="btn btn-outline-secondary btn-rounded mb-3">Editer</a>
                 <a href="{{ path('app_back_articles_delete', {'id' :article.id}) }}" class="btn btn-outline-secondary btn-rounded mb-3">Supprimer</a>
             </td>
         </tr>
@@ -33,6 +33,6 @@
                 </tbody>
                 </table>
 
-                    <a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="#">Ajouter un nouvel article</a>
+                    <a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_articles_add') }}">Ajouter un nouvel article</a>
     </section>
 {% endblock %}

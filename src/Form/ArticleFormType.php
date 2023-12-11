@@ -29,7 +29,7 @@ class ArticleFormType extends AbstractType
                 'attr' => [
                 'placeholder' => 'Ex: La méthode d\'extraction'
                 ],
-                'label' => 'sous-titre de l\'article'
+                'label' => 'Sous-titre de l\'article'
             ])
             ->add('content', TextareaType::class, [
             'label' => 'Contenu de l\'article',
@@ -38,11 +38,23 @@ class ArticleFormType extends AbstractType
                 'rows' => 8
             ],
             ])
+            ->add('updated_at', DateTimeType::class, [
+                'label' => 'Date de mise à jour',
+                'widget' => 'single_text',
+                
+            ])
             ->add('created_at', DateTimeType::class, [
                 'label' => 'Date de création',
                 'widget' => 'single_text',
+                'input' => 'datetime_immutable',
+                
             ])
-            ->add('source')
+            ->add('source', TextType::class, [
+                    'attr' => [
+                    // attributs HTML
+                    'placeholder' => 'Ex: l\'auteur de l\'article',
+                    ],
+                ])
             ->add('picture', UrlType::class, [
                 'label' => 'Image de l\'article',
                 'help' => 'Une URL en http:// ou https://'
