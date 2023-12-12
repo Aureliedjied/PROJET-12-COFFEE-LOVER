@@ -28,6 +28,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/a-propos", name="app_contact")
+     */
+    public function contact(ArticleRepository $articleRepository): Response
+    {
+
+        // return contact to the view
+        return $this->render('front-office/main/contact.html.twig');
+    }
+
 
     /**
      * @Route("/search", name="app_search", methods={"GET"})

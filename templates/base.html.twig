@@ -74,9 +74,11 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'cafe-de-specialite' }) }}">Café de spécialité</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_quiz_list') }}">QUIZ</a>
-						</li>
+						{% if app.user %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_quiz_list') }}">QUIZ</a>
+							</li>
+						{% endif %}
 					</ul>
 					{# search form for desktop device #}
 					<form class="d-none d-lg-flex form-inline ms-auto me-4" id="search-form">
@@ -89,9 +91,14 @@
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Mon Profil
 								</a>
-								<div class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdown" id="navbar-color">
-									<a class=" dropdown-item" href=" {{ path('app_profil') }} ">Profil</a>
+								<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
+									<a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a>
 									<a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+
+									{% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a>
+									{% endif %}
 								</div>
 							</li>
 						{% else %}
@@ -122,6 +129,8 @@
           <a class="text-white" href="#">Mentions légales</a>
           |
           <a class="text-white" href="#">Qui sommes-nous</a>
+		  |
+		  <a class="text-white" href="{{ path('app_contact') }}">Contactez nous</a>
         </div>
       </span>
     </footer>

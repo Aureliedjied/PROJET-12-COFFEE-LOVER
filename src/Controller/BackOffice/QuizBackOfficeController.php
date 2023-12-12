@@ -14,7 +14,7 @@ class QuizBackOfficeController extends AbstractController
     /**
      * @Route("/back-office/quiz", name="app_back_quiz")
      */
-    public function list($questionId, QuizRepository $quizRepository, QuestionRepository $questionRepository, ResponseRepository $responseRepository): Response
+    public function list( QuizRepository $quizRepository, QuestionRepository $questionRepository, ResponseRepository $responseRepository): Response
     {
 
 

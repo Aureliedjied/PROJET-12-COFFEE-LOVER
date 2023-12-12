@@ -74,7 +74,7 @@ class ArticleBackOfficeController extends AbstractController
         $article = $articleRepository->find($id);
 
         if (!$article) {
-            return $this->render('front/errors/404.html.twig');
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
 
         $form = $this->createForm(ArticleFormType::class, $article);

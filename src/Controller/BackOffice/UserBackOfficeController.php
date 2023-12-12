@@ -17,7 +17,10 @@ class UserBackOfficeController extends AbstractController
      */
     public function list(UserRepository $userRepository): Response
     {
-       
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            
+            return $this->render('bundles/TwigBundle/Exception/error403-backoffice.html.twig');
+        }
         return $this->render('back-office/user/list.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
