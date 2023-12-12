@@ -8,6 +8,7 @@ use App\Repository\PlayRepository;
 use App\Repository\QuizRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\ResponseRepository;
+use App\Repository\RewardRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -20,10 +21,12 @@ use Symfony\Runtime\Symfony\Component\HttpFoundation\ResponseRuntime;
 class QuizController extends AbstractController
 {
     private $playRepository;
+    private $rewardRepository;
 
-    public function __construct(PlayRepository $playRepository)
+    public function __construct(PlayRepository $playRepository, RewardRepository $rewardRepository)
     {
         $this->playRepository = $playRepository;
+        $this->rewardRepository = $rewardRepository;
     }
 
 
@@ -152,6 +155,10 @@ class QuizController extends AbstractController
 
         $this->saveUserScore($score, $quiz);
 
+        if ($score > 6) {
+            $this->getReward($score, $quiz);
+        }
+
         // Envoyer les données au template Twig
         return $this->render('front-office/quiz/result.html.twig', [
             'quiz' => $quiz,
@@ -159,7 +166,12 @@ class QuizController extends AbstractController
         ]);
     }
 
-
+    /**
+     * function saving the score in the database
+     *
+     * @param [int] $score
+     * @param [object] $quiz
+     */
     public function saveUserScore($score, $quiz)
     {
         $user = $this->getUser();
@@ -176,5 +188,26 @@ class QuizController extends AbstractController
 
 
         $this->playRepository->add($play, true);
+    }
+
+
+    /**
+     * Function offering a reward if user obtains a score defined in quizResult
+     *
+     * @param [int] $score
+     * @param [object] $quiz
+     */
+    public function getReward($score, $quiz)
+    {
+        //recupére l'user
+        $user = $this->getUser();
+
+        //recupère une reward en random via rewardrepository methode randomreward
+        $reward = $this->rewardRepository->findRandom($user->getId());
+        //verrifier si l'user a déjà la reward concernée sinon  refaire la méthode 
+        if ($reward) {
+        }
+
+        // persit and flush
     }
 }
