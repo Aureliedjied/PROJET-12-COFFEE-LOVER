@@ -1,54 +1,46 @@
 {% extends 'back-office/base.html.twig' %}
 
-{% block title %}Modifier un Article{% endblock %}
+{% block title %}Modifier un Article
+{% endblock %}
 
 {% block body %}
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h1 class="text-center text-muted fw-bold mb-4">Modifier un article</h1>
+	<div class="row justify-content-center">
+		<div class="col-md-6">
+			<h1 class="text-center text-muted fw-bold mb-4">Modifier un article</h1>
 
-            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+			{{ form_start(form) }}
 
-            <div class="mb-3">
-                {{ form_label(form.title, 'Titre') }}
-                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-            </div>
+			<div class="mb-3">
+				{{ form_label(form.title, 'Titre') }}
+				{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-            <div class="mb-3">
-                {{ form_label(form.content, 'Contenu') }}
-                {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-            </div>
+			<div class="mb-3">
+				{{ form_label(form.content, 'Contenu') }}
+				{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-            <div class="mb-3">
-                {{ form_label(form.subtitle, 'Sous-titre') }}
-                {{ form_widget(form.subtitle, {'attr': {'class': 'form-control'}}) }}
-            </div>
+			<div class="mb-3">
+				{{ form_label(form.subtitle, 'Sous-titre') }}
+				{{ form_widget(form.subtitle, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-            <div class="mb-3">
-                {{ form_label(form.category, 'Sélectionnez une catégorie') }}
-                {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
-            </div>
+			<div class="mb-3">
+				{{ form_label(form.category, 'Sélectionnez une catégorie') }}
+				{{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-            <div class="mb-3">
-                {{ form_label(form.source, 'Image de l\'article, Une URL en http:// ou https://') }}
-                {{ form_widget(form.source, {'attr': {'class': 'form-control'}}) }}
-            </div>
+			<div class="mb-3">
+				{{ form_label(form.source, 'Image de l\'article, Une URL en http:// ou https://') }}
+				{{ form_widget(form.source, {'attr': {'class': 'form-control'}}) }}
+			</div>
 
-            <div class="mb-3">
-                {{ form_label(form.created_at, 'Date de création') }}
-                {{ form_widget(form.created_at, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            
-            <div class="mb-3">
-                {{ form_label(form.updated_at, 'Date de mise à jour') }}
-                {{ form_widget(form.updated_at, {'attr': {'class': 'form-control'}}) }}
-            </div>
-
-            <div class="section-btn mt-3">
-                <button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Ajouter les modification</button>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="section-btn mt-3">
+					<button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Ajouter</button>
+				</div>
+              {{ form_end(form) }}   
+			</div>
+		</div>
+	</div>
 {% endblock %}

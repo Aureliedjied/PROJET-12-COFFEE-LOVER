@@ -3,13 +3,22 @@
 namespace App\Entity;
 
 use App\Repository\ArticleRepository;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class Article
 {
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->setUpdatedAt(new \DateTimeImmutable());
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -122,6 +131,15 @@ class Article
         return $this;
     }
 
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setTimestamps(): void
+    {
+        $this->updated_at = new \DateTimeImmutable();
+    }
+
     public function getSource(): ?string
     {
         return $this->source;
@@ -156,6 +174,15 @@ class Article
         $this->slug = $slug;
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function generateSlug(): void
+    {
+        $slugger = new AsciiSlugger();
+        $this->slug = $slugger->slug($this->title)->lower();
     }
 
 

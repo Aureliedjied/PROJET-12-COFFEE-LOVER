@@ -10,7 +10,7 @@ searchTermInput.addEventListener('input', async function(event) {
     try {
         // si le champ est vide
         if (searchTerm !== '') {
-            const response = await fetch(`http://127.0.0.1:8000/search?searchTerm=${searchTerm}`);
+            const response = await fetch(`/search?searchTerm=${searchTerm}`);
             const data = await response.json();
 
             // Fonction qui affiche les résultats du formulaire
@@ -43,7 +43,7 @@ function displaySearchResults(results) {
         // on injecte le titre en resultat
         titleLink.textContent = result.title;
         // ici on pourra ajouter le lien du show
-        titleLink.href = '#'; 
+        titleLink.href = result.url;
 
         // ajout du titre cliquable a la div
         resultItem.appendChild(titleLink);
@@ -69,14 +69,29 @@ function positionSearchResultsContainer() {
     // Récupère les coordonnées et la taille du formulaire
     const rect = searchForm.getBoundingClientRect();
 
-    // Ajuste la largeur, position horizontale, et  du conteneur
+    // Ajuste automatiquement la largeur, hauteur et taille du conteneur à son parent
+    // On ajoute 18 px qu'on additionnera à la hauteur
+    const offset = 18;
     searchResultsContainer.style.width = `${rect.width}px`;
     searchResultsContainer.style.left = `${rect.left}px`;
-    searchResultsContainer.style.top = `${rect.bottom}px`;
+    searchResultsContainer.style.top = `${rect.bottom + offset}px`;
 }
 
-// Ajoute l'événement de redimensionnement à la fenêtre
 window.addEventListener('resize', positionSearchResultsContainer);
+
+document.addEventListener('click', function (event) {
+    const searchResultsContainer = document.getElementById('search-results');
+
+    // Si le clic est ailleurs, on ferme
+    if (!searchResultsContainer.contains(event.target) && event.target !== searchTermInput) {
+        clearSearchResults();
+    }
+});
 
 // Positionne le conteneur initialement
 positionSearchResultsContainer();
+
+// Le scroll restera attaché à la recherche quoiqu'il arrive
+window.addEventListener('scroll', function () {
+    positionSearchResultsContainer();
+});

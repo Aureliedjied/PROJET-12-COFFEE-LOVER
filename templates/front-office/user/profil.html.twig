@@ -1,17 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil
+{% block title %}
+	Profil
 {% endblock %}
 
 {% block body %}
+
+	<section class="py-3 py-md-5">
+		<div id="scroll-point" class="my-4"></br>
+	</div>
 	<div class="container mt-4">
 		<h1 class="mb-4">Mon Profil</h1>
 
 		<div class="card">
 			<div class="card-body">
 				<h5 class="card-title">Mes informations</h5>
-				<p class="card-text">Email:
-																																																												email</p>
+				<p class="card-text">Email: email</p>
 				<p class="card-text">nom : nom</p>
 				<p class="card-text">prénom : prénom</p>
 			</div>
@@ -39,14 +43,14 @@
 
 		<div class="mt-4">
 			<h2>Mes Récompenses de Quiz</h2>
-			<div class="row">
-            {# {% for reward in user.rewards %} #}
-			<div class="col-md-3 mb-3">
-				<a href="#">
-					<img src="{{ asset('images/404.png') }}" alt="nom récopense" class="img-thumbnail">
-				</a>
-				<p>nom de la recette</p>
+			<div
+				class="row">
+				{# {% for reward in user.rewards %} #}
+				<div class="col-md-3 mb-3">
+					<a href="#"><img src="{{ asset('images/404.png') }}" alt="nom récopense" class="img-thumbnail"/></a>
+					<p>nom de la recette</p>
+				</div>
 			</div>
 		</div>
 	</div>
-{% endblock %}
+</section>{% endblock %}
