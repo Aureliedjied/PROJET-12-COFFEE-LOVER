@@ -44,14 +44,9 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Les mots de passes doivent être identiques',
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Répétez le mot de passe'],
+                'options' => ['attr' => ['maxlength' => 4096]],
             ]);
         }
-        $builder->add('Inscription', SubmitType::class, [
-            'attr' => [
-                'class' => 'btn btn-primary',
-            ]
-            ]);
-        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

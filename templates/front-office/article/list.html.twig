@@ -28,11 +28,13 @@
 						</div>
 						<div class="col-xs-12 col-md-6">
 							<div>
-								<p class="text-secondary mb-1">{{article.getCreatedAt|date("d-m-Y")}}</p>
+								<p class="text-secondary mb-1">Créée le : {{article.getCreatedAt|date("d-m-Y")}}</p>
+								
 								<h2 class="h3 mb-3">
 									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 								</h2>
 								<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
+								<p class="text-secondary mb-1">Mis à jour le : {{article.getUpdatedAt|date("d-m-Y")}}</p>
 								<a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_article_show', {'categorySlug': article.category.slug, 'articleSlug': article.slug}) }}">Lire la suite</a>
 							</div>
 						</div>

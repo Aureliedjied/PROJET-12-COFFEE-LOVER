@@ -3,11 +3,13 @@
 namespace App\Controller\BackOffice;
 
 use App\Entity\Article;
+use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Security;
 
 class ArticleBackOfficeController extends AbstractController
 {
@@ -30,41 +32,66 @@ class ArticleBackOfficeController extends AbstractController
      */
     public function delete($id, ArticleRepository $articleRepository)
     {
-        // On recupere l'article
+        //  On recupere l'article
         $article = $articleRepository->find($id);
         
-        $articleRepository->remove($article, $flush = true);
+        $articleRepository->remove($article, true);
         
         return $this->redirectToRoute("app_back_articles");
     }
 
     /**
-     * @Route("/back-office/articles/ajouter", name"app_articles_add")
+    * @Route("/back-office/articles/ajouter", name="app_back_articles_add")
+    */
+    public function create(Request $request, ArticleRepository $articleRepository, Security $security)
+    {
+
+        $article = new Article();
+        // Ici on récupere qui est connécté ( admin, manager .. ) et on le SET à l'article :
+        $user = $security->getUser();
+        $article->setUser($user);
+        $form = $this->createForm(ArticleFormType::class, $article); 
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $articleRepository->add($article, true);
+             
+            return $this->redirectToRoute("app_back_articles");
+        }
+
+        return $this->renderForm('back-office/article/add.html.twig', [
+             'form' => $form,
+        ]);
+     }
+
+     /**
+     * @Route("/back-office/articles/{id}/modifier", name="app_back_articles_edit", methods={"GET", "POST"})
      */
-    // public function create(Request $request, ArticleRepository $articleRepository)
-    // {
-    //     // On créer une instance de Movie car ici on veut créer un article
-    //     $article = new Article();
-    //     // On créer notre formulaire et on le stock dans $form
-    //     $form = $this->createForm(ArticleFormType::class, $article); // Dans le formualire on va modifier $article
+    public function edit($id, Request $request, ArticleRepository $articleRepository): Response
+    {
+        $article = $articleRepository->find($id);
 
-    //     // Ici j'intercepte le contenu de la requete
-    //     $form->handleRequest($request);
-    //     // Ici je check si le formulaire a été soumis et validé
-    //     if ($form->isSubmitted() && $form->isValid()) {
+        if (!$article) {
+            return $this->render('front/errors/404.html.twig');
+        }
 
-    //         // On rentre dans le if SI le formulaire a été soumis
-    //         // C'est donc ici qu'on va envoyer les données de $form dans la bdd
-    //         // J'envoie $article en bdd, true => pour faire le flush
-    //         $articleRepository->add($article, true);
-            
-           
-    //         return $this->redirectToRoute("app_back_articles");
-    //     }
+        $form = $this->createForm(ArticleFormType::class, $article);
 
-    //     // On retourne la vue voulue en lui passant le formulaire $form
-    //     return $this->renderForm('back/article/create.html.twig', [
-    //         'form' => $form,
-    //     ]);
-    // }
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $articleRepository->add($article, true);
+
+            return $this->redirectToRoute('app_back_articles');
+        }
+
+        return $this->renderForm('back-office/article/edit.html.twig', [
+            'article' => $article,
+            'form' => $form
+        ]);
+    }
 }
+

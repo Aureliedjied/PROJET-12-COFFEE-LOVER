@@ -21,10 +21,14 @@
         "symfony/framework-bundle": "5.4.*",
         "symfony/runtime": "^5.4",
         "symfony/security-bundle": "^5.4",
+        "symfony/security-core": "^5.4",
+        "symfony/security-csrf": "^5.4",
+        "symfony/security-guard": "^5.4",
         "symfony/twig-bundle": "^5.4",
         "symfony/validator": "5.4.*",
         "symfony/yaml": "5.4.*",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "vich/uploader-bundle": "^1.23"
     },
     "config": {
         "allow-plugins": {
