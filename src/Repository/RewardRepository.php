@@ -39,52 +39,41 @@ class RewardRepository extends ServiceEntityRepository
         }
     }
 
-
+    /**
+     *  $sql='Select r.id
+     *        From reward r
+     *        Left Join user_reward ur ON r.id = ur.reward_id AND  :userId = ur.user_id 
+     *        
+     * 
+     */
 
 
 
     public function findReward($userId)
     {
+        $conn = $this->getEntityManager()->getConnection();
 
-        $qb = $this->createQueryBuilder('u');
+        $sql = '
+             SELECT r.* FROM reward r
+             LEFT JOIN user_reward ur ON r.id = ur.reward_id AND ur.user_id = :userId
+             WHERE ur.user_id IS NULL
+             ORDER BY RAND()
+             LIMIT 1
+         ';
 
-        $qb->select('count(r.id)')
-            ->
-            ->where()
-            ->setParameter()
-            ->orderBy();
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->executeQuery(['userId' => $userId])->fetchAssociative() ?: null;
 
-        return $qb->getQuery()->getResult();
+        if ($result) {
+            $rewardId = $result['id'];
+            $reward = $this->find($rewardId);
+
+            return $reward;
+        }
+        return null;
     }
 
-    // 1 je recupére toutes les recompenses
-    
-    // 2 je boucle sur les rewards et les compares avec celle de la table user_reward
 
-
-    // ou 
-
-    // je regarde tout les reward_id associé à l'user_id dans la table user_reward
-    // si un reward_id n'est pas associée à l'user le select .
-
-    //!essaie avec dql
-    public function findReward2($userId)
-    {
-          
-        $em = $this->getEntityManager();
-        
-        $query = $em->createQuery(
-            
-            'SELECT count(reward.id) 
-            FROM App\Entity\User AS u
-            INNER JOIN u.id AS u
-            INNER jOIN r.id AS r
-            WHERE c.movie = :movie
-            ORDER BY c.creditOrder ASC'
-        )->setParameter('movie', $movie); // Ici je défini le parametre movie en disant qu'il est egale a $movie
-
-        return $query->getResult();
-    }
 
     //    /**
     //     * @return Reward[] Returns an array of Reward objects
