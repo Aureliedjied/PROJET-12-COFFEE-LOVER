@@ -37,12 +37,12 @@
                                 {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
                             </div>
 
-                            <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                            <button type="submit" class="btn btn-rounded btn-quiz">S'inscrire</button>
 
                             {{ form_end(form) }}
 
                             <p class="text-center mt-3">
-                                Vous avez déjà un compte ? <a href="{{ path('app_security_login') }}" class="text-primary">Connectez-vous ici</a>.
+                                Vous avez déjà un compte ? <a href="{{ path('app_security_login') }}" class="btn btn-rounded btn-quiz">Connectez-vous ici</a>
                             </p>
                         </form>
                     </div>

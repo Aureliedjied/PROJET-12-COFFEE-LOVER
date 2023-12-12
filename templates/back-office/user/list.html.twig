@@ -26,8 +26,8 @@
 							<td class="section mb-3">{{ user.email }}</td>
 							<td class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}</td>
 							<td>
-								<a href="{{ path('app_back_users_edit', {'id' :user.id}) }}" class="btn btn-outline-secondary btn-rounded mb-3">Editer</a>
-								<a href="{{ path('app_back_users_delete', {'id' :user.id}) }}" class="btn btn-outline-secondary btn-rounded mb-3">Supprimer</a>
+								<a href="{{ path('app_back_users_edit', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz mb-3">Editer</a>
+								<a href="{{ path('app_back_users_delete', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz mb-3">Supprimer</a>
 							</td>
 						</tr>
 					{% endfor %}

@@ -15,14 +15,14 @@
 							<img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail">
 							<div class="card-body">
 								<h5 class="card-title">{{ reward.title }}</h5>
-								<a href="{{ path('app_back_reward_delete', {'id' :reward.id}) }}" class="btn btn-outline-secondary btn-rounded mb-3">Supprimer</a>
+								<a href="{{ path('app_back_reward_delete', {'id' :reward.id}) }}" class="btn btn-rounded btn-quiz mb-3">Supprimer</a>
 							</div>
 						</div>
 					</div>
 				{% endfor %}
 			</div>
 
-			<a type="button" class="btn btn-outline-secondary btn-rounded" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_reward_add') }}">Ajouter une nouvelle récompense</a>
+			<a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_reward_add') }}">Ajouter une nouvelle récompense</a>
 		</div>
 	</section>
 {% endblock %}
