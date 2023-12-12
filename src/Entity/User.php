@@ -83,10 +83,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->quiz = new ArrayCollection();
     }
 
-    // public function __toString()
-    // {
-    //     return $this->email;
-    // }
+
+
+    public function __toString()
+    {
+        return $this->roles;
+    }
 
     public function getId(): ?int
     {

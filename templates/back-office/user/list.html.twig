@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+
 	<section class="features-section mb-4">
 		<div class="container text mx-auto">
 			<h2 class="section-title mb-8">Liste des utilisateurs</h2>
@@ -20,20 +21,22 @@
 					{% for user in users %}
 
 						<tr>
-							<td class="text-secondary mb-3">{{ user.id }}</td>
-							<td class="section mb-3">{{ user.firstName }}</td>
-							<td class="section mb-3">{{ user.lastName }}</td>
-							<td class="section mb-3">{{ user.email }}</td>
-							<td class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}</td>
+							<td class="section mb-3"><p class="fs-5 fw-bold" class="section mb-3">{{ user.id }}. {{ user.email }}</p>
+							<li class="section mb-3">{{ user.firstName }} {{ user.lastName }}</li>
+							<li class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}</li>
+							</td>
+							 
+							
 							<td>
-								<a href="{{ path('app_back_users_edit', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz mb-3">Editer</a>
-								<a href="{{ path('app_back_users_delete', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz mb-3">Supprimer</a>
+								<a href="{{ path('app_back_users_edit', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>
+								<a href="{{ path('app_back_users_delete', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz bi bi-trash mb-3"></a>
 							</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</div>
-		</tbody>
+		
 	</table>
 	
-</section>{% endblock %}
+</section>
+{% endblock %}

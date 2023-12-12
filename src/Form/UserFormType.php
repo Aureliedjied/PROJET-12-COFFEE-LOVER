@@ -32,7 +32,7 @@ class UserFormType extends AbstractType
                     'Manager' => 'ROLE_MANAGER',
                     'Administrateur' => 'ROLE_ADMIN',
                 ],    
-                'expanded' => true,
+                //'expanded' => false,
                 'multiple' => true,
             ])
         ;

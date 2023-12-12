@@ -15,7 +15,11 @@
 							<img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail">
 							<div class="card-body">
 								<h5 class="card-title">{{ reward.title }}</h5>
-								<a href="{{ path('app_back_reward_delete', {'id' :reward.id}) }}" class="btn btn-rounded btn-quiz mb-3">Supprimer</a>
+								{% include 'fragments/_confirm_action.html.twig' with {
+                                confirmationMessage: 'Voulez-vous vraiment supprimer ?',
+                                actionUrl: path('app_back_reward_delete', {'id': reward.id}),
+                                buttonLabel: ''
+                            } %}
 							</div>
 						</div>
 					</div>

@@ -20,20 +20,24 @@
             {% for quiz in quizs %}
                 
                     <tr>
-                        <td class="text-secondary mb-3">{{ quiz.id }}</td>
-                        <td class="section-title mb-3">{{ quiz.title }}</td>
-                        <td class="section mb-3">{{ quiz.title }}</td>
-                                                
+                        <td class="section mb-3"><p class="fs-4 fw-bold">{{ quiz.id }}. {{ quiz.title }}<p>
+                        <li class="section mb-3">question</li>
+                        <li class="section mb-3">réponse 1</li>
+                        <li class="section mb-3">réponse 2</li>
+                        <li class="section mb-3">réponse 3</li>
+                        </td> 
+                                           
                         <td>
-                            <a href="#" class="btn btn-rounded btn-quiz mb-3">Editer</a>
-                            <a href="#" class="btn btn-rounded btn-quiz mb-3">Supprimer</a>
+                            <a href="#" class="btn btn-rounded bi bi-pencil btn-quiz mb-3"></a>
+                            <a href="#" class="btn btn-rounded btn-quiz bi bi-trash mb-3"></a>
                         </td>
                     </tr>
             {% endfor %}
                 
-        </div>
-                </tbody>
-                </table>
+        </tbody>
+		</div>
+</table>
                     <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="#">Ajouter un quiz</a>
+
     </section>
 {% endblock %}
