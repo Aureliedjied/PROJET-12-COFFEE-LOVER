@@ -43,6 +43,10 @@ class MainController extends AbstractController
         foreach ($results as $result) {
             $data[] = [
                 'title' => $result->getTitle(),
+                'url' => $this->generateUrl('app_article_show', [
+                'categorySlug' => $result->getCategory()->getSlug(),
+                'articleSlug' => $result->getSlug(),
+            ]),
             ];
         }
         // On renvois la réponse en JSON

@@ -76,31 +76,27 @@
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="searchTerm" />
             <button class="btn btn-outline-dark ms-2" type="submit">Recherche</button>
           </form>
-          {% if app.user %}
-            <div class="d-none d-lg-flex">
-              <div class="me-3 dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
-
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ path('app_profil') }}">Mon Profil</a>
+          <ul class="navbar-nav">
+            {% if app.user %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon Profil</a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
+                  <a class="dropdown-item" href=" {{ path('app_profil') }} ">Profil</a>
                   <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
                 </div>
-              </div>
-            </div>
-          {% else %}
-            <div class="d-none d-lg-flex">
-              <div class="me-3">
+              </li>
+            {% else %}
+              <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_security_login') }}">Connexion</a>
-              </div>
-            </div>
-          {% endif %}
+              </li>
+            {% endif %}
+          </ul>
         </div>
       </div>
     </nav>
     {# ajout de la div container pour la recherche : #}
     <div id="search-results"></div>
     {% block body %}
-
     {% endblock %}
 
     <footer class="footer container-fluid py-8 border-top text-center">
