@@ -164,7 +164,7 @@ class QuizController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            // Si aucun utilisateur n'est connecté, redirigez-le vers la page de connexion
+            //if  no user logged in -> redirect to login page
             return $this->redirectToRoute('app_home');
         }
 
