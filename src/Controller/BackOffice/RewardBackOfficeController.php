@@ -15,7 +15,7 @@ class RewardBackOfficeController extends AbstractController
     /**
      * @Route("/back-office/reward", name="app_back_reward")
      */
-    public function index(RewardRepository $rewardRepository): Response
+    public function list(RewardRepository $rewardRepository): Response
     {
         // Afficher la liste des récompenses
         $rewards = $rewardRepository->findAll();

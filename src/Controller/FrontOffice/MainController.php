@@ -31,11 +31,20 @@ class MainController extends AbstractController
     /**
      * @Route("/a-propos", name="app_contact")
      */
-    public function contact(ArticleRepository $articleRepository): Response
+    public function contact(): Response
     {
 
         // return contact to the view
         return $this->render('front-office/main/contact.html.twig');
+    }
+    /**
+     * @Route("/a-propos/mention-legal", name="app_mention_legal")
+     */
+    public function mention(): Response
+    {
+
+        // return contact to the view
+        return $this->render('front-office/main/mentionLegal.html.twig');
     }
 
 
