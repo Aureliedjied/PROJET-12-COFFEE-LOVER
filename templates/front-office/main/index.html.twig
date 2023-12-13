@@ -23,11 +23,14 @@
 						</div>
 							<div class="col-xs-12 col-md-6">
 								<div>
-									<p class="text-secondary mb-1">{{article.created_at|date("d-m-Y")}}</p>
 									<h2 class="h3 mb-3">
 										<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 									</h2>
 								<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
+								<p class="text-secondary mb-1">Créée le : {{article.created_at|date("d-m-Y")}}</p>
+								{% if article.updated_at %}
+								<p class="text-secondary mb-1">Mis à jour le : {{article.updated_at|date("d-m-Y")}}</p>
+								{% endif %}
 								<div class="section-btn mt-3">
 									<a href="{{ path('app_article_show', {'categorySlug': article.category_slug, 'articleSlug': article.slug}) }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Lire la suite</a>
 								</div>
