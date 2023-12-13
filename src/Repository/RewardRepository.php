@@ -53,25 +53,29 @@ class RewardRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
+        // Randomly selects a reward that has not yet been allocated to the specified user ($userId).
         $sql = '
-             SELECT r.* FROM reward r
-             LEFT JOIN user_reward ur ON r.id = ur.reward_id AND ur.user_id = :userId
-             WHERE ur.user_id IS NULL
-             ORDER BY RAND()
-             LIMIT 1
-         ';
+        SELECT r.id FROM reward r
+        LEFT JOIN user_reward ur ON r.id = ur.reward_id AND ur.user_id = :userId
+        WHERE ur.user_id IS NULL
+        ORDER BY RAND()
+        LIMIT 1
+    ';
 
         $stmt = $conn->prepare($sql);
-        $result = $stmt->executeQuery(['userId' => $userId])->fetchAssociative() ?: null;
+        $result = $stmt->executeQuery(['userId' => $userId])->fetchAssociative();
 
         if ($result) {
             $rewardId = $result['id'];
             $reward = $this->find($rewardId);
 
-            return $reward;
+            return $reward; // Retourne l'objet Reward
         }
+
         return null;
     }
+
+
 
 
 

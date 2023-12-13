@@ -4,21 +4,17 @@ namespace App\Controller\FrontOffice;
 
 use App\Entity\Play;
 use App\Entity\Quiz;
-use App\Entity\User;
 use App\Repository\PlayRepository;
 use App\Repository\QuizRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\ResponseRepository;
 use App\Repository\RewardRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Runtime\Symfony\Component\HttpFoundation\ResponseRuntime;
 
 class QuizController extends AbstractController
 {
@@ -159,7 +155,7 @@ class QuizController extends AbstractController
 
         $this->saveUserScore($score, $quiz);
 
-        if ($score > 6) {
+        if ($score > 1) {
             $this->getReward($score, $quiz);
         }
 
