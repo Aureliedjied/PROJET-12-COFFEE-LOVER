@@ -26,6 +26,14 @@
 			{{ article.user.lastname }}
 		{% endif %}
 	</p>
+	<p class="text-secondary mb-1">
+		{{ article.getUpdatedAt|date('d-m-Y') }}
+		{% if article.user %}
+			par
+			{{ article.user.firstname }}
+			{{ article.user.lastname }}
+		{% endif %}
+	</p>
 	<div class="section-btn mt-3">
     <a href="{{ path('app_quiz_list') }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Venez tester vos connaissances</a>
 	</div>
