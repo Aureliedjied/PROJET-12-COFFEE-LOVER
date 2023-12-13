@@ -79,19 +79,26 @@ class QuizBackOfficeController extends AbstractController
     /**
      * @Route("/back-office/quiz/edit/{id}", name="app_back_quiz_edit")
      */
-    public function edit(int $id, quiz $quiz, Request $request): Response
+    public function edit(int $id, QuestionRepository $questionRepository, Request $request): Response
     {
-        $question = new Question();
+        $question = $questionRepository->find($id);
+
+
 
         $form = $this->createForm(QuestionType::class, $question);
 
         $form->handleRequest($request);
 
-        $questions = $quiz->getQuestion();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $questionRepository->add($question, true);
+
+            return $this->redirectToRoute('app_back_articles');
+        }
 
         return $this->renderForm('back-office/quiz/edit.html.twig', [
             'form' => $form,
-            'questions' => $questions,
+            'question' => $question,
         ]);
     }
 
