@@ -39,28 +39,68 @@ class RewardRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Reward[] Returns an array of Reward objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     *  $sql='Select r.id
+     *        From reward r
+     *        Left Join user_reward ur ON r.id = ur.reward_id AND  :userId = ur.user_id 
+     *        
+     * 
+     */
 
-//    public function findOneBySomeField($value): ?Reward
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+
+    public function findReward($userId)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        // Randomly selects a reward that has not yet been allocated to the specified user ($userId).
+        $sql = '
+        SELECT r.id FROM reward r
+        LEFT JOIN user_reward ur ON r.id = ur.reward_id AND ur.user_id = :userId
+        WHERE ur.user_id IS NULL
+        ORDER BY RAND()
+        LIMIT 1
+    ';
+
+        $stmt = $conn->prepare($sql);
+        $result = $stmt->executeQuery(['userId' => $userId])->fetchAssociative();
+
+        if ($result) {
+            $rewardId = $result['id'];
+            $reward = $this->find($rewardId);
+
+            return $reward; // Retourne l'objet Reward
+        }
+
+        return null;
+    }
+
+
+
+
+
+    //    /**
+    //     * @return Reward[] Returns an array of Reward objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('r.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Reward
+    //    {
+    //        return $this->createQueryBuilder('r')
+    //            ->andWhere('r.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

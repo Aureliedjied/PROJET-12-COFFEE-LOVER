@@ -59,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\ManyToMany(targetEntity=Reward::class, inversedBy="users")
      */
-    private $reward;
+    private $rewards;
 
     /**
      * @ORM\OneToMany(targetEntity=Play::class, mappedBy="user")
@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->articles = new ArrayCollection();
-        $this->reward = new ArrayCollection();
+        $this->rewards = new ArrayCollection();
         $this->play = new ArrayCollection();
         $this->quiz = new ArrayCollection();
     }
@@ -240,13 +240,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getReward(): Collection
     {
-        return $this->reward;
+        return $this->rewards;
     }
 
     public function addReward(Reward $reward): self
     {
-        if (!$this->reward->contains($reward)) {
-            $this->reward[] = $reward;
+        if (!$this->rewards->contains($reward)) {
+            $this->rewards[] = $reward;
         }
 
         return $this;
@@ -254,7 +254,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeReward(Reward $reward): self
     {
-        $this->reward->removeElement($reward);
+        $this->rewards->removeElement($reward);
 
         return $this;
     }

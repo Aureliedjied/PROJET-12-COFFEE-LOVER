@@ -44,7 +44,7 @@ class Reward
     private $pictureFile;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="reward")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="rewards")
      */
     private $users;
 
@@ -82,7 +82,7 @@ class Reward
         return $this;
     }
 
-     /**
+    /**
      * Get the value of pictureFile
      *
      * @return File|null

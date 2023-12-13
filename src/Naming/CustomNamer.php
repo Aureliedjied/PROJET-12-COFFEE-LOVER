@@ -28,8 +28,5 @@ class CustomNamer implements NamerInterface
 
         // On ajoute au titre sa date + son format ( ici on choisit png )
         return $cleanedTitle . '_' . time() . '_' . uniqid() . '.png';
-
     }
 }
-
-// DOC : https://github.com/dustin10/VichUploaderBundle

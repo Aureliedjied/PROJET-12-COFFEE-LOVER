@@ -13,7 +13,7 @@
       {% for quiz in quizs %}
         <div class="col-auto mx-auto mb-4">
           <div class="card" style="width: 18rem;">
-            <a href="{{ path('app_quiz_show', { id: quiz.id, title: quiz.link }) }}">
+            <a class="btn btn-rounded btn-quiz" href="{{ path('app_quiz_show', { id: quiz.id, title: quiz.link }) }}">
               <img src="https://i.ibb.co/vXdCWV7/DALL-E-2023-11-22-15-53-02-A-charming-and-animated-scene-inspired-by-Pixar-s-style-showing-a-cartoon.png" class="card-img-top" alt="test" />
               <div class="card-body">
                 <p class="card-text fw-bold text-center">{{ quiz.title }}</p>
