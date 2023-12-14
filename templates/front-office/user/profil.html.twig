@@ -1,65 +1,82 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Profil
+  Profil
 {% endblock %}
 
 {% block body %}
+  <div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
+  <section class="py-3 py-md-5">
+    <div class="container mt-4">
+      <h1 class="mb-4">Mon Profil</h1>
 
-	<section class="py-3 py-md-5">
-		<div id="scroll-point" class="my-4"></br>
-	</div>
-	<div class="container mt-4">
-		<h1 class="mb-4">Mon Profil</h1>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Mes informations</h5>
+          <p class="card-text">Email:
+            {{ app.user.email }}</p>
+          <p class="card-text">Nom :
+            {{ app.user.lastname }}</p>
+          <p class="card-text">Prénom :
+            {{ app.user.firstname }}</p>
+        </div>
+      </div>
 
-		<div class="card">
-			<div class="card-body">
-				<h5 class="card-title">Mes informations</h5>
-				<p class="card-text">Email:
-					{{ app.user.email }}</p>
-				<p class="card-text">Nom :
-					{{ app.user.lastname }}</p>
-				<p class="card-text">Prénom :
-					{{ app.user.firstname }}</p>
-			</div>
-		</div>
+      <div class="mt-4">
+        <h2>Mes Scores de Quiz</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Quiz</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {# {% for quizScore in app.user.quizScores %} #}
+            <tr>
+              <td>titre quiz</td>
+              <td>12/12</td>
+            </tr>
+            {# {% endfor %} #}
+          </tbody>
+        </table>
+      </div>
 
-		<div class="mt-4">
-			<h2>Mes Scores de Quiz</h2>
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Quiz</th>
-						<th scope="col">Score</th>
-					</tr>
-				</thead>
-				<tbody>
-                    {% for play in app.user.play %}
-                        <tr>
-                            <td>{{ play.quiz.title }}</td>
-                            <td>{{ play.score }}</td>
-                            <td>
-                                <a href="#" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Voir mes résultats</a>
-                            </td>
+      <div class="mt-4">
+        <h2>Mes Scores de Quiz</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Quiz</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for play in app.user.play %}
+              <tr>
+                <td>{{ play.quiz.title }}</td>
+                <td>{{ play.score }}</td>
+                <td>
+                  <a href="#" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Voir mes résultats</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 
-                        </tr>
-                    {% endfor %}
-                </tbody>
-			</table>
-		</div>
-
-		<div class="mt-4">
-			<h2>Mes Récompenses de Quiz</h2>
-			<div
-				class="row">
-				{# Boucle pour afficher les images des récompenses #}
-				{% for reward in app.user.reward %}
-					<div class="col-md-3 mb-3">
-						<img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail">
-						<p>{{ reward.title }}</p>
-					</div>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
-</section>{% endblock %}
+      <div class="mt-4">
+        <h2>Mes Récompenses de Quiz</h2>
+        <div class="row">
+          {# Boucle pour afficher les images des récompenses #}
+          {% for reward in app.user.reward %}
+            <div class="col-md-3 mb-3">
+              <img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail" />
+              <p>{{ reward.title }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

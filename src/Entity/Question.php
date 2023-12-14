@@ -30,7 +30,7 @@ class Question
     private $quizzes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question")
+     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question",  orphanRemoval=true)
      */
     private $responses;
 

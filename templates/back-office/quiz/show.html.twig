@@ -1,0 +1,25 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}
+  Liste des quiz
+{% endblock %}
+
+{% block body %}
+  <div class="mt-4">
+    <h2>Quiz rubrique "{{ quiz.title }}"</h2>
+    <div class="row">
+      <h3>Liste des questions :</h3>
+      <ul>
+        {% for question in questions %}
+          <li>
+            {{ question }}
+            <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-sm btn-outline-secondary">Modifier</a>
+            <a href="{{ path('app_back_quiz_delete', { id: question.id }) }}" class="btn btn-sm btn-outline-danger">Supprimer</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter</a>
+{% endblock %}

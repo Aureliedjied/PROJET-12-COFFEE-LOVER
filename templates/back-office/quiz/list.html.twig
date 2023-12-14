@@ -1,43 +1,33 @@
 {% extends 'back-office/base.html.twig' %}
 
 {% block title %}
-  Liste des quiz
+	Liste des quiz
 {% endblock %}
 
 {% block body %}
-    <section class="features-section mb-4">
-        <div class="container text mx-auto">
-            <h2 class="section-title mb-8">Liste des quiz</h2>
-                <table class="row justify-content-center table-hover ">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Actions</th> 
-                        </tr>
-                    </thead>
-                <tbody>
-            {% for quiz in quizs %}
-                
-                    <tr>
-                        <td class="section mb-3"><p class="fs-4 fw-bold">{{ quiz.id }}. {{ quiz.title }}<p>
-                        <li class="section mb-3">question</li>
-                        <li class="section mb-3">réponse 1</li>
-                        <li class="section mb-3">réponse 2</li>
-                        <li class="section mb-3">réponse 3</li>
-                        </td> 
-                                           
-                        <td>
-                            <a href="#" class="btn btn-rounded bi bi-pencil btn-quiz mb-3"></a>
-                            <a href="#" class="btn btn-rounded btn-quiz bi bi-trash mb-3"></a>
-                        </td>
-                    </tr>
-            {% endfor %}
-                
-        </tbody>
-		</div>
-</table>
-                    <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="#">Ajouter un quiz</a>
+	<section class="features-section mb-4">
+		<div class="container text mx-auto">
+			<h2 class="section-title mb-8">Liste des quiz</h2>
+			<table class="row justify-content-center table-hover ">
 
-    </section>
+				<tbody>
+					{% for quiz in quizs %}
+
+						<tr>
+							<td class="section mb-3">
+								<p class="fs-4 fw-bold">{{ quiz.id }}.{{ quiz.title }}
+								</p>
+							</td>
+
+							<td>
+								<a href="{{ path('app_back_quiz_show', { id: quiz.id, title: quiz.link }) }}" class="btn btn-rounded btn-quiz mb-3">Voir</a>
+							</td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</div>
+		</table>
+
+	</section>
 {% endblock %}

@@ -24,7 +24,7 @@
       </div>
 
       {# search form for mobile device #}
-      <form class="form-inline d-block d-lg-none position-absolute top-0 end-0 m-4">
+      <form class="form-inline d-block d-lg-none position-absolute top-0 end-0 m-4" id="search-form">
         <div class="input-group">
           <button id="searchButton" class="btn btn-outline-light rounded-pill" type="button"><i class="bi bi-search"></i></button>
           <input id="searchInput" class="form-control rounded-pill d-none" type="search" placeholder="Search" aria-label="Search" />
@@ -52,8 +52,7 @@
               </div>
             </div>
             <li class="nav-item d-none d-lg-block">
-            <span id="cup" class="bi bi-cup-hot pr-4" title="Accueil" style="font-size: 2rem"></span>
-              <a href="{{ path('app_home') }}"><img src="{{ asset('logo.png') }}" alt="logo" /></a>
+              <a href="{{ path('app_home') }}"><img src="{{ asset('logo.png') }}" alt="logo" title="accueil" id="logo" /></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'botanique-et-culture' }) }}">Botanique et culture</a>
@@ -62,10 +61,10 @@
               <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'recolte-et-transformation' }) }}">Récolte et transformation</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'torrefaction-et-methodes-d-extraction' }) }}">Torréfaction et méthodes d'extraction</a>
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'cafe-de-specialite' }) }}">Café de spécialité</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'cafe-de-specialite' }) }}">Café de spécialité</a>
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'torrefaction-et-methodes-d-extraction' }) }}">Torréfaction et méthodes d'extraction</a>
             </li>
             {% if app.user %}
               <li class="nav-item">

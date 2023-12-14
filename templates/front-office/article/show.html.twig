@@ -1,33 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ article.title }}
+  {{ article.title }}
 {% endblock %}
 
 {% block body %}
-	<div id="scroll-point" class="my-4"></br>
-</div>
-<section class="features-section mb-4">
-	<div class="container text-center mx-auto">
-		<h2 class="section-title mb-6">{{ article.title }}</h2>
-		<div class="row justify-content-center">
-			<div class="col-15 col-lg-6">
-				<img src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" class="img-fluid mb-4"/>
-			</div>
-		</div>
-	</div>
-	<h3 class="section-subtitle mb-3">{{ article.subtitle }}</h3>
-	<p class="section-text">{{ article.content|nl2br }}</p>
-	<p class="text-secondary mb-1">
-		{{ article.getCreatedAt|date('d-m-Y') }}
-		{% if article.user %}
-			par
-			{{ article.user.firstname }}
-			{{ article.user.lastname }}
-		{% endif %}
-	</p>
-	
-	<div class="section-btn mt-3">
-    <a href="{{ path('app_quiz_list') }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Venez tester vos connaissances</a>
-	</div>
-</section>{% endblock %}
+  <div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
+  <section class="features-section my-4">
+    <div class="container text-center mx-auto">
+      <h2 class="section-title my-16">{{ article.title }}</h2>
+      <div class="row justify-content-center">
+        <div class="col-15 col-lg-6">
+          <img src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" class="img-fluid mb-4" />
+        </div>
+      </div>
+    </div>
+    <h3 class="section-subtitle mb-3">{{ article.subtitle }}</h3>
+    <p class="section-text">{{ article.content|nl2br }}</p>
+    <p class="text-secondary mb-1">
+      {{ article.getCreatedAt|date('d-m-Y') }}
+      {% if article.user %}
+        {{ article.user.firstname }}
+        {{ article.user.lastname }}
+      {% endif %}
+    </p>
+
+    <div class="section-btn mt-3">
+      <a href="{{ path('app_quiz_list') }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Venez tester vos connaissances</a>
+    </div>
+  </section>
+{% endblock %}
