@@ -20,7 +20,6 @@
     <p class="text-secondary mb-1">
       {{ article.getCreatedAt|date('d-m-Y') }}
       {% if article.user %}
-        par
         {{ article.user.firstname }}
         {{ article.user.lastname }}
       {% endif %}
