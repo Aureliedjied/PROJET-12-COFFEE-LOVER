@@ -66,6 +66,7 @@ span{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* QUIZ css */
 .btn-quiz {
     background-color: #8B4513; 
     color: #fff; 
@@ -77,4 +78,8 @@ span{
 
 #logo{
     width: 2.5em;
+}
+
+#img-quiz{
+    width: 30rem;
 }

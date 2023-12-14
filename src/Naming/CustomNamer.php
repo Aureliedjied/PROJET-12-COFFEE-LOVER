@@ -27,6 +27,6 @@ class CustomNamer implements NamerInterface
         $cleanedTitle = preg_replace('/[^a-zA-Z0-9_-]/', '_', $limitedTitle);
 
         // On ajoute au titre sa date + son format ( ici on choisit png )
-        return $cleanedTitle . '_' . time() . '_' . uniqid() . '.png';
+        return $cleanedTitle . '.png';
     }
 }

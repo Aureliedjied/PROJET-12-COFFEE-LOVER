@@ -1,18 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'front-office/quiz/basequiz.html.twig' %}
 
 {% block title %}
-  QUIZ/{{quiz.title}}
+  QUIZ/{{ quiz.title }}
 {% endblock %}
 {% block body %}
-  
-
   <div class="container-fluid mt-2">
-    <div id="scroll-point"> </br> </div>
-    <div class="row mb-4" id="scroll-point">
+    <div class="row mb-4">
       <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{ quiz.title }}"</h2>
     </div>
 
-    <form action="{{ path('app_quiz_submit', { id: quiz.id, title: quiz.title }) }}" method="post" >
+    <form action="{{ path('app_quiz_submit', { id: quiz.id, title: quiz.title }) }}" method="post">
       <div class="container mt-4 mb-4">
         <div class="card">
           <div class="card-body">
@@ -26,16 +23,15 @@
               {% endfor %}
             </div>
             <div>
-              <span id="display-score" class=" position-absolute bottom-0 end-0 badge m-2 p-3 ">Question: {{ offset }} /10</span>
-            </div>            
-            <div class="d-flex align-items-center">
-            {# Btn "suivant" is disable, until the user seletcs a response (js function) #}
-              <button type="submit" class="btn btn-rounded btn-quiz" id="nextButton" >suivant</button>
-                        
-               <div id="alertMessage" class="ms-2" style="display: none; color: red;">
-                   Merci de choisir une réponse en premier.
-                </div>
+              <span id="display-score" class="position-absolute bottom-0 end-0 badge m-2 p-3">Question: {{ offset }} /10</span>
             </div>
+            <div class="d-flex align-items-center">
+              {# Btn "suivant" is disable, until the user seletcs a response (js function) #}
+              <button type="submit" class="btn btn-rounded btn-quiz" id="nextButton">suivant</button>
+
+              <div id="alertMessage" class="ms-2" style="display: none; color: red;">Merci de choisir une réponse en premier.</div>
+            </div>
+          </div>
         </div>
       </div>
     </form>
@@ -54,6 +50,7 @@
     </div>
   </div>
 {% endblock %}
+
 {% block javascripts %}
   {{ parent() }}
   <script src="{{ asset('js/quiz-validation.js') }}"></script>
