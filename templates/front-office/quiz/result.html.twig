@@ -17,9 +17,11 @@
       {% if score <= 5 %}
         <p class="text-center p-1">Chat! C'est pas terrible tu peux faire mieux !</p>
         <img src="{{ asset('images/gifs/defeat.png') }}" class="card-img-top" id="img-quiz" alt="succes" />
+        <audio src="{{ asset('images/soundstracks/avocat_per_1702569485_657b260d14105.mp3') }}" controls autoplay></audio>
       {% else %}
         <p class="text-center p-1">Miaou ! Chat c'est fort tu as vraiment fais un bon score !</p>
         <img src="{{ asset('images/gifs/succes.png') }}" class="card-img-top" id="img-quiz" alt="defeat" />
+        <audio src="{{ asset('images/soundstracks/avocat_per_1702569485_657b260d14105.mp3') }}" controls autoplay></audio>
       {% endif %}
 
       <div class="card-body text-center">
