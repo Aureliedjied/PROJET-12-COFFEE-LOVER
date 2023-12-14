@@ -1,0 +1,30 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}Liste des gifs{% endblock %}
+
+{% block body %}
+<section class="features-section mb-4">
+		<div class="container text mx-auto">
+			<h2 class="section-title mb-8">Liste des Gifs</h2>
+			<div class="row">
+				{% for gif in gifs %}
+					<div class="col-md-4 mb-2">
+						<div class="card">
+							<img src="{{ vich_uploader_asset(gif, 'pictureFile') }}" alt="{{ gif.title }}" class="card-img-top img-thumbnail">
+							<div class="card-body">
+								<h5 class="card-title">{{ gif.title }}</h5>
+								{% include 'fragments/_confirm_action.html.twig' with {
+                                confirmationMessage: 'Voulez-vous vraiment supprimer ?',
+                                actionUrl: path('app_back_gif_delete', {'id': gif.id}),
+                                buttonLabel: ''
+                            } %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_gif_add') }}">Ajouter un nouveau gif</a>
+		</div>
+	</section>
+{% endblock %}
