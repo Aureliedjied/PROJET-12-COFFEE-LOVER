@@ -4,6 +4,6 @@ window.onload= function(){
     let section = document.querySelector('#scroll-point');
     // If the element exists, scroll to make it visible.
     if (section) {
-        section.scrollIntoView();
+        section.scrollIntoView({ behavior: "smooth", inline: "nearest" });
     }
 };
