@@ -1,34 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Résultat du quiz
+  Résultat du quiz
 {% endblock %}
 
 {% block body %}
+  <div class="container-fluid">
+    <div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
 
-<div class="container-fluid">
-		<div id="scroll-point" class="my-4 "></br></div>
-	
+    <h1 class="text-center mb-4">Résultat de votre Quiz</h1>
 
-	<h1 class="text-center my-5">Résultat de votre Quiz</h1>
+    <div class="card mx-auto mb-4" style="width: 30rem;">
+      <p class="card-text text-center fw-bolder p-4 fs-1">résultat :
+        {{ score }}
+        /10</p>
+      {% if score <= 5 %}
+        <p class="text-center p-1">Chat! C'est pas terrible tu peux faire mieux !</p>
+        <img src="{{ asset('images/gifs/defeat.png') }}" class="card-img-top" id="img-quiz" alt="succes" />
+      {% else %}
+        <p class="text-center p-1">Miaou ! Chat c'est fort tu as vraiment fais un bon score !</p>
+        <img src="{{ asset('images/gifs/succes.png') }}" class="card-img-top" id="img-quiz" alt="defeat" />
+      {% endif %}
 
-
-	<div class="card mx-auto" style="width: 35rem;">
-		<p class="card-text text-center fw-bolder p-4 fs-1">résultat :
-			{{ score }}
-			/10</p>
-		<img src="https://i.ibb.co/BBgBkwG/cup-of-coffee.png" class="card-img-top" alt="Cat end quiz"/>
-		<div class="card-body text-center">
-			<h5 class="card-title">{{ quiz.title }}</h5>
-
-			<a href="{{ path('app_home') }}" class="btn btn-primary">Retour à l'accueil</a>
-		</div>
-
-		{% if score > 5 %}
-			<h2 class="text-center">Votre carte récompense</h2>
-			<div class="card-unstyled">
-				<img src="https://i.ibb.co/P565nCn/DALL-E-2023-11-22-15-13-50-An-automatic-espresso-machine-reminiscent-of-a-De-Longhi-model-placed-on.png" class="card-img-top" alt="Cat end quiz"/>
-			</div>
-		{% endif %}
-	</div>
-</div>{% endblock %}
+      <div class="card-body text-center">
+        {# <h5 class="card-title">{{ quiz.title }}</h5> #}
+        <a href="{{ path('app_categorie', { categorySlug: quiz.link }) }}" class="btn btn-quiz">{{ quiz.title }}</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

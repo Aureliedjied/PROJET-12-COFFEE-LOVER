@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Gif;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,10 +22,18 @@ class GifFormType extends AbstractType
         ],
         ])
         ->add('pictureFile', VichImageType::class, [
+            'label' => 'GIF',
             'required' => false,
             'allow_delete' => true,
             'download_uri' => true,
             'image_uri' => true,
+        ])
+        ->add('soundstrackFile', VichFileType::class, [
+            'label' => 'son',
+            'required' => false,
+            'allow_delete' => true,
+            'download_uri' => true,
+            
         ])
         ;
     }

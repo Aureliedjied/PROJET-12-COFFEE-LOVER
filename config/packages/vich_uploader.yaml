@@ -9,3 +9,7 @@ vich_uploader:
             uri_prefix: '/images/gifs'
             upload_destination: '%kernel.project_dir%/public/images/gifs'
             namer: App\Naming\CustomNamer
+        soundstrack_images:
+            uri_prefix: '/images/soundstracks'
+            upload_destination: '%kernel.project_dir%/public/images/soundstracks'
+            namer: App\Naming\CustomNamerSoundstrack

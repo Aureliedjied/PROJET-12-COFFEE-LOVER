@@ -1,22 +1,21 @@
 <a href="#" class="btn btn-rounded btn-quiz bi bi-trash mb-3" onclick="confirmAction('{{ confirmationMessage }}', '{{ actionUrl }}');">{{ buttonLabel }}</a>
-{#! Ici, template de la confirmation de suppression, que j'inclus dans mes base.html.twig #}
+{# ! Ici, template de la confirmation de suppression, que j'inclus dans mes base.html.twig #}
 <script src="{{ asset('path/to/sweetalert2.all.min.js') }}"></script>
 <script>
-	function confirmAction(message, url) {
-Swal.fire({
-title: 'Confirmation',
-text: message,
-icon: 'warning',
-showCancelButton: true,
-confirmButtonColor: '#d33',
-cancelButtonColor: '#3085d6',
-confirmButtonText: 'Oui, je confirme',
-cancelButtonText: 'Annuler'
-}).then((result) => {
-if (result.isConfirmed) {
-window.location.href = url;
-}
-});
-}
+  function confirmAction(message, url) {
+    Swal.fire({
+      title: 'Confirmation',
+      text: message,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#770708',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Oui, je confirme',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = url
+      }
+    })
+  }
 </script>
-

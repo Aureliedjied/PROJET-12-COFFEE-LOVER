@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
@@ -42,6 +40,22 @@ class Gif
      * )
      */
     private $pictureFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $soundstrack;
+
+    /**
+     * @Vich\UploadableField(mapping="soundstrack_images", fileNameProperty="soundstrack")
+     * @var File|null
+     *
+     * @Assert\File(
+     *     maxSize = "30M",
+     *     maxSizeMessage = "Le fichier est trop volumineux. La taille maximale autorisée est {{ limit }}",
+     * )
+     */
+    private $soundstrackFile;
 
     public function getId(): ?int
     {
@@ -90,6 +104,42 @@ class Gif
     public function setPictureFile(?File $pictureFile): self
     {
         $this->pictureFile = $pictureFile;
+
+        return $this;
+    }
+
+    public function getSoundstrack(): ?string
+    {
+        return $this->soundstrack;
+    }
+
+    public function setSoundstrack(?string $soundstrack): self
+    {
+        $this->soundstrack = $soundstrack;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of soundstrackFile
+     *
+     * @return  File|null
+     */ 
+    public function getSoundstrackFile()
+    {
+        return $this->soundstrackFile;
+    }
+    
+    /**
+     * Set the value of soundstrackFile
+     *
+     * @param  File|null  $soundstrackFile
+     *
+     * @return  self
+     */ 
+    public function setSoundstrackFile($soundstrackFile)
+    {
+        $this->soundstrackFile = $soundstrackFile;
 
         return $this;
     }

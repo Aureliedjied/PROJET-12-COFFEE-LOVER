@@ -61,7 +61,7 @@ class QuizController extends AbstractController
         // Checks whether the user has started a new quiz or is continuing the same one.
         if ($currentQuizId !== $id) {
             // If this is a new quiz, load 10 random questions and reset the offset.
-            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 3);
+            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 10);
             $sessionInterface->set('questions', $questions);
             //initialize score
             $sessionInterface->set('score', 0);
@@ -156,7 +156,7 @@ class QuizController extends AbstractController
 
         $this->saveUserScore($score, $quiz);
 
-        if ($score > 1) {
+        if ($score > 5) {
             $this->getReward($score, $quiz);
         }
 
