@@ -52,7 +52,9 @@
               </div>
             </div>
             <li class="nav-item d-none d-lg-block">
-              <a href="{{ path('app_home') }}"><span id="cup" class="bi bi-cup-hot pr-4" title="Accueil" style="font-size: 2rem"></span></a>
+              <a href="{{ path('app_home') }}"><img src="{{ asset('logo2.png') }}" alt="logo" title="accueil" id="logo" /></a>
+
+              {# <a href="{{ path('app_home') }}"><span id="cup" class="bi bi-cup-hot pr-4" title="Accueil" style="font-size: 2rem"></span></a> #}
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'botanique-et-culture' }) }}">Botanique et culture</a>
@@ -61,10 +63,10 @@
               <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'recolte-et-transformation' }) }}">Récolte et transformation</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'torrefaction-et-methodes-d-extraction' }) }}">Torréfaction et méthodes d'extraction</a>
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'cafe-de-specialite' }) }}">Café de spécialité</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'cafe-de-specialite' }) }}">Café de spécialité</a>
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'torrefaction-et-methodes-d-extraction' }) }}">Torréfaction et méthodes d'extraction</a>
             </li>
             {% if app.user %}
               <li class="nav-item">
