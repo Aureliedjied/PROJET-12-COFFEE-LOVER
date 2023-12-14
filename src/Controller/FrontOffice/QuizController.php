@@ -6,8 +6,10 @@ use App\Entity\Play;
 use App\Entity\Quiz;
 use App\Repository\PlayRepository;
 use App\Repository\QuizRepository;
+use App\Repository\RewardRepository;
 use App\Repository\QuestionRepository;
 use App\Repository\ResponseRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,10 +20,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuizController extends AbstractController
 {
     private $playRepository;
+    private $rewardRepository;
+    private $entityManager;
 
-    public function __construct(PlayRepository $playRepository)
+    public function __construct(PlayRepository $playRepository, RewardRepository $rewardRepository, EntityManagerInterface $entityManager)
     {
         $this->playRepository = $playRepository;
+        $this->rewardRepository = $rewardRepository;
+        $this->entityManager = $entityManager;
     }
 
 
@@ -55,7 +61,7 @@ class QuizController extends AbstractController
         // Checks whether the user has started a new quiz or is continuing the same one.
         if ($currentQuizId !== $id) {
             // If this is a new quiz, load 10 random questions and reset the offset.
-            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 10);
+            $questions = $questionRepository->findRandomQuestionByQuiz($quiz, 3);
             $sessionInterface->set('questions', $questions);
             //initialize score
             $sessionInterface->set('score', 0);
@@ -150,6 +156,10 @@ class QuizController extends AbstractController
 
         $this->saveUserScore($score, $quiz);
 
+        if ($score > 1) {
+            $this->getReward($score, $quiz);
+        }
+
         // Envoyer les données au template Twig
         return $this->render('front-office/quiz/result.html.twig', [
             'quiz' => $quiz,
@@ -174,5 +184,22 @@ class QuizController extends AbstractController
 
 
         $this->playRepository->add($play, true);
+    }
+
+
+    public function getReward($score, $quiz)
+    {
+
+        $user = $this->getUser();
+
+        //recupère une reward en random via rewardrepository methode randomreward
+        $reward = $this->rewardRepository->findReward($user->getId());
+        //verrifier si l'user a déjà la reward concernée sinon  refaire la méthode 
+
+        if ($reward) {
+            $user->addReward($reward);
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+        }
     }
 }

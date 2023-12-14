@@ -32,33 +32,10 @@
             </tr>
           </thead>
           <tbody>
-            {# {% for quizScore in app.user.quizScores %} #}
-            <tr>
-              <td>titre quiz</td>
-              <td>12/12</td>
-            </tr>
-            {# {% endfor %} #}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="mt-4">
-        <h2>Mes Scores de Quiz</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Quiz</th>
-              <th scope="col">Score</th>
-            </tr>
-          </thead>
-          <tbody>
             {% for play in app.user.play %}
               <tr>
                 <td>{{ play.quiz.title }}</td>
                 <td>{{ play.score }}</td>
-                <td>
-                  <a href="#" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Voir mes résultats</a>
-                </td>
               </tr>
             {% endfor %}
           </tbody>

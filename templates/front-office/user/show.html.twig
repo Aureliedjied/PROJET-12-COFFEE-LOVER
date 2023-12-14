@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Profil
+{% endblock %}
+
+{% block body %}
+
+	<section class="features-section mb-4">
+		<div class="container text-center mx-auto">
+			<h3 class="section-subtitle mb-3">titre de la récompense</h3>
+			<p class="text-secondary mb-1">
+				bla bla sur les récompenses gagnées ...</p>
+			<div class="justify-content-center">
+				{% for reward in app.user.reward %}
+					<div class="col-10 col-lg-6">
+						<img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}">
+					</div>
+
+				</div>
+			{% endfor %}
+		</div>
+
+
+	</section>
+{% endblock %}
