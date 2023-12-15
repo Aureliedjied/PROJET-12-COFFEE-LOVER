@@ -25,13 +25,15 @@ searchTermInput.addEventListener('input', async function(event) {
 });
 
 function displaySearchResults(results) {
-    // on selectionne la div sous la navbar :
+    // je selectionne la div en dessous ma navbar :
     const searchResultsContainer = document.getElementById('search-results');
-    // On vide le container :
+    // Effacez les résultats précédents
     searchResultsContainer.textContent = '';
 
+    // Vérifiez s'il y a des résultats à afficher
+    if (results.length > 0) {
     results.forEach(result => {
-        // on crée une div pour chaque résultat
+        // Créez une div pour chaque résultat
         const resultItem = document.createElement('div');
         // ajout d'une classe ( cf css )
         resultItem.classList.add('search-result-item');
@@ -51,6 +53,17 @@ function displaySearchResults(results) {
         // Ajout de la div o container
         searchResultsContainer.appendChild(resultItem);
     });
+    } else {
+    // Aucun résultat trouvé, affichez un message approprié
+    const noResultMessage = document.createElement('div');
+    noResultMessage.classList.add('search-result-item', 'no-result-message');
+
+    const messageText = document.createElement('p');
+    messageText.textContent = 'Aucun résultat trouvé';
+
+    noResultMessage.appendChild(messageText);
+    searchResultsContainer.appendChild(noResultMessage);
+}
 }
 
 function clearSearchResults() {
