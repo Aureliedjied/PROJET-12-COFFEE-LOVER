@@ -57,7 +57,7 @@ class QuizBackOfficeController extends AbstractController
     {
         $question = new Question();
 
-        $form = $this->createForm(QuestionType::class, $question);
+        $form = $this->createForm(QuestionType::class, $question, ['add_mode' => true]);
 
         $form->handleRequest($request);
 

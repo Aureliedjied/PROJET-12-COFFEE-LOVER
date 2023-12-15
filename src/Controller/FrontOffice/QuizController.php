@@ -176,14 +176,23 @@ class QuizController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        $play = new Play();
-        $play->setUser($user);
-        $play->setQuiz($quiz);
-        $play->setStatus(1);
-        $play->setScore($score);
+        $existingPlay = $this->playRepository->findOneBy(['user' => $user, 'quiz' => $quiz]);
+        if ($existingPlay) {
+
+            if ($score > $existingPlay->getScore()) {
+                $existingPlay->setScore($score);
+                $this->playRepository->add($existingPlay, true);
+            }
+        } else {
+            $play = new Play();
+            $play->setUser($user);
+            $play->setQuiz($quiz);
+            $play->setStatus(1);
+            $play->setScore($score);
 
 
-        $this->playRepository->add($play, true);
+            $this->playRepository->add($play, true);
+        }
     }
 
 

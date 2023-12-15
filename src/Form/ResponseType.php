@@ -17,8 +17,7 @@ class ResponseType extends AbstractType
             ->add('text_response', TextType::class, [
                 'label' => 'Réponse'
             ])
-            ->add('is_correct')
-            ->add('question');
+            ->add('is_correct');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

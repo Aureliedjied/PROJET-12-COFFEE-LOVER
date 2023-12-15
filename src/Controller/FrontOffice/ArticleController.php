@@ -29,6 +29,7 @@ class ArticleController extends AbstractController
         ]);
         return $this->render('front-office/article/list.html.twig', [
             'articles' => $articles,
+            'category' => $category
         ]);
     }
 

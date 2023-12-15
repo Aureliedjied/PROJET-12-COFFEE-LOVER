@@ -35,7 +35,7 @@
             {% for play in app.user.play %}
               <tr>
                 <td>{{ play.quiz.title }}</td>
-                <td>{{ play.score }}</td>
+                <td>{{ max([play.score]) }}</td>
               </tr>
             {% endfor %}
           </tbody>
@@ -48,8 +48,14 @@
           {# Boucle pour afficher les images des récompenses #}
           {% for reward in app.user.reward %}
             <div class="col-md-3 mb-3">
-              <img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail" />
-              <p>{{ reward.title }}</p>
+              <a href="{{ path('app_profil_show', { id: reward.id }) }}">
+                <div class="card">
+                  <img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail" />
+                  <div class="card-body">
+                    <p class="card-text">{{ reward.title }}</p>
+                  </div>
+                </div>
+              </a>
             </div>
           {% endfor %}
         </div>
