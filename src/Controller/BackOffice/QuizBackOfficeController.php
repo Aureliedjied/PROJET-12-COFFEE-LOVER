@@ -65,7 +65,7 @@ class QuizBackOfficeController extends AbstractController
 
             $questionRepository->add($question, true);
 
-            return $this->redirectToRoute('app_back_reward');
+            return $this->redirectToRoute('app_back_quiz');
         }
 
         return $this->renderForm('back-office/quiz/add.html.twig', [
