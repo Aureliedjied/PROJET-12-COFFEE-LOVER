@@ -7,11 +7,11 @@
 {% block body %}
 
 
-<section class="py-3 py-md-5">
+<section class=py-3 py-md-5"">
 	<div class="container overflow-hidden">
 		<div class="row g-4">
             {% for article in randomArticle %}
-				<div class="col-12"> </br>
+				<div class="col-12"> 
 					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5{% endif %} article-card">
 						<div class="col-xs-12 col-md-6">
                         
@@ -26,14 +26,14 @@
 									<h2 class="h3 mb-3">
 										<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 									</h2>
-								<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
-								<p class="text-secondary mb-1">Créée le : {{article.created_at|date("d-m-Y")}}</p>
-								{% if article.updated_at %}
-								<p class="text-secondary mb-1">Mis à jour le : {{article.updated_at|date("d-m-Y")}}</p>
-								{% endif %}
-								<div class="section-btn mt-3">
-									<a href="{{ path('app_article_show', {'categorySlug': article.category_slug, 'articleSlug': article.slug}) }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Lire la suite</a>
-								</div>
+									<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
+									<p class="text-secondary mb-1">Créée le : {{article.created_at|date("d-m-Y")}}</p>
+										{% if article.updated_at %}
+									<p class="text-secondary mb-1">Mis à jour le : {{article.updated_at|date("d-m-Y")}}</p>
+										{% endif %}
+										<div class="section-btn mt-3">
+											<a href="{{ path('app_article_show', {'categorySlug': article.category_slug, 'articleSlug': article.slug}) }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Lire la suite</a>
+										</div>
 								</div>
 							</div>
 					</div>

@@ -4,20 +4,17 @@
 
 {% block body %}
 
-
-		<div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
-        <section class="py-3 py-md-5" >
-		
+<div id="scroll-point" class="my-4">{{ ''|raw }}</div>
+    <section class="py-3 py-md-5" >
 		<div class="container overflow-hidden" >
 			<div class="row g-4">
-              
+              <h1 class="text-center fw-bolder text-dark p-5 mb-4">{{ category.title }}</h1>
             {% for article in articles %}
 			
 				<div class="col-12">
 				
-					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5â{% endif %} article-card">
+					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse 		gx-xl-5â{% endif %} article-card">
 						<div class="col-xs-12 col-md-6">
-                        
 							<div class="img-wrapper position-relative bsb-hover-push">
 								<a href="#!">
 									<img class="img-fluid rounded" src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" >
@@ -30,25 +27,21 @@
 									<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 								</h2>
 								<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
-								<p class="text-secondary mb-1">Créée le : {{article.getCreatedAt|date("d-m-Y")}}</p>
+								<p class="text-secondary mb-1">Créé le : {{article.getCreatedAt|date("d-m-Y")}}</p>
 								{% if article.getUpdatedAt %}
 								<p class="text-secondary mb-1">Mis à jour le : {{article.getUpdatedAt|date("d-m-Y")}}</p>
 								{% endif %}
 								<div class="section-btn mt-3">
 									<a href="{{ path('app_article_show', {'categorySlug': article.category.slug, 'articleSlug': article.slug}) }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Lire la suite</a>
 								</div>
-
-								
 							</div>
 						</div>
 					</div>
-                    {% endfor %}
 				</div>
             
-				
+				{% endfor %}
 
-			</div>
-            
+			</div> 
 		</div>   
 	</section>
 {% endblock %}

@@ -17,7 +17,7 @@
   </head>
   <body>
     <div class="card text-bg-dark">
-      <img src="{{ cdn_base_url }}zhqKfMm/bannerV2.png" class="img-fluid h-auto w-auto" alt="Banner" />
+      <img src="{{ cdn_base_url }}zhqKfMm/bannerV2.png" id="banner" class="img-fluid h-auto w-auto" alt="Banner" />
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder" id="Coffee Lover">Coffee Lover</h5>
       </div>
@@ -103,9 +103,8 @@
           </section>
           <a class="text-white" href="{{ path('app_mention_legal') }}">Mentions légales</a>
           |
-          <a class="text-white" href="#">Qui sommes-nous</a>
-          |
-          <a class="text-white" href="{{ path('app_contact') }}">Contactez nous</a>
+          <a class="text-white" href="{{ path('app_contact') }}">Qui sommes-nous</a>
+         
         </div>
       </span>
     </footer>

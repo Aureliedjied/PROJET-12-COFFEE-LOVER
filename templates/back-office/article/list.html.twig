@@ -20,10 +20,12 @@
 				<tbody>
 					{% for article in articles %}
 						<tr>
-							<td class="text-secondary mb-3">{{ article.id }}</td>
+							<div><td class="text-secondary mb-3">{{ article.id }}</td>
 							<td class="section mb-3">{{ article.title }}</td>
-							<td class="text-secondary mb-3">{{ article.getCreatedAt|date('d-m-Y') }}</td>
+							<td class="section mb-3">{{ article.getCreatedAt|date('d-m-Y') }}</td></div>
+							
 							<td>
+							
 								<a href="{{ path('app_back_articles_edit', {'id' :article.id}) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>
 								{% include 'fragments/_confirm_action.html.twig' with {
                                 confirmationMessage: 'Voulez-vous vraiment supprimer ?',

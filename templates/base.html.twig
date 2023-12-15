@@ -17,8 +17,8 @@
     {% endblock %}
   </head>
   <body>
-    <div class="card text-bg-dark">
-      <img src="{{ cdn_base_url }}zhqKfMm/bannerV2.png" id="banner" class="img-fluid h-auto w-auto" alt="Banner" />
+    <div class="card text-bg">
+      <img src="{{ cdn_base_url }}zhqKfMm/bannerV2.png" class="img-fluid h-auto w-auto" alt="Banner" />
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder" id="Coffee Lover">Coffee Lover</h5>
       </div>
@@ -34,9 +34,9 @@
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder">Coffee Lover</h5>
       </div>
-    </div>
+    
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
       <div class="container-fluid">
         <button class="navbar-toggler btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="bi bi-list" style="font-size: 2rem"></span></button>
         <div class="d-flex d-lg-none">
@@ -102,6 +102,7 @@
     </nav>
     {# ajout de la div container pour la recherche : #}
     <div id="search-results"></div>
+    </div>
     {% block body %}
 
     {% endblock %}
@@ -118,7 +119,7 @@
           </section>
           <a class="text-white" href="{{ path('app_mention_legal') }}">Mentions légales</a>
           |
-          <a class="text-white" href="{{ path('app_contact') }}">Contactez nous</a>
+          <a class="text-white" href="{{ path('app_contact') }}">Qui sommes-nous</a>
         </div>
       </span>
     </footer>
