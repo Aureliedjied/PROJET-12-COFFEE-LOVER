@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
 {% block title %}
   {{ article.title }}
@@ -6,7 +6,9 @@
 
 {% block body %}
   <div id="scroll-point" class="my-4">{{ ''|raw }}</div>
+
   <section class="features-section my-4">
+
     <div class="container text-center mx-auto">
       <h2 class="section-title my-16">{{ article.title }}</h2>
       <div class="row justify-content-center">
@@ -15,17 +17,17 @@
         </div>
       </div>
     </div>
-    <h3 class="section-subtitle mb-3">{{ article.subtitle }}</h3>
-    <p class="section-text">{{ article.content|nl2br }}</p>
+    <h3 class="section-subtitle my-4 text-center">{{ article.subtitle }}</h3>
+    <p class="section-text m-4">{{ article.content|nl2br }}</p>
     <p class="text-secondary mb-1">
-      {{ article.getCreatedAt|date('d-m-Y') }}
-      {% if article.user %}
+      Publié le "{{ article.getCreatedAt|date('d-m-Y') }}"
+      {% if article.user %} Par 
         {{ article.user.firstname }}
         {{ article.user.lastname }}
       {% endif %}
     </p>
 
-    <div class="section-btn mt-3">
+    <div class="section-btn text-center mt-3">
       <a href="{{ path('app_quiz_list') }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Venez tester vos connaissances</a>
     </div>
   </section>
