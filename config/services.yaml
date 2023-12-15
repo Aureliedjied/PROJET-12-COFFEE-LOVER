@@ -29,5 +29,8 @@ services:
       $customOption: "rename_picture"
   Twig\Extensions\ArrayExtension:
     tags: ["twig.extension"]
+  App\EventSubscriber\PaginationSubscriber:
+    tags:
+      - { name: 'kernel.event_subscriber' }
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones

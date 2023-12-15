@@ -5,6 +5,8 @@ namespace App\Controller\BackOffice;
 use App\Entity\Article;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\EventSubscriber\PaginationSubscriber; 
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,15 +15,32 @@ use Symfony\Component\Security\Core\Security;
 
 class ArticleBackOfficeController extends AbstractController
 {
+    private $paginationSubscriber;
+    private $paginator;
+
+    public function __construct(
+        PaginationSubscriber $paginationSubscriber,
+        PaginatorInterface $paginator
+    ) {
+        $this->paginationSubscriber = $paginationSubscriber;
+        $this->paginator = $paginator;
+    }
+
     /**
      * @Route("/back-office/articles", name="app_back_articles")
      */
-    public function list(ArticleRepository $articleRepository): Response
+    public function list(Request $request, ArticleRepository $articleRepository): Response
     {
-       
+        $pagination = $this->paginator->paginate(
+            $articleRepository->findAll(),
+            // Start to page number 1 :
+            $request->query->getInt('page', 1), 
+            // 10 per page :
+            10 
+        );
 
         return $this->render('back-office/article/list.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'pagination' => $pagination,
         ]);
     }
 
