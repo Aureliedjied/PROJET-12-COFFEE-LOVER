@@ -2,6 +2,7 @@
     background: linear-gradient(to right, #533732, #a88b80); 
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    
 }
 
 .navbar-nav .nav-link {
@@ -12,24 +13,13 @@
     color: white !important;
     font-size: 16px;
 }
-.card.text-bg{
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-}
+
 
 #cup{
     margin-right: 20px;
     margin-left: 20px;
     margin-bottom: 20px;
     font-style: bolder;
-}
-.py-3.py-md-5{
-    background-color: #e5ccb9;
-    padding: 40px;
-    border-radius: 15px;
-    margin: 25px;
-    
-    
 }
 
 footer {
