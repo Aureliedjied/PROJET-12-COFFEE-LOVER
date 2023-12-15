@@ -25,13 +25,13 @@ searchTermInput.addEventListener('input', async function(event) {
 });
 
 function displaySearchResults(results) {
-    // je selectionne la div en dessous ma navbar :
+    // on selectionne la div sous la navbar :
     const searchResultsContainer = document.getElementById('search-results');
-    // Effacez les résultats précédents
+    // On vide le container :
     searchResultsContainer.textContent = '';
 
     results.forEach(result => {
-        // Créez une div pour chaque résultat
+        // on crée une div pour chaque résultat
         const resultItem = document.createElement('div');
         // ajout d'une classe ( cf css )
         resultItem.classList.add('search-result-item');

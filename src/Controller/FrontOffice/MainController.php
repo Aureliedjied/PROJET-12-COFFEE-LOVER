@@ -2,12 +2,12 @@
 
 namespace App\Controller\FrontOffice;
 
-
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
@@ -17,7 +17,6 @@ class MainController extends AbstractController
      */
     public function home(ArticleRepository $articleRepository): Response
     {
-
 
         // methode which retrieves 2 random articles
         $randomArticle = $articleRepository->findRandomArticles();
@@ -53,22 +52,28 @@ class MainController extends AbstractController
      */
     public function search(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
-        // On recupere le formulaire via 'searchTerm' 
-        $query = $request->query->get('searchTerm');
-        // On recup la méthode du repository qui recherche par titre
-        $results = $articleRepository->searchArticle($query);
-        // on converti les resultatst dans un tableau asso
-        $data = [];
-        foreach ($results as $result) {
-            $data[] = [
-                'title' => $result->getTitle(),
-                'url' => $this->generateUrl('app_article_show', [
-                'categorySlug' => $result->getCategory()->getSlug(),
-                'articleSlug' => $result->getSlug(),
-            ]),
-            ];
+        try {
+            // On récupère le formulaire via 'searchTerm'
+            $query = $request->query->get('searchTerm');
+            // On récupère la méthode du repository qui recherche par titre
+            $results = $articleRepository->searchArticle($query);
+            // On convertit les résultats dans un tableau associatif
+            $data = [];
+
+            foreach ($results as $result) {
+                $data[] = [
+                    'title' => $result->getTitle(),
+                    'url' => $this->generateUrl('app_article_show', [
+                        'categorySlug' => $result->getCategory()->getSlug(),
+                        'articleSlug' => $result->getSlug(),
+                    ]),
+                ];
+            }
+            // On renvoie la réponse en JSON
+            return new JsonResponse($data);
+        } catch (\Exception $e) {
+            // En cas d'erreur, renvoyer une réponse JSON avec un message d'erreur
+            return new JsonResponse(['error' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
-        // On renvois la réponse en JSON
-        return new JsonResponse($data);
     }
 }

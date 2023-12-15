@@ -1,25 +1,36 @@
 {% extends 'back-office/base.html.twig' %}
 
 {% block title %}
-  Liste des quiz
+  Liste des questions
 {% endblock %}
 
 {% block body %}
-  <div class="mt-4">
-    <h2>Quiz rubrique "{{ quiz.title }}"</h2>
-    <div class="row">
-      <h3>Liste des questions :</h3>
-      <ul>
-        {% for question in questions %}
-          <li>
-            {{ question }}
-            <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-sm btn-outline-secondary">Modifier</a>
-            <a href="{{ path('app_back_quiz_delete', { id: question.id }) }}" class="btn btn-sm btn-outline-danger">Supprimer</a>
-          </li>
-        {% endfor %}
-      </ul>
+  <section class="features-section mb-4">
+    <div class="container text mx-auto">
+      <h2 class="section-title mb-8">Liste des questions</h2>
+      <table class="row justify-content-center table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Titre</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for question in questions %}
+            <tr>
+              <td class="text-secondary mb-3">{{ question.getTextQuestion }}</td>
+              <td>
+                <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>
+              </td>
+              <td>
+                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { id: question.id }), buttonLabel: '' } %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-  </div>
 
-  <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter</a>
+    <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter de nouvelle question</a>
+  </section>
 {% endblock %}
