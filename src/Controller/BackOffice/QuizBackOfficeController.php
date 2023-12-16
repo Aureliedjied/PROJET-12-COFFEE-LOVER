@@ -13,10 +13,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/back-office")
+ */
 class QuizBackOfficeController extends AbstractController
 {
     /**
-     * @Route("/back-office/quiz", name="app_back_quiz")
+     * @Route("/quiz", name="app_back_quiz")
      */
     public function list(QuizRepository $quizRepository): Response
     {
@@ -31,7 +34,7 @@ class QuizBackOfficeController extends AbstractController
     /**
      * Display questions for each quizId 
      * 
-     * @Route("/back-office/quiz/question/{title}/{id}", name="app_back_quiz_show", methods={"GET"})
+     * @Route("/quiz/question/{title}/{id}", name="app_back_quiz_show", methods={"GET"})
      * 
      */
     public function show(int $id, QuizRepository $quizRepository, Quiz $quiz)
@@ -51,7 +54,7 @@ class QuizBackOfficeController extends AbstractController
     // ! Question
 
     /**
-     * @Route("/back-office/quiz/add", name="app_back_quiz_add")
+     * @Route("/quiz/ajouter", name="app_back_quiz_add")
      */
     public function create(Request $request, QuestionRepository $questionRepository): Response
     {
@@ -77,7 +80,7 @@ class QuizBackOfficeController extends AbstractController
 
 
     /**
-     * @Route("/back-office/quiz/edit/{id}", name="app_back_quiz_edit")
+     * @Route("/quiz/modifier/{id}", name="app_back_quiz_edit")
      */
     public function edit(int $id, QuestionRepository $questionRepository, Request $request): Response
     {
@@ -105,7 +108,7 @@ class QuizBackOfficeController extends AbstractController
 
 
     /**
-     * @Route("/back-office/quiz/delete/{id}", name="app_back_quiz_delete")
+     * @Route("/quiz/delete/{id}", name="app_back_quiz_delete")
      */
     public function delete($id, QuestionRepository $questionRepository): Response
     {

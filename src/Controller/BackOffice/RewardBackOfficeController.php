@@ -10,10 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/back-office")
+ */
 class RewardBackOfficeController extends AbstractController
 {
     /**
-     * @Route("/back-office/reward", name="app_back_reward")
+     * @Route("/recompenses", name="app_back_reward")
      */
     public function list(RewardRepository $rewardRepository): Response
     {
@@ -26,7 +29,7 @@ class RewardBackOfficeController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/reward/add", name="app_back_reward_add")
+     * @Route("/recompenses/ajouter", name="app_back_reward_add")
      */
     public function create(Request $request, RewardRepository $rewardRepository): Response
     {
@@ -50,7 +53,7 @@ class RewardBackOfficeController extends AbstractController
 
 
     /**
-     * @Route("/back-office/reward/{id}/delete", name="app_back_reward_delete")
+     * @Route("/recompenses/{id}/delete", name="app_back_reward_delete")
      */
     public function delete($id, RewardRepository $rewardRepository)
     {

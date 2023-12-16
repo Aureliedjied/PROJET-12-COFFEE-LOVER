@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_security_login")
+     * @Route("/connexion", name="app_security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -42,7 +42,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-    * @Route("/register", name="app_register")
+    * @Route("/inscription", name="app_register")
     */
     public function register(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
