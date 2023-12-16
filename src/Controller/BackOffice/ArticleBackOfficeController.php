@@ -11,10 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * @Route("/back-office")
+ */
 class ArticleBackOfficeController extends AbstractController
 {
     /**
-     * @Route("/back-office/articles", name="app_back_articles")
+     * @Route("/articles", name="app_back_articles")
      */
     public function list(ArticleRepository $articleRepository): Response
     {
@@ -28,7 +31,7 @@ class ArticleBackOfficeController extends AbstractController
     /**
      * delete article
      *
-     * @Route("/back-office/articles/delete/{id}", name="app_back_articles_delete")
+     * @Route("/articles/delete/{id}", name="app_back_articles_delete")
      */
     public function delete($id, ArticleRepository $articleRepository)
     {
@@ -41,7 +44,7 @@ class ArticleBackOfficeController extends AbstractController
     }
 
     /**
-    * @Route("/back-office/articles/ajouter", name="app_back_articles_add")
+    * @Route("/articles/ajouter", name="app_back_articles_add")
     */
     public function create(Request $request, ArticleRepository $articleRepository, Security $security)
     {
@@ -67,7 +70,7 @@ class ArticleBackOfficeController extends AbstractController
      }
 
      /**
-     * @Route("/back-office/articles/{id}/modifier", name="app_back_articles_edit", methods={"GET", "POST"})
+     * @Route("/articles/{id}/modifier", name="app_back_articles_edit", methods={"GET", "POST"})
      */
     public function edit($id, Request $request, ArticleRepository $articleRepository): Response
     {

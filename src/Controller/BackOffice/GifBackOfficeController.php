@@ -10,10 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @Route("/back-office")
+ */
 class GifBackOfficeController extends AbstractController
 {
     /**
-     * @Route("/back-office/gif", name="app_back_gif")
+     * @Route("/gif-musique", name="app_back_gif")
      */
     public function list(GifRepository $gifRepository): Response
     {
@@ -25,7 +28,7 @@ class GifBackOfficeController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/gif/add", name="app_back_gif_add")
+     * @Route("/gif-musique/ajouter", name="app_back_gif_add")
      */
     public function create(Request $request, gifRepository $gifRepository): Response
     {
@@ -48,7 +51,7 @@ class GifBackOfficeController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/gif/{id}/delete", name="app_back_gif_delete")
+     * @Route("/gif/{id}/delete", name="app_back_gif_delete")
      */
     public function delete($id, GifRepository $gifRepository)
     {
