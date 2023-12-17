@@ -62,10 +62,10 @@ class UserBackOfficeController extends AbstractController
 
         $user = $userRepository->find($id);
 
-        // On récupère les articles liés à l'utilisateur
+        // We retrieve the items linked to the user
         $articles = $user->getArticles();
 
-        // Attribuer un autre utilisateur aux articles existants
+        // Assign another user to existing articles
         $otherUser = $userRepository->find(1);
 
         foreach ($articles as $article) {
