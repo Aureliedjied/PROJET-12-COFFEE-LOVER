@@ -23,7 +23,7 @@
                 <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>
               </td>
               <td>
-                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { id: question.id }), buttonLabel: '' } %}
+                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { quizId: quiz.id, questionId: question.id, quizTitle: quiz.title }), buttonLabel: '' } %}
               </td>
             </tr>
           {% endfor %}

@@ -26,11 +26,12 @@ class Question
 
     /**
      * @ORM\ManyToMany(targetEntity=Quiz::class, mappedBy="questions")
+     *
      */
     private $quizzes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question",  orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question",  orphanRemoval=true, cascade={"persist"})
      */
     private $responses;
 
@@ -74,7 +75,9 @@ class Question
     {
         if (!$this->quizzes->contains($quiz)) {
             $this->quizzes[] = $quiz;
-            $quiz->addQuestion($this);
+            if (!$quiz->getQuestions()->contains($this)) {
+                $quiz->addQuestion($this);
+            }
         }
 
         return $this;
