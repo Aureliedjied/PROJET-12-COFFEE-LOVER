@@ -4,12 +4,12 @@ namespace App\Controller\BackOffice;
 
 use App\Entity\Quiz;
 use App\Entity\Question;
+use App\Entity\Response;
 use App\Form\QuestionType;
 use App\Repository\QuizRepository;
 use App\Repository\QuestionRepository;
-
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -18,10 +18,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class QuizBackOfficeController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
     /**
      * @Route("/quiz", name="app_back_quiz")
      */
-    public function list(QuizRepository $quizRepository): Response
+    public function list(QuizRepository $quizRepository): \Symfony\Component\HttpFoundation\Response
     {
         $quizs = $quizRepository->findAll();
 
@@ -40,7 +46,7 @@ class QuizBackOfficeController extends AbstractController
     public function show(int $id, QuizRepository $quizRepository, Quiz $quiz)
     {
         $quiz = $quizRepository->find($quiz);
-        $questions = $quiz->getQuestion();
+        $questions = $quiz->getQuestions();
 
         return $this->render('back-office/quiz/show.html.twig', [
             'quiz' => $quiz,
@@ -56,17 +62,33 @@ class QuizBackOfficeController extends AbstractController
     /**
      * @Route("/quiz/ajouter", name="app_back_quiz_add")
      */
-    public function create(Request $request, QuestionRepository $questionRepository): Response
+    public function create(Request $request,  EntityManagerInterface $entityManager): \Symfony\Component\HttpFoundation\Response
     {
         $question = new Question();
+        for ($i = 0; $i < 3; $i++) {
+            $question->getResponses()->add(new Response());
+        }
 
         $form = $this->createForm(QuestionType::class, $question, ['add_mode' => true]);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $questionRepository->add($question, true);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($question->getResponses() as $response) {
+                if ($response->getQuestion() === null) {
+                    $response->setQuestion($question);
+                }
+            }
+            foreach ($form->get('quizzes')->getData() as $quiz) {
+                $question->addQuiz($quiz);
+            }
+
+            $entityManager->persist($question);
+            $entityManager->flush();
+
 
             return $this->redirectToRoute('app_back_quiz');
         }
@@ -82,9 +104,11 @@ class QuizBackOfficeController extends AbstractController
     /**
      * @Route("/quiz/modifier/{id}", name="app_back_quiz_edit")
      */
-    public function edit(int $id, QuestionRepository $questionRepository, Request $request): Response
+    public function edit(int $id,  QuestionRepository $questionRepository, Request $request): \Symfony\Component\HttpFoundation\Response
     {
         $question = $questionRepository->find($id);
+
+
 
 
 
@@ -96,7 +120,7 @@ class QuizBackOfficeController extends AbstractController
 
             $questionRepository->add($question, true);
 
-            return $this->redirectToRoute('app_back_articles');
+            return $this->redirectToRoute('app_back_quiz', []);
         }
 
         return $this->renderForm('back-office/quiz/edit.html.twig', [
@@ -108,14 +132,13 @@ class QuizBackOfficeController extends AbstractController
 
 
     /**
-     * @Route("/quiz/delete/{id}", name="app_back_quiz_delete")
+     * @Route("/quiz/delete/{quizId}/{questionId}/{quizTitle}", name="app_back_quiz_delete")
      */
-    public function delete($id, QuestionRepository $questionRepository): Response
+    public function delete($quizId, $questionId, $quizTitle, QuestionRepository $questionRepository): \Symfony\Component\HttpFoundation\Response
     {
-        $question = $questionRepository->find($id);
-
+        $question = $questionRepository->find($questionId);
         $questionRepository->remove($question, true);
 
-        return $this->redirectToRoute('app_back_quiz_show');
+        return $this->redirectToRoute('app_back_quiz_show', ['id' => $quizId, 'title' => $quizTitle]);
     }
 }
