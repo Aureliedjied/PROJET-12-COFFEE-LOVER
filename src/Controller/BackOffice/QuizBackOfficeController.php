@@ -9,9 +9,12 @@ use App\Form\QuestionType;
 use App\Repository\QuizRepository;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use App\EventSubscriber\PaginationSubscriber;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 /**
  * @Route("/back-office")
@@ -19,11 +22,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class QuizBackOfficeController extends AbstractController
 {
     private $entityManager;
+    private $paginationSubscriber;
+    private $paginator;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager,  PaginationSubscriber $paginationSubscriber, PaginatorInterface $paginator)
     {
+
         $this->entityManager = $entityManager;
+
+        $this->paginationSubscriber = $paginationSubscriber;
+        $this->paginator = $paginator;
     }
+
     /**
      * @Route("/quiz", name="app_back_quiz")
      */
@@ -43,14 +53,22 @@ class QuizBackOfficeController extends AbstractController
      * @Route("/quiz/question/{title}/{id}", name="app_back_quiz_show", methods={"GET"})
      * 
      */
-    public function show(int $id, QuizRepository $quizRepository, Quiz $quiz)
+    public function show(int $id, QuizRepository $quizRepository, QuestionRepository $questionRepository, Quiz $quiz,  PaginatorInterface $paginator, Request $request)
     {
-        $quiz = $quizRepository->find($quiz);
+        $quiz = $quizRepository->find($id);
         $questions = $quiz->getQuestions();
+
+        $pagination = $paginator->paginate(
+            $questions,
+            $request->query->getInt('page', 1), // Start to page number 1
+            10 // 10 questions par page
+        );
+
 
         return $this->render('back-office/quiz/show.html.twig', [
             'quiz' => $quiz,
             'questions' => $questions,
+            'pagination' => $pagination,
         ]);
     }
 

@@ -21,7 +21,7 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('text_question', TextType::class, [
-                'label' => 'Titre de l\'article',
+                'label' => 'Titre de la question',
                 'attr' => [
                     'placeholder' => 'Saisissez le titre ici',
                 ],
