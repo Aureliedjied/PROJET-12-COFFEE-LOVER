@@ -54,7 +54,7 @@ class ArticleBackOfficeController extends AbstractController
      */
     public function delete($id, ArticleRepository $articleRepository)
     {
-        //  On recupere l'article
+        //  We retrieve the article
         $article = $articleRepository->find($id);
         
         $articleRepository->remove($article, true);
@@ -69,7 +69,7 @@ class ArticleBackOfficeController extends AbstractController
     {
 
         $article = new Article();
-        // Ici on récupere qui est connécté ( admin, manager .. ) et on le SET à l'article :
+        // here, we retrieve the user connected ( admin, manager .. ) and we SET thearticle :
         $user = $security->getUser();
         $article->setUser($user);
         $form = $this->createForm(ArticleFormType::class, $article); 

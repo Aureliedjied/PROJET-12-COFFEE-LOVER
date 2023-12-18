@@ -41,7 +41,7 @@ class ArticleController extends AbstractController
         $article = $articleRepository->findOneBy(['slug' => $articleSlug]);
 
         if (!$article) {
-            // Gérer l'absence de l'article
+            // Manage if there is no article
             return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
         }
 

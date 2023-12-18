@@ -53,11 +53,11 @@ class MainController extends AbstractController
     public function search(Request $request, ArticleRepository $articleRepository): JsonResponse
     {
         try {
-            // On récupère le formulaire via 'searchTerm'
+            // The form is retrieved via'searchTerm'
             $query = $request->query->get('searchTerm');
-            // On récupère la méthode du repository qui recherche par titre
+            // We retrieve the repository's method for searching by title
             $results = $articleRepository->searchArticle($query);
-            // On convertit les résultats dans un tableau associatif
+            // The results are converted into an associative array
             $data = [];
 
             foreach ($results as $result) {
@@ -69,10 +69,10 @@ class MainController extends AbstractController
                     ]),
                 ];
             }
-            // On renvoie la réponse en JSON
+            // The answer is returned in JSON
             return new JsonResponse($data);
         } catch (\Exception $e) {
-            // En cas d'erreur, renvoyer une réponse JSON avec un message d'erreur
+            // In the event of an error, return a JSON response with an error message
             return new JsonResponse(['error' => $e->getMessage()], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

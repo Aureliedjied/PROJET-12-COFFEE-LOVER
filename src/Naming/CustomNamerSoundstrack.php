@@ -17,16 +17,16 @@ class CustomNamerSoundstrack implements NamerInterface
 
     public function name($object, PropertyMapping $mapping): string
     {
-        // On récupere le titre de la musique
+        // We're taking bac the title of the music
         $title = $object->getTitle();
 
-        // On limite la longueur du titre si besoin :
+        // Limit the length of the title if necessary :
         $limitedTitle = mb_substr($title, 0, self::MAX_TITLE_LENGTH);
 
-        // Nettoyez le titre avec algo 
+        // Clear the title with algoritm 
         $cleanedTitle = preg_replace('/[^a-zA-Z0-9_-]/', '_', $limitedTitle);
 
-        // On ajoute au titre sa date + son format ( ici on choisit mp3 )
+        // add his date + and his format ( here, we choose .mp3 )
         return $cleanedTitle . '_' . time() . '_' . uniqid() . '.mp3';
     }
 }

@@ -55,12 +55,12 @@ class SecurityController extends AbstractController
 
             // hash the password (based on the security.yaml config for the $user class)
             $hashedPassword = $passwordHasher->hashPassword(
-            // l'objet user
+            // user object
             $user,
-            // le mot de passer à hasher
+            // password to hash
             $plaintextPassword
         );
-        // je set le password
+        // set the password
         $user->setPassword($hashedPassword);
         
         $userRepository->add($user, true);

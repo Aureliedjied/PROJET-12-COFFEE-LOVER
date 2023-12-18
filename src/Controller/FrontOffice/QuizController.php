@@ -99,7 +99,7 @@ class QuizController extends AbstractController
 
 
     /**
-     * GEstion des question
+     * Questions managing
      *
      * @Route("/les-quiz/{title}/{id}", name="app_quiz_submit", methods={"post"})
      * 
@@ -143,15 +143,15 @@ class QuizController extends AbstractController
      */
     public function quizResult(int $id, QuizRepository $quizRepository, SessionInterface $sessionInterface): Response
     {
-        // Récupérer le quiz par son ID
+        // Retrieve the quiz by ID
         $quiz = $quizRepository->find($id);
 
-        // Vérifier si le quiz existe
+        // Check if quiz exist
         if (!$quiz) {
             throw $this->createNotFoundException('Le quiz demandé n\'existe pas.');
         }
 
-        // Récupérer le score de la session
+        // Retrieve the session score
         $score = $sessionInterface->get('score', 0);
 
         $this->saveUserScore($score, $quiz);
@@ -160,7 +160,7 @@ class QuizController extends AbstractController
             $this->getReward($score, $quiz);
         }
 
-        // Envoyer les données au template Twig
+        // Send the data to the Twig template
         return $this->render('front-office/quiz/result.html.twig', [
             'quiz' => $quiz,
             'score' => $score,
@@ -172,7 +172,7 @@ class QuizController extends AbstractController
     {
         $user = $this->getUser();
         if (!$user) {
-            // Si aucun utilisateur n'est connecté, redirigez-le vers la page de connexion
+            // if user is't connected, redirect him to connexion page
             return $this->redirectToRoute('app_home');
         }
 
@@ -201,9 +201,9 @@ class QuizController extends AbstractController
 
         $user = $this->getUser();
 
-        //recupère une reward en random via rewardrepository methode randomreward
+        //retrieve a reward in random via rewardrepository randomreward method
         $reward = $this->rewardRepository->findReward($user->getId());
-        //verrifier si l'user a déjà la reward concernée sinon  refaire la méthode 
+        //check if the user already has the reward in question, otherwise do again the method
 
         if ($reward) {
             $user->addReward($reward);
