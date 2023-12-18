@@ -31,7 +31,7 @@ class Question
     private $quizzes;
 
     /**
-     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question",  orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Response::class, mappedBy="question",  orphanRemoval=true,  cascade={"persist"})
      */
     private $responses;
 

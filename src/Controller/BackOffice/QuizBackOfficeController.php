@@ -95,12 +95,23 @@ class QuizBackOfficeController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+
             foreach ($question->getResponses() as $response) {
                 if ($response->getQuestion() === null) {
                     $response->setQuestion($question);
                 }
             }
 
+            foreach ($form->get('quizzes')->getData() as $quiz) {
+                $question->addQuiz($quiz);
+                $entityManager->persist($quiz);
+            }
+            foreach ($question->getQuizzes() as $quiz) {
+                $quiz->addQuestion($question);
+                $entityManager->persist($quiz);
+            }
 
             $entityManager->persist($question);
             $entityManager->flush();
