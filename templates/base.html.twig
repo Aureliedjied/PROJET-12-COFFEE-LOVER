@@ -34,9 +34,29 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
       <div class="container-fluid">
         <button class="navbar-toggler btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="bi bi-list" style="font-size: 2rem"></span></button>
-        <div class="d-flex d-lg-none">
+        <div class="d-flex d-lg-none"> {#For mobile device#}
           <div class="me-3">
             <a href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
+                <ul class="navbar-nav">
+            {% if app.user %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon Profil</a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
+                  <a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a>
+                  <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+
+                  {% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a>
+                  {% endif %}
+                </div>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_security_login') }}">Connexion</a>
+              </li>
+            {% endif %}
+          </ul>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -94,7 +114,7 @@
         </div>
       </div>
     </nav>
-    {# ajout de la div container pour la recherche : #}
+    {# add div container for search : #}
     <div id="search-results"></div>
     
     {% block body %}

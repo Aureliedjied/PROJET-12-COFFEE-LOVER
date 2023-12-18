@@ -6,24 +6,18 @@
 
 {% block body %}
 
-	<section class="features-section mb-4">
+	<section class="features-section m-4 ">
 		<div class="container text mx-auto">
 			<h2 class="section-title mb-8">Liste des utilisateurs</h2>
 			<table class="row justify-content-center table-hover ">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Titre</th>
-						<th scope="col">Actions</th>
-					</tr>
-				</thead>
+				
 				<tbody>
 					{% for user in users %}
 
 						<tr>
 							<td class="section mb-3"><p class="fs-5 fw-bold" class="section mb-3">{{ user.id }}. {{ user.email }}</p>
-							<li class="section mb-3">{{ user.firstName }} {{ user.lastName }}</li>
-							<li class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}</li>
+							<td class="section mb-3">{{ user.firstName }} {{ user.lastName }}</td>
+							<td class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}</td>
 							</td>
 							 
 							
