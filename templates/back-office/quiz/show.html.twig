@@ -8,27 +8,28 @@
   <section class="features-section mb-4">
     <div class="container text mx-auto">
       <h2 class="section-title mb-8">Liste des questions</h2>
-      <table class="row justify-content-center table-hover">
+      <table class="justify-content-center table-hover">
         <thead class="thead-dark">
           <tr>
+            <th scope="col">#</th>
             <th scope="col">Titre</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {% for question in questions %}
+          {% for question in pagination %}
             <tr>
+              <th scope="row">{{ question.id }}</th>
               <td class="text-secondary mb-3">{{ question.getTextQuestion }}</td>
               <td>
                 <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>
-              </td>
-              <td>
-                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { id: question.id }), buttonLabel: '' } %}
+                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { quizId: quiz.id, questionId: question.id, quizTitle: quiz.title }), buttonLabel: '' } %}
               </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
+      <div class="pagination">{{ knp_pagination_render(pagination) }}</div>
     </div>
 
     <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter de nouvelle question</a>
