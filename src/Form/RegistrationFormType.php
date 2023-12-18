@@ -37,7 +37,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ]);
 
-        // Vérifie si l'option "custom_option" est définie et égale à "edit"
+        // Check if the option "custom_option" is defined and egual to "edit"
         if (isset($options["custom_option"]) && $options["custom_option"] !== "edit") {
             $builder->add('password', RepeatedType::class, [
                 "type" => PasswordType::class,
