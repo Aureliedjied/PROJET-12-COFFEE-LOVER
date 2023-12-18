@@ -138,7 +138,6 @@ class QuizBackOfficeController extends AbstractController
             }
 
 
-
             $entityManager->persist($question);
 
             $entityManager->flush();
