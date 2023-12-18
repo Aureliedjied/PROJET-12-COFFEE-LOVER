@@ -36,6 +36,7 @@ class Quiz
 
     /**
      * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="quizzes")
+     *@ORM\JoinTable(name="quiz_question")
      */
     private $questions;
 
@@ -126,7 +127,7 @@ class Quiz
     /**
      * @return Collection<int, Question>
      */
-    public function getQuestion(): Collection
+    public function getQuestions(): Collection
     {
         return $this->questions;
     }
@@ -135,6 +136,9 @@ class Quiz
     {
         if (!$this->questions->contains($question)) {
             $this->questions[] = $question;
+            if (!$question->getQuizzes()->contains($this)) {
+                $question->addQuiz($this);
+            }
         }
 
         return $this;

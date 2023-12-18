@@ -11,6 +11,10 @@
 
 			{{ form_start(form) }}
 
+            <div class="mb-3">
+                {{ form_label(form.quizzes, 'Quiz associés') }}
+                {{ form_widget(form.quizzes, {'attr': {'class': 'form-select'}}) }}
+            </div>
 			<div class="mb-3">
                 {{ form_label(form.text_question, 'Titre') }}
                 {{ form_widget(form.text_question, {'attr': {'class': 'form-control'}}) }}
@@ -27,7 +31,7 @@
             {% endfor %}
 
 				<div class="section-btn mt-3">
-					<button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Modifier</button>
+					<button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Ajouter</button>
 				</div>
               {{ form_end(form) }}   
 			</div>

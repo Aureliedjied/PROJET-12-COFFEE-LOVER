@@ -5,7 +5,7 @@
 {% block body %}
 
 <div id="scroll-point" class="my-4">{{ ''|raw }}</div>
-    <section class="py-3 py-md-5" >
+    <section class="features-section m-4" >
 		<div class="container overflow-hidden" >
 			<div class="row g-4">
               <h1 class="text-center fw-bolder text-dark p-5 mb-4">{{ category.title }}</h1>
@@ -13,7 +13,7 @@
 			
 				<div class="col-12">
 				
-					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse 		gx-xl-5â{% endif %} article-card">
+					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse 		gx-xl-5â{% endif %} article-card mb-4">
 						<div class="col-xs-12 col-md-6">
 							<div class="img-wrapper position-relative bsb-hover-push">
 								<a href="#!"><img alt="Mobirise Website Builder" class="img-fluid rounded" src="https://i.ibb.co/MBGNWWD/ibrick.png"></a>

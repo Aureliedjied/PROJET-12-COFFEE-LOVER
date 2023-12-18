@@ -10,10 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/back-office")
+ */
 class UserBackOfficeController extends AbstractController
 {
     /**
-     * @Route("/back-office/utilisateurs", name="app_back_users")
+     * @Route("/utilisateurs", name="app_back_users")
      */
     public function list(UserRepository $userRepository): Response
     {
@@ -29,7 +32,7 @@ class UserBackOfficeController extends AbstractController
     
 
     /**
-     * @Route("/back-office/utilisateur/edit/{id}", name="app_back_users_edit")
+     * @Route("/utilisateur/modifier/{id}", name="app_back_users_edit")
      */
     public function edit($id, Request $request, UserRepository $userRepository)
     {
@@ -55,7 +58,7 @@ class UserBackOfficeController extends AbstractController
 
     /**
      *
-     * @Route("/back-office/utilisateur/delete/{id}", name="app_back_users_delete")
+     * @Route("/utilisateur/delete/{id}", name="app_back_users_delete")
      */
     public function delete($id, UserRepository $userRepository)
     {
@@ -77,7 +80,7 @@ class UserBackOfficeController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/utilisateur/add", name="app_back_users_add")
+     * @Route("/utilisateur/add", name="app_back_users_add")
      */
     // public function create(Request $request, UserRepository $userRepository)
     // {
