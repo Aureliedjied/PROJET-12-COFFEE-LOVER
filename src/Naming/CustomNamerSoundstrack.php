@@ -17,7 +17,7 @@ class CustomNamerSoundstrack implements NamerInterface
 
     public function name($object, PropertyMapping $mapping): string
     {
-        // We're taking bac the title of the music
+        // We're taking back the title of the music
         $title = $object->getTitle();
 
         // Limit the length of the title if necessary :
