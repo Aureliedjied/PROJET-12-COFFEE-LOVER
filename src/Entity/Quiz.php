@@ -35,8 +35,8 @@ class Quiz
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="quizzes")
-     *@ORM\JoinTable(name="quiz_question")
+     * @ORM\ManyToMany(targetEntity=Question::class, mappedBy="quizzes")
+     *
      */
     private $questions;
 

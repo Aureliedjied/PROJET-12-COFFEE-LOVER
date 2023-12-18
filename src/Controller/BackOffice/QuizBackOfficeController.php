@@ -87,7 +87,7 @@ class QuizBackOfficeController extends AbstractController
             $question->getResponses()->add(new Response());
         }
 
-        $form = $this->createForm(QuestionType::class, $question, ['add_mode' => true]);
+        $form = $this->createForm(QuestionType::class, $question);
 
         $form->handleRequest($request);
 
@@ -95,19 +95,18 @@ class QuizBackOfficeController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+
             foreach ($question->getResponses() as $response) {
                 if ($response->getQuestion() === null) {
                     $response->setQuestion($question);
                 }
             }
-            foreach ($form->get('quizzes')->getData() as $quiz) {
-                $question->addQuiz($quiz);
-            }
+
 
             $entityManager->persist($question);
             $entityManager->flush();
-
-
             return $this->redirectToRoute('app_back_quiz');
         }
 
@@ -122,12 +121,9 @@ class QuizBackOfficeController extends AbstractController
     /**
      * @Route("/quiz/modifier/{id}", name="app_back_quiz_edit")
      */
-    public function edit(int $id,  QuestionRepository $questionRepository, Request $request): \Symfony\Component\HttpFoundation\Response
+    public function edit(int $id,  QuestionRepository $questionRepository, Request $request,   EntityManagerInterface $entityManager): \Symfony\Component\HttpFoundation\Response
     {
         $question = $questionRepository->find($id);
-
-
-
 
 
         $form = $this->createForm(QuestionType::class, $question);
@@ -135,12 +131,19 @@ class QuizBackOfficeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($question->getResponses() as $response) {
+                if ($response->getQuestion() === null) {
+                    $response->setQuestion($question);
+                }
+            }
 
-            $questionRepository->add($question, true);
 
-            return $this->redirectToRoute('app_back_quiz', []);
+            $entityManager->persist($question);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_back_quiz');
         }
-
         return $this->renderForm('back-office/quiz/edit.html.twig', [
             'form' => $form,
             'question' => $question,
