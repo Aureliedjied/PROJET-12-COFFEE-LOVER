@@ -45,8 +45,11 @@
       <div class="mt-4">
         <h2>Mes Récompenses de Quiz</h2>
         <div class="row">
-        
-          {# Loop to display pictures of rewards #}
+
+            {% if app.user.reward is empty %}
+                        <h5>Vous n'avez pas encore de récompense !!</h5>
+            {% endif %}
+          {# Loop to display pictures f rewards #}
           {% for reward in app.user.reward %}
             <div class="col-md-3 mb-3">
               <a href="{{ path('app_profil_show', { id: reward.id }) }}">
