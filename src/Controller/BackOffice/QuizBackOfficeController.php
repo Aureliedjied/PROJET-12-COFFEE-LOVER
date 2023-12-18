@@ -100,9 +100,7 @@ class QuizBackOfficeController extends AbstractController
                     $response->setQuestion($question);
                 }
             }
-            foreach ($form->get('quizzes')->getData() as $quiz) {
-                $question->addQuiz($quiz);
-            }
+
 
             $entityManager->persist($question);
             $entityManager->flush();
