@@ -18,7 +18,7 @@
     {% endblock %}
   </head>
   <body>
-    <div class="card text-bg">
+    <div class="card-dark text-bg">
       <img src="{{ cdn_base_url }}zhqKfMm/bannerV2.png" class="img-fluid h-auto w-auto" alt="Banner" />
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder" id="Coffee Lover">Coffee Lover</h5>
@@ -28,7 +28,8 @@
 
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder">Coffee Lover</h5>
-      </div>
+      </div> 
+    </div>
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
@@ -92,10 +93,11 @@
             </ul>
           </div>
         </div>
-      </nav>
-      {# ajout de la div container pour la recherche : #}
-      <div id="search-results"></div>
-    </div>
+      </div>
+    </nav>
+    {# ajout de la div container pour la recherche : #}
+    <div id="search-results"></div>
+    
     {% block body %}
 
     {% endblock %}

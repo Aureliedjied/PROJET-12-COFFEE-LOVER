@@ -192,7 +192,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getSalt(): ?string
     {
         return null;
-        // Ici retourné null car B crypt intégrere déjà le sel
+        // Here returned null because B crypt already integrates the salt
     }
 
     /**

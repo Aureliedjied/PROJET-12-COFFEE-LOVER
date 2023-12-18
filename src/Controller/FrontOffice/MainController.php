@@ -28,7 +28,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/a-propos", name="app_contact")
+     * @Route("/qui-sommes-nous", name="app_contact")
      */
     public function contact(): Response
     {
@@ -37,7 +37,7 @@ class MainController extends AbstractController
         return $this->render('front-office/main/contact.html.twig');
     }
     /**
-     * @Route("/a-propos/mention-legal", name="app_mention_legal")
+     * @Route("/mention-legal", name="app_mention_legal")
      */
     public function mention(): Response
     {

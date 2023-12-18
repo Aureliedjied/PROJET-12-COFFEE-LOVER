@@ -4,11 +4,26 @@
   QUIZ/{{ quiz.title }}
 {% endblock %}
 {% block body %}
-  <div class="container-fluid mt-2">
-    <div class="row mb-4">
-      <h2 class="text-center fw-bolder text-dark p-5 mb-4">Quiz rubrique "{{ quiz.title }}"</h2>
+  <div class="features-section container-fluid mt-2">
+    <div class="row ">
+      <h1 class="text-center fw-bolder text-dark p-5 ">Quiz</h1>
     </div>
-
+    <div class="row mb-4">
+      <h2 class="text-center fw-bolder text-dark mb-4">"{{ quiz.title }}"</h2>
+    </div>
+    <div class="row">
+      <div class="col-auto mx-auto mb-4">
+        <div class="card" style="width: 18rem;">
+          <a href="#">
+            <img src="https://i.ibb.co/vXdCWV7/DALL-E-2023-11-22-15-53-02-A-charming-and-animated-scene-inspired-by-Pixar-s-style-showing-a-cartoon.png" class="card-img-top" alt="test" />
+            <div class="card-body">
+              <p class="card-text fw-bold text-center">{{ quiz.title }}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  <section class="card-center mb-4 mx-auto" style="max-width: 800px;">
     <form action="{{ path('app_quiz_submit', { id: quiz.id, title: quiz.title }) }}" method="post">
       <div class="container mt-4 mb-4">
         <div class="card">
@@ -37,18 +52,7 @@
       </div>
     </form>
 
-    <div class="row">
-      <div class="col-auto mx-auto mb-4">
-        <div class="card" style="width: 18rem;">
-          <a href="#">
-            <img src="https://i.ibb.co/vXdCWV7/DALL-E-2023-11-22-15-53-02-A-charming-and-animated-scene-inspired-by-Pixar-s-style-showing-a-cartoon.png" class="card-img-top" alt="test" />
-            <div class="card-body">
-              <p class="card-text fw-bold text-center">{{ quiz.title }}</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
+  </section>
   </div>
 {% endblock %}
 
