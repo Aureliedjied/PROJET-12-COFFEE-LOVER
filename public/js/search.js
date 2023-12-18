@@ -84,7 +84,7 @@ function positionSearchResultsContainer() {
 
     // Ajuste automatiquement la largeur, hauteur et taille du conteneur à son parent
     // On ajoute 18 px qu'on additionnera à la hauteur
-    const offset = 18;
+    const offset = 8;
     searchResultsContainer.style.width = `${rect.width}px`;
     searchResultsContainer.style.left = `${rect.left}px`;
     searchResultsContainer.style.top = `${rect.bottom + offset}px`;
