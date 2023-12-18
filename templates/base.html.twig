@@ -37,11 +37,11 @@
         {# For mobile device #}
         <div class="d-flex d-lg-none"> 
           <div class="me-3">
-            <a href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
+            {# <a href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a> #}
                 <ul class="navbar-nav">
             {% if app.user %}
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <a class="nav-link dropdown-toggle bi bi-person-fill" style="font-size: 2rem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
                   <a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a>
                   <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
@@ -54,7 +54,7 @@
               </li>
             {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_security_login') }}">Connexion</a>
+                <a class="nav-link" href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
               </li>
             {% endif %}
           </ul>
