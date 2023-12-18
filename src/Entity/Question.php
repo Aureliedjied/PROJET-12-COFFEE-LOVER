@@ -25,7 +25,7 @@ class Question
     private $text_question;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Quiz::class, mappedBy="questions")
+     * @ORM\ManyToMany(targetEntity=Quiz::class, inversedBy="questions")
      *
      */
     private $quizzes;
