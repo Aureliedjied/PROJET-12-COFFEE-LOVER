@@ -14,29 +14,56 @@
     {% block stylesheets %}
       <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
       <link href="{{ asset('css/search.css') }}" rel="stylesheet" />
-      <link href="{{ asset('css/search-mobile.css') }}" rel="stylesheet" />
     {% endblock %}
   </head>
   <body>
-    <div class="card-dark text-bg">
+    <div class="card text-bg">
       <img src="{{ cdn_base_url }}zhqKfMm/bannerV2.png" class="img-fluid h-auto w-auto" alt="Banner" />
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder" id="Coffee Lover">Coffee Lover</h5>
       </div>
 
-      {% include 'fragments/_search_mobile.html.twig' %}
+      {# search form for mobile device #}
+      <form class="form-inline d-block d-lg-none position-absolute top-0 end-0 m-4" id="search-form">
+        <div class="input-group">
+          <button id="searchButton" class="btn btn-outline-light rounded-pill" type="button"><i class="bi bi-search"></i></button>
+          <input id="searchInput" class="form-control rounded-pill d-none" type="search" placeholder="Search" aria-label="Search" />
+        </div>
+      </form>
 
       <div class="card-img-overlay d-none d-lg-block">
         <h5 class="card-title text-center fs-1 fw-bolder">Coffee Lover</h5>
-      </div> 
-    </div>
+      </div>
+    
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
       <div class="container-fluid">
         <button class="navbar-toggler btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="bi bi-list" style="font-size: 2rem"></span></button>
         <div class="d-flex d-lg-none">
           <div class="me-3">
-            <a href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
+            <div class="d-lg-none">
+              <ul class="navbar-nav">
+                {% if app.user %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle bi bi-person-fill" style="font-size: 2rem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
+                      <a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a>
+                      <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+
+                      {% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a>
+                      {% endif %}
+                      
+                    </div>
+                  </li>
+                {% else %}
+                  <li class="nav-item">
+                    <a href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
+                  </li>
+                {% endif %}
+              </ul>
+          </div>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -67,10 +94,12 @@
               </li>
             {% endif %}
           </ul>
+          {# search form for desktop device #}
           <form class="d-none d-lg-flex form-inline ms-auto me-4" id="search-form">
-            <input class="form-control" type="search" placeholder="rechercher ..." aria-label="Search" id="searchTerm" required pattern="[a-zA-Z0-9\s]+" title="Recherchez un article" />
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="searchTerm" />
             <button class="btn btn-rounded btn-quiz ms-2" type="submit">Recherche</button>
           </form>
+          <div class="d-none d-lg-block">
           <ul class="navbar-nav">
             {% if app.user %}
               <li class="nav-item dropdown">
@@ -91,12 +120,13 @@
               </li>
             {% endif %}
           </ul>
+          </div>
         </div>
       </div>
     </nav>
     {# ajout de la div container pour la recherche : #}
     <div id="search-results"></div>
-    
+    </div>
     {% block body %}
 
     {% endblock %}
@@ -122,7 +152,7 @@
       <script src="{{ asset('js/scroll.js') }}"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-      <script src="{{ asset('js/search-mobile.js') }}"></script>
+      <script src="{{ asset('js/app.js') }}"></script>
     {% endblock %}
   </body>
 </html>
