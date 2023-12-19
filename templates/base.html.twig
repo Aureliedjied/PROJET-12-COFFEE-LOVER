@@ -37,8 +37,9 @@
         {# For mobile device #}
         <div class="d-flex d-lg-none"> 
 
-          {% if app.user %}
+          
           <div class="dropdown-center">
+          {% if app.user %}
             <button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a></li>
@@ -48,7 +49,7 @@
               <li><a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a></li>
                {% endif %}
                {% else %}
-              <button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" href="{{ path('app_security_login') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+              <a href="{{ path('app_security_login') }}"><button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button></a>
             {% endif %}
             </ul>
           </div>
