@@ -41,7 +41,7 @@ class GifBackOfficeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $gifRepository->add($gif, true);
-
+            $this->addFlash('success', 'Ajout effectué avec succès !');
             return $this->redirectToRoute('app_back_gif');
         }
 
