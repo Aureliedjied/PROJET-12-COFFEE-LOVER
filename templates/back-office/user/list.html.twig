@@ -9,7 +9,7 @@
 	<section class="features-section m-4 ">
 		<div class="container text mx-auto">
 			<h2 class="section-title mb-8">Liste des utilisateurs</h2>
-			<table class="row justify-content-center table-hover ">
+			<table class="row justify-content-center mx-auto table-hover ">
 				<thead>
 					<tr>
 					
@@ -23,9 +23,9 @@
 
 						<tr>
 						
-							<td class="section mb-3"><p class="fs-5 fw-bold" class="section mb-3">{{ user.id }}. {{ user.email }}</p>
+							<td class="section mb-3"><p class="fs-5 fw-bold" class="section mb-3">{{ user.id }}. {{ user.email }}</p></td>
 							<td class="section mb-3">{{ user.firstName }} {{ user.lastName }}</td>
-							<td class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}</td>
+							<td class="section mb-3">{{ user.roles ? user.roles|json_encode : '' }}
 							</td>
 							<td>
 								<a href="{{ path('app_back_users_edit', {'id' :user.id}) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>

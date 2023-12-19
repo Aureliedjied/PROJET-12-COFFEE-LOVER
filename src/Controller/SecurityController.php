@@ -60,6 +60,8 @@ class SecurityController extends AbstractController
             // password to hash
             $plaintextPassword
         );
+
+        $this->addFlash('success', 'Inscription réussie, connectez-vous.');
         // set the password
         $user->setPassword($hashedPassword);
         

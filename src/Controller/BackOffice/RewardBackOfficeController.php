@@ -42,7 +42,7 @@ class RewardBackOfficeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $rewardRepository->add($reward, true);
-
+            $this->addFlash('success', 'Ajout effectué avec succès !');
             return $this->redirectToRoute('app_back_reward');
         }
 
