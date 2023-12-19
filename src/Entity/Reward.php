@@ -24,6 +24,8 @@ class Reward
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le titre ne peut pas être vide.")
+     * @Assert\Length(max=255, maxMessage="Le titre ne peut pas dépasser {{ limit }} caractères.")
      */
     private $title;
 

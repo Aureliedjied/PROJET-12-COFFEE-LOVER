@@ -6,6 +6,7 @@ use App\Repository\PlayRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=PlayRepository::class)
@@ -26,6 +27,11 @@ class Play
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(
+     *     min = 0,
+     *     max = 10,
+     *     notInRangeMessage = "Le score doit être compris entre {{ min }} et {{ max }}."
+     * )
      */
     private $score;
 
@@ -38,11 +44,6 @@ class Play
      * @ORM\ManyToOne(targetEntity=Quiz::class, inversedBy="play")
      */
     private $quiz;
-
-
-
-
-
 
 
     public function getId(): ?int

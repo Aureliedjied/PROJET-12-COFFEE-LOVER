@@ -21,7 +21,8 @@ class Gif
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le titre du quiz ne peut pas être vide.")
      */
     private $title;
 

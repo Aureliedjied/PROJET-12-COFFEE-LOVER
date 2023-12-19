@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -27,12 +28,14 @@ class Article
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=128)
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le titre du quiz ne peut pas être vide.")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Le contenu ne peut pas être vide.")
      */
     private $content;
 
@@ -47,7 +50,8 @@ class Article
     private $created_at;
 
     /**
-     * @ORM\Column(type="string", length=255,  nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url(message="La source doit être une URL valide.")
      */
     private $source;
 

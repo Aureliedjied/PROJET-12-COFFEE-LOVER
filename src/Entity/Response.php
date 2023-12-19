@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ResponseRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * @ORM\Entity(repositoryClass=ResponseRepository::class)
@@ -19,6 +20,7 @@ class Response
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le texte de la réponse ne peut pas être vide.")
      */
     private $text_response;
 
