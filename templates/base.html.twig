@@ -8,7 +8,7 @@
         Coffe Lover
       {% endblock %}
     </title>
-    <link rel="icon" href="{{ asset('favicone.png') }}" type="image/png" />
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     {% block stylesheets %}
@@ -36,27 +36,21 @@
         <button class="navbar-toggler btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="bi bi-list" style="font-size: 2rem"></span></button>
         {# For mobile device #}
         <div class="d-flex d-lg-none"> 
-          <div class="me-3">
-                <ul class="navbar-nav">
-            {% if app.user %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle bi bi-person-fill" style="font-size: 2rem" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
-                  <a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a>
-                  <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
 
-                  {% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a>
-                  {% endif %}
-                </div>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
-              </li>
+          {% if app.user %}
+          <div class="dropdown-center">
+            <button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a></li>
+              <li><a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a></li>
+              {% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a></li>
+               {% endif %}
+               {% else %}
+              <button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" href="{{ path('app_security_login') }}" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             {% endif %}
-          </ul>
+            </ul>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
