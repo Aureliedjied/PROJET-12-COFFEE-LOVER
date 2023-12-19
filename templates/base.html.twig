@@ -25,10 +25,6 @@
       </div>
 
       {% include "fragments/_search_mobile.html.twig" %}
-
-      <div class="card-img-overlay d-none d-lg-block">
-        <h5 class="card-title text-center fs-1 fw-bolder">Coffee Lover</h5>
-      </div>
     
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
@@ -37,9 +33,8 @@
         {# For mobile device #}
         <div class="d-flex d-lg-none"> 
 
-          
           <div class="dropdown-center">
-          {% if app.user %}
+          {% if app.user %}          
             <button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
             <ul class="dropdown-menu dropdown-menu-end">
               <li><a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a></li>
@@ -47,11 +42,12 @@
               {% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
               <div class="dropdown-divider"></div>
               <li><a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a></li>
-               {% endif %}
-               {% else %}
-              <a href="{{ path('app_security_login') }}"><button class="bi bi-person-fill dropdown-toggle nav-link" style="font-size: 2rem" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button></a>
-            {% endif %}
-            </ul>
+              {% endif %}              
+          
+          </ul>
+          {% else %}
+              <a class="bi bi-person-fill nav-link" style="font-size: 2rem" id="navbarDropdown" href="{{ path('app_security_login') }}" ></a>
+          {% endif %}  
           </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

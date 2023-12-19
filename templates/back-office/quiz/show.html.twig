@@ -5,32 +5,34 @@
 {% endblock %}
 
 {% block body %}
-  <section class="features-section px-1 m-4">
-    <div class="container-fluid mx-auto text">
-      <h2 class="section-title mb-8">Liste des questions</h2>
-      <table class="justify-content-center table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody class="table-group-divider">
-          {% for question in pagination %}
-            <tr class="table-group-divider py-1">
-              <td class="text mb-1" scope="row-dark">{{ question.getTextQuestion }}</td>
-
-              <td class="align-middle">
-                <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil m-2"></a>
-                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { quizId: quiz.id, questionId: question.id, quizTitle: quiz.title }), buttonLabel: '' } %}
-              </td>
+  <div class="container center mb-5 " style="max-width: 45rem;">
+    <section class="features-section px-1 m-4">
+      <div class="container-fluid mx-auto text">
+        <h2 class="section-title mb-8">Liste des questions</h2>
+        <table class="justify-content-center table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Titre</th>
+              <th scope="col">Actions</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="pagination mx-auto ms-2">{{ knp_pagination_render(pagination) }}</div>
+          </thead>
+          <tbody class="table-group-divider">
+            {% for question in pagination %}
+              <tr class="table-group-divider py-1">
+                <td class="text mb-1" scope="row-dark">{{ question.getTextQuestion }}</td>
 
-    <a type="button" class="btn btn-rounded btn-quiz ms-2" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter de nouvelle question</a>
-  </section>
+                <td class="align-middle">
+                  <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil m-2"></a>
+                  {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { quizId: quiz.id, questionId: question.id, quizTitle: quiz.title }), buttonLabel: '' } %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination mx-auto ms-2">{{ knp_pagination_render(pagination) }}</div>
+
+      <a type="button" class="btn btn-rounded btn-quiz ms-2" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter de nouvelle question</a>
+    </section>
+  </div>
 {% endblock %}
