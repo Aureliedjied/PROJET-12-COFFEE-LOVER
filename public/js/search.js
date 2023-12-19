@@ -1,89 +1,89 @@
-// On selectionne le formulaire :
+// Select the form:
 const searchTermInput = document.getElementById('searchTerm');
 
-// On ajoute l'evenement qui ecoute la valeur de l'entrée du texte :
-searchTermInput.addEventListener('input', async function(event) {
-    event.preventDefault(); 
+// Add an event listener to listen for text input:
+searchTermInput.addEventListener('input', async function (event) {
+    event.preventDefault();
     const searchTerm = event.target.value;
-    
-    // recherche en fonction du titre :
+
+    // Search based on the title:
     try {
-        // si le champ est vide
+        // If the field is empty
         if (searchTerm !== '') {
             const response = await fetch(`/search?searchTerm=${searchTerm}`);
             const data = await response.json();
 
-            // Fonction qui affiche les résultats du formulaire
+            // Function that displays the form results
             displaySearchResults(data);
         } else {
-            // Si la recherche est vide, efface les résultats précédents
+            // If the search is empty, clear the previous results
             clearSearchResults();
         }
     } catch (error) {
-        console.error('Erreur lors de la recherche:', error);
+        console.error('Error during search:', error);
     }
 });
 
 function displaySearchResults(results) {
-    // je selectionne la div en dessous ma navbar :
+    // Select the div below my navbar:
     const searchResultsContainer = document.getElementById('search-results');
-    // Effacez les résultats précédents
+    // Clear previous results
     searchResultsContainer.textContent = '';
 
-    // Vérifiez s'il y a des résultats à afficher
+    // Check if there are results to display
     if (results.length > 0) {
-    results.forEach(result => {
-        // Créez une div pour chaque résultat
-        const resultItem = document.createElement('div');
-        // ajout d'une classe ( cf css )
-        resultItem.classList.add('search-result-item');
+        results.forEach(result => {
+            // Create a div for each result
+            const resultItem = document.createElement('div');
+            // Add a class (see CSS)
+            resultItem.classList.add('search-result-item');
 
-        // création d'un titre en a cliquable
-        const titleLink = document.createElement('a');
-        // ajout d'une classe ( cf css )
-        titleLink.classList.add('result-title');
-        // on injecte le titre en resultat
-        titleLink.textContent = result.title;
-        // ici on pourra ajouter le lien du show
-        titleLink.href = result.url;
+            // Create a clickable title link
+            const titleLink = document.createElement('a');
+            // Add a class (see CSS)
+            titleLink.classList.add('result-title');
+            // Inject the title as the result
+            titleLink.textContent = result.title;
+            // Here, you can add the show link
+            titleLink.href = result.url;
 
-        // ajout du titre cliquable a la div
-        resultItem.appendChild(titleLink);
+            // Add the clickable title to the div
+            resultItem.appendChild(titleLink);
 
-        // Ajout de la div o container
-        searchResultsContainer.appendChild(resultItem);
-    });
+            // Add the div to the container
+            searchResultsContainer.appendChild(resultItem);
+        });
     } else {
-    // Aucun résultat trouvé, affichez un message approprié
-    const noResultMessage = document.createElement('div');
-    noResultMessage.classList.add('search-result-item', 'no-result-message');
+        // No results found, display an appropriate message
+        const noResultMessage = document.createElement('div');
+        noResultMessage.classList.add('search-result-item', 'no-result-message');
 
-    const messageText = document.createElement('p');
-    messageText.textContent = 'Aucun résultat trouvé';
+        const messageText = document.createElement('p');
+        messageText.textContent = 'No results found';
 
-    noResultMessage.appendChild(messageText);
-    searchResultsContainer.appendChild(noResultMessage);
-}
+        noResultMessage.appendChild(messageText);
+        searchResultsContainer.appendChild(noResultMessage);
+    }
 }
 
 function clearSearchResults() {
     const searchResultsContainer = document.getElementById('search-results');
-    // Efface les résultats précédents en vidant le contenu de la div :
+    // Clear previous results by emptying the content of the div:
     searchResultsContainer.textContent = '';
 }
 
 const searchResultsContainer = document.getElementById('search-results');
 
-// Fonction pour positionner le conteneur
+// Function to position the container
 function positionSearchResultsContainer() {
 
     const searchForm = document.getElementById('search-form');
 
-    // Récupère les coordonnées et la taille du formulaire
+    // Get the coordinates and size of the form
     const rect = searchForm.getBoundingClientRect();
 
-    // Ajuste automatiquement la largeur, hauteur et taille du conteneur à son parent
-    // On ajoute 18 px qu'on additionnera à la hauteur
+    // Automatically adjust the width, height, and position of the container to its parent
+    // Add 18 px, which will be added to the height
     const offset = 8;
     searchResultsContainer.style.width = `${rect.width}px`;
     searchResultsContainer.style.left = `${rect.left}px`;
@@ -95,16 +95,16 @@ window.addEventListener('resize', positionSearchResultsContainer);
 document.addEventListener('click', function (event) {
     const searchResultsContainer = document.getElementById('search-results');
 
-    // Si le clic est ailleurs, on ferme
+    // If the click is outside, close the results
     if (!searchResultsContainer.contains(event.target) && event.target !== searchTermInput) {
         clearSearchResults();
     }
 });
 
-// Positionne le conteneur initialement
+// Position the container initially
 positionSearchResultsContainer();
 
-// Le scroll restera attaché à la recherche quoiqu'il arrive
+// The scroll will remain attached to the search regardless of what happens
 window.addEventListener('scroll', function () {
     positionSearchResultsContainer();
 });

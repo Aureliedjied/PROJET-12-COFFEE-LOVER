@@ -1,81 +1,82 @@
-// On sélectionne le champ de recherche pour la version mobile :
+// Selecting the search field for the mobile version:
 const searchInputMobile = document.getElementById('searchMobileTerm');
 
-// On ajoute un événement qui écoute la valeur de l'entrée du texte :
+// Adding an event listener to listen for text input:
 searchInputMobile.addEventListener('input', async function (event) {
     event.preventDefault();
     const searchTerm = event.target.value;
 
-    // Recherche en fonction du titre :
+    // Search based on the title:
     try {
-        // Si le champ n'est pas vide
+        // If the field is not empty
         if (searchTerm !== '') {
             const response = await fetch(`/search?searchTerm=${searchTerm}`);
             const data = await response.json();
 
-            // Fonction qui affiche les résultats du formulaire pour la version mobile
+            // Function that displays the search results for the mobile version
             displaySearchResultsMobile(data);
         } else {
-            // Si la recherche est vide, efface les résultats 
+            // If the search is empty, clear the results
             clearSearchResultsMobile();
         }
     } catch (error) {
-        console.error('Erreur lors de la recherche:', error);
+        console.error('Error during search:', error);
     }
 });
 
 function displaySearchResultsMobile(results) {
     const searchResultsContainerMobile = document.getElementById('search-results-mobile');
-    console.log('Résultats de la recherche pour la version mobile:', results);
-    // Effacez les résultats précédents 
+    console.log('Search results for the mobile version:', results);
+    // Clear previous results
     searchResultsContainerMobile.textContent = '';
 
-    // Vérifiez s'il y a des résultats à afficher
+    // Check if there are results to display
     if (results.length > 0) {
         results.forEach(result => {
-            // Créez un élément div pour chaque résultat pour la version mobile
+            // Create a div element for each result for the mobile version
             const resultItemMobile = document.createElement('div');
-            // Ajout d'une classe (cf. CSS)
+            // Add a class (see CSS)
             resultItemMobile.classList.add('search-result-item-mobile');
 
-            // Création d'un titre en lien cliquable pour la version mobile
+            // Create a clickable title link for the mobile version
             const titleLinkMobile = document.createElement('a');
-            // Ajout d'une classe (cf. CSS)
+            // Add a class (see CSS)
             titleLinkMobile.classList.add('result-title-mobile');
-            // On injecte le titre en résultat
+            // Inject the title as the result
             titleLinkMobile.textContent = result.title;
-            // Ici, on pourra ajouter le lien du show ( cf controller)
+            // Here, you can add the show link (see controller)
             titleLinkMobile.href = result.url;
 
-            // Ajout du titre cliquable à l'élément div pour la version mobile
+            // Add the clickable title to the div element for the mobile version
             resultItemMobile.appendChild(titleLinkMobile);
 
-            // Ajout de l'élément div au conteneur pour la version mobile
+            // Add the div element to the container for the mobile version
             searchResultsContainerMobile.appendChild(resultItemMobile);
         });
     } else {
-        // Aucun résultat trouvé, on affiche le message :
+        // No results found, display the message:
         const noResultMessageMobile = document.createElement('div');
-        noResultMessageMobile.textContent = 'Aucun résultat trouvé';
-        // on attache ce message à la div parente :
+        noResultMessageMobile.textContent = 'No results found';
+        // Attach this message to the parent div:
         searchResultsContainerMobile.appendChild(noResultMessageMobile);
     }
 }
 
 function clearSearchResultsMobile() {
     const searchResultsContainerMobile = document.getElementById('search-results-mobile');
-    // Efface les résultats précédents en vidant le contenu de la div  :
+    // Clear previous results by emptying the content of the div:
     searchResultsContainerMobile.textContent = '';
 }
 
 window.addEventListener('resize', positionSearchResultsContainer);
 
-    // On ajoute un evenement sur la div de resultats :
+// Add an event to the results div:
 document.addEventListener('click', function (event) {
     const searchResultsContainerMobile = document.getElementById('search-results-mobile');
 
-    // Si le clic est ailleurs, on ferme
+    // If the click is outside, close the results
     if (!searchResultsContainerMobile.contains(event.target) && event.target !== searchInputMobile) {
         clearSearchResultsMobile();
     }
 });
+

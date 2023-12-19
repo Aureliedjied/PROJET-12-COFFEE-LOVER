@@ -1,34 +1,35 @@
+// Select the search form id:
 document.addEventListener("DOMContentLoaded", function () {
     const searchTermInput = document.getElementById('searchTerm');
     const placeholderText = "Rechercher un article";
 
-    // Affiche le texte initial dans le placeholder au chargement de la page
+    // Display the initial text in the placeholder when the page loads
     searchTermInput.placeholder = "";
 
-    // Déclenche l'animation après un délai initial de 2 secondes
+    // Trigger the animation after an initial delay of 2 seconds
     setTimeout(function () {
         animatePlaceholder(placeholderText);
     }, 2000);
 
-    // Fonction pour animer le placeholder lettre par lettre
+    // Function to animate the placeholder letter by letter
     function animatePlaceholder(text) {
         let currentIndex = 0;
 
-        // Ajoute la loupe au début
-        searchTermInput.placeholder += " "; // Loupe emoji ou remplace par l'icône Bootstrap
+        // Add the magnifying glass at the beginning
+        searchTermInput.placeholder += " "; 
 
-        // Utilise setInterval pour ajouter chaque lettre à intervalles réguliers
+        // Use setInterval to add each letter at regular intervals
         const intervalId = setInterval(function () {
             searchTermInput.placeholder += text[currentIndex];
             currentIndex++;
 
-            // Arrête l'animation lorsque tout le texte est ajouté
+            // Stop the animation when the entire text is added
             if (currentIndex === text.length) {
                 clearInterval(intervalId);
 
-                // Ajoute un délai avant de recommencer l'animation
+                // Add a delay between two animations
                 setTimeout(function () {
-                    searchTermInput.placeholder = "🔍 "; // Réinitialise la loupe pour l'animation suivante
+                    searchTermInput.placeholder = "🔍 "; // Reset the magnifying glass for the next animation
                     setTimeout(function () {
                         animatePlaceholder(placeholderText);
                     }, 1000);
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 100);
     }
 });
+
 
 
 
