@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/back-office")
  */
 class UserBackOfficeController extends AbstractController
-{
+{ 
     /**
      * @Route("/utilisateurs", name="app_back_users")
      */

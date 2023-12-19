@@ -99,6 +99,15 @@ span{
     width: 30rem;
 }
 
+.form-check-input:checked{
+    background-color: #6a4a44;
+    border-color: #6a4a44;
+}
+
+.form-check-input:hover{
+    background-color: #6a4a44;
+    border-color: #6a4a44;
+}
 /* Pagination CSS */
 
 .pagination-container {

@@ -4,43 +4,43 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container center mb-5" style="max-width: 60rem;">
 	<div class="row justify-content-center features-section m-4">
 		<div class="col-md-7">
 			<h1 class="text-center text-muted fw-bold mb-4">Modifier un article</h1>
 
-			{{ form_start(form) }}
+				{{ form_start(form) }}
 
-			<div class="mb-3">
-				{{ form_label(form.title, 'Titre') }}
-				{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
-			</div>
+				<div class="mb-3">
+					{{ form_label(form.title, 'Titre') }}
+					{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+				</div>
 
-			<div class="mb-3">
-				{{ form_label(form.content, 'Contenu') }}
-				{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
-			</div>
+				<div class="mb-3">
+					{{ form_label(form.content, 'Contenu') }}
+					{{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+				</div>
 
-			<div class="mb-3">
-				{{ form_label(form.subtitle, 'Sous-titre') }}
-				{{ form_widget(form.subtitle, {'attr': {'class': 'form-control'}}) }}
-			</div>
+				<div class="mb-3">
+					{{ form_label(form.subtitle, 'Sous-titre') }}
+					{{ form_widget(form.subtitle, {'attr': {'class': 'form-control'}}) }}
+				</div>
 
-			<div class="mb-3">
-				{{ form_label(form.category, 'Sélectionnez une catégorie') }}
-				{{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
-			</div>
+				<div class="mb-3">
+					{{ form_label(form.category, 'Sélectionnez une catégorie') }}
+					{{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+				</div>
 
-			<div class="mb-3">
-				{{ form_label(form.source, 'Image de l\'article, Une URL en http:// ou https://') }}
-				{{ form_widget(form.source, {'attr': {'class': 'form-control'}}) }}
-			</div>
+				<div class="mb-3">
+					{{ form_label(form.source, 'Image de l\'article, Une URL en http:// ou https://') }}
+					{{ form_widget(form.source, {'attr': {'class': 'form-control'}}) }}
+				</div>
 
 				<div class="section-btn mt-3">
 					<button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Modifier</button>
 				</div>
-              {{ form_end(form) }}   
-			</div>
+				{{ form_end(form) }}   
 		</div>
 	</div>
+</div<
 {% endblock %}
