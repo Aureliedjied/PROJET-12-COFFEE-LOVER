@@ -3,29 +3,50 @@
 namespace App\Controller\BackOffice;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
 use App\Form\UserFormType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use App\EventSubscriber\PaginationSubscriber;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/back-office")
  */
 class UserBackOfficeController extends AbstractController
-{ 
+{   private $paginationSubscriber;
+    private $paginator;
+
+    public function __construct(
+        PaginationSubscriber $paginationSubscriber,
+        PaginatorInterface $paginator
+    ) {
+        $this->paginationSubscriber = $paginationSubscriber;
+        $this->paginator = $paginator;
+    }
+
     /**
      * @Route("/utilisateurs", name="app_back_users")
      */
-    public function list(UserRepository $userRepository): Response
-    {
+    public function list(UserRepository $userRepository, Request $request): Response
+    {   
+     
         if (!$this->isGranted('ROLE_ADMIN')) {
             
-            return $this->render('bundles/TwigBundle/Exception/error403-backoffice.html.twig');
+        return $this->render('bundles/TwigBundle/Exception/error403-backoffice.html.twig');
         }
+        $user = $userRepository->findAll();
+        $pagination = $this->paginator->paginate(
+            $user,
+            // Start to page number 1 :
+            $request->query->getInt('page', 1), 
+            // 10 per page :
+            10 
+        );
         return $this->render('back-office/user/list.html.twig', [
-            'users' => $userRepository->findAll(),
+           'users'=>$pagination
         ]);
     }
 
