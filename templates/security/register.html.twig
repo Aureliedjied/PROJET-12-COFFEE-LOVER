@@ -1,54 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block body %}
- <div id="scroll-point" class="my-4">{{ ''|raw }} </div>
-    <div class="container ">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card features-section m-4 ">
-                    <div class="card-body">
-                        <h1 class="text-center mb-4">Inscription</h1>
-                        <form action="{{ path('app_register') }}" method="post">
-                            {{ form_start(form) }}
+	<div id="scroll-point" class="my-4">{{ ''|raw }}</div>
+	<div class="container ">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card features-section m-4 ">
+					<div class="card-body">
+						<h1 class="text-center mb-4">Inscription</h1>
+						<form action="{{ path('app_register') }}" method="post">
+							{{ form_start(form) }}
 
-                            <div class="mb-3">
-                                {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'MickaDo@bao.com'}}) }}
-                            </div>
+							<div class="mb-3">
+								{{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'exemple@domaine.com'}}) }}
+								{{ form_errors(form.email) }}
+							</div>
 
-                            <div class="mb-3">
-                                {{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Votre nom'}}) }}
-                            </div>
+							<div class="mb-3">
+								{{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(form.lastname, {'attr': {'class': 'form-control', 'placeholder': 'Votre nom'}}) }}
+								{{ form_errors(form.lastname) }}
+							</div>
 
-                            <div class="mb-3">
-                                {{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Votre prénom'}}) }}
-                            </div>
+							<div class="mb-3">
+								{{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(form.firstname, {'attr': {'class': 'form-control', 'placeholder': 'Votre prénom'}}) }}
+								{{ form_errors(form.firstname) }}
+							</div>
 
-                            <div class="mb-3">
-                                {{ form_label(form.password.first, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
-                            </div>
+							<div class="mb-3">
+								{{ form_label(form.password.first, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+								{{ form_errors(form.password.first) }}
+							</div>
 
-                            <div class="mb-3">
-                                {{ form_label(form.password.second, 'Répétez le mot de passe', {'label_attr': {'class': 'form-label'}}) }}
-                                {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
-                            </div>
+							<div class="mb-3">
+								{{ form_label(form.password.second, 'Répétez le mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+								{{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+								{{ form_errors(form.password.second) }}
+							</div>
 
-                            <button type="submit" class="btn btn-rounded btn-quiz">S'inscrire</button>
+							<button type="submit" class="btn btn-rounded btn-quiz">S'inscrire</button>
 
-                            {{ form_end(form) }}
+							{{ form_end(form) }}
 
-                            <p class="text-center mt-3">
-                                Vous avez déjà un compte ? <a href="{{ path('app_security_login') }}" class="btn btn-rounded btn-quiz">Connectez-vous ici</a>
-                            </p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+							<p class="text-center mt-3">
+								Vous avez déjà un compte ?
+								<a href="{{ path('app_security_login') }}" class="btn btn-rounded btn-quiz">Connectez-vous ici</a>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

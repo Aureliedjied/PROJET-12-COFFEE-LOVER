@@ -45,6 +45,7 @@ class RegistrationFormType extends AbstractType
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Répétez le mot de passe'],
                 'options' => ['attr' => ['maxlength' => 4096]],
+                'error_bubbling' => true,
             ]);
         }
     }

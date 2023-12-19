@@ -1,7 +1,9 @@
+# VICH_LOADER
+
+Le bundle VichUploaderBundle offre une intégration simple et flexible avec Symfony pour gérer les téléchargements de fichiers, notamment l'upload et la gestion des images associées à des entités
 
 DOC : https://github.com/dustin10/VichUploaderBundle
 
-# Installation et utilisation de VichUploaderBundle pour les téléchargements d'images dans Symfony
 
 ## Installation
 
@@ -12,17 +14,21 @@ DOC : https://github.com/dustin10/VichUploaderBundle
 
 2. **Configurer le bundle si pas fait automatiquement :**
    
+    => `config/bundles.php`
+
     ```bash
    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true]
 
 3. **Paramétrer le bundle dans `config/packages/vich_uploader.yaml`  :**
    
-   ```bash
-   vich_uploader:
-    mappings:
-        reward_image:
-            uri_prefix: /uploads/rewards 
-            upload_destination: '%kernel.project_dir%/public/uploads/rewards'( chemin aprés public/ ou serotn stockées les images)
+    ```bash
+    vich_uploader:
+        mappings:
+            reward_images:  # Le nom du mapping, correspond à la propriété dans l'entité Reward
+                uri_prefix: /uploads/rewards # Préfixe d'URI pour les images uploadées
+                upload_destination: '%kernel.project_dir%/public/uploads/rewards' # Chemin après public/ où seront stockées les images
+            # Ajouter d'autres mappings si necessaire
+    ```
 
 4. ** Importer L'annotation dans l'entité qui nécéssite l'upload d'image:**  
    
@@ -39,7 +45,7 @@ DOC : https://github.com/dustin10/VichUploaderBundle
         // ...
 
         /**
-         * @Vich\UploadableField(mapping="reward_images", fileNameProperty="picture")
+         * @Vich\UploadableField(mapping="reward_images", fileNameProperty="picture") // Relié à la propriété picture
          * @var File|null
          *
          * @Assert\File(
@@ -79,9 +85,9 @@ DOC : https://github.com/dustin10/VichUploaderBundle
 5. ** Importer le namespace dans le formType de l'entité :**  
 
     ```php
-    use Vich\UploaderBundle\Form\Type\VichImageType;
 
-    <!-- Ici on importe la class du bundle -->
+    // Ici on importe la class du bundle 
+    use Vich\UploaderBundle\Form\Type\VichImageType;
     
     ->add('pictureFile', VichImageType::class, [
             'required' => false,
@@ -93,10 +99,9 @@ DOC : https://github.com/dustin10/VichUploaderBundle
 
 6. ** Si besoin de boucler, la syntaxe "img src" dans twig/html :** 
 
-    Par exemple, pour l'entité reward :
+    Par exemple, pour l'entité reward, on va boucler sur la propriété PictureFile vu plus haut :
     ```php
-    {% if reward.imageName %}
+    {% for reward in rewards %}
         <img src="{{ vich_uploader_asset(reward, 'PictureFile') }}" alt="Reward Image">
-    {% else %}
-        <p>Aucune image disponible</p>
     {% endif %}
+    ```

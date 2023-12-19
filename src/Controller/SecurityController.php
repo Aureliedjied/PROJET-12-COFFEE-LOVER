@@ -42,8 +42,8 @@ class SecurityController extends AbstractController
     }
 
     /**
-    * @Route("/inscription", name="app_register")
-    */
+     * @Route("/inscription", name="app_register")
+     */
     public function register(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
@@ -52,25 +52,25 @@ class SecurityController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $plaintextPassword = $user->getPassword();
+            $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
 
-            // hash the password (based on the security.yaml config for the $user class)
-            $hashedPassword = $passwordHasher->hashPassword(
-            // user object
-            $user,
-            // password to hash
-            $plaintextPassword
-        );
+            $user->setPassword($hashedPassword);
+            $userRepository->add($user, true);
 
-        $this->addFlash('success', 'Inscription réussie, connectez-vous.');
-        // set the password
-        $user->setPassword($hashedPassword);
-        
-        $userRepository->add($user, true);
-        return $this->redirectToRoute('app_home');
+            $this->addFlash('success', 'Inscription réussie, connectez-vous.');
+
+            return $this->redirectToRoute('app_home');
+        }
+
+        if ($form->isSubmitted() && !$form->isValid()) {
+            $errors = $form->getErrors(true, false);
+            foreach ($errors as $error) {
+                $this->addFlash('error', $error->getMessage());
+            }
+        }
+
+        return $this->renderForm('security/register.html.twig', [
+            'form' => $form,
+        ]);
     }
-
-    return $this->renderForm('security/register.html.twig', [
-        'form' => $form,
-    ]);
-}
 }

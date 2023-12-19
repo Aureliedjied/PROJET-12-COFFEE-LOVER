@@ -1,3 +1,5 @@
+/* NavBar CSS */
+
 .navbar {
     background: linear-gradient(to right, #533732, #a88b80); 
     border-bottom-left-radius: 15px;
@@ -9,11 +11,15 @@
     color: white !important;
     font-size: 16px; 
 }
+
 .nav-link{
     color: white !important;
     font-size: 16px;
 }
 
+.navbar-toggler.btn-outline{
+    border-color: white;
+}
 
 #cup{
     margin-right: 20px;
@@ -21,6 +27,8 @@
     margin-bottom: 20px;
     font-style: bolder;
 }
+
+/* Footer CSS */
 
 footer {
     background: linear-gradient(to right, #533732, #a88b80); 
@@ -32,9 +40,9 @@ span{
     color: white;
     
 }
-.navbar-toggler.btn-outline{
-    border-color: white;
-}
+
+
+/* Articles CSS */
 
 .features-section {
     background-color: #e5ccb9;
@@ -66,6 +74,7 @@ span{
     height: auto;
     border-radius: 15px;
 }
+
 .card-title{
     color: #2f180d;
     font-weight: bolder;
@@ -90,6 +99,7 @@ span{
     width: 30rem;
 }
 
+/* Pagination CSS */
 
 .pagination-container {
     margin-top: 20px;

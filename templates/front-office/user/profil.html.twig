@@ -1,69 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Profil
+	Profil
 {% endblock %}
 
 {% block body %}
-  <div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
-  <section class="py-3 py-md-5">
-    <div class="container mt-4">
-      <h1 class="mb-4">Mon Profil</h1>
+	<div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
+	<section class="py-3 py-md-5">
+		<div class="container mt-4">
+			<div class="card mb-4">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-8">
+							<h1 class="mb-4">Mon Profil</h1>
+							<p class="lead">{{ app.user.firstname }}
+								{{ app.user.lastname }}</p>
+							<p class="text-muted">{{ app.user.email }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Mes informations</h5>
-          <p class="card-text">Email:
-            {{ app.user.email }}</p>
-          <p class="card-text">Nom :
-            {{ app.user.lastname }}</p>
-          <p class="card-text">Prénom :
-            {{ app.user.firstname }}</p>
-        </div>
-      </div>
+			<div class="card mb-4">
+				<div class="card-body">
+					<h2 class="mb-4">Mes Scores de Quiz</h2>
+					<div class="table-responsive">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">Quiz</th>
+									<th scope="col">Score</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for play in app.user.play %}
+									<tr>
+										<td>{{ play.quiz.title }}</td>
+										<td>{{ max([play.score]) }}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 
-      <div class="mt-4">
-        <h2>Mes Scores de Quiz</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Quiz</th>
-              <th scope="col">Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for play in app.user.play %}
-              <tr>
-                <td>{{ play.quiz.title }}</td>
-                <td>{{ max([play.score]) }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-
-      <div class="mt-4">
-        <h2>Mes Récompenses de Quiz</h2>
-        <div class="row">
-
-            {% if app.user.reward is empty %}
-                        <h5>Vous n'avez pas encore de récompense !!</h5>
-            {% endif %}
-          {# Loop to display pictures of rewards #}
-          {% for reward in app.user.reward %}
-            <div class="col-md-3 mb-3">
-              <a href="{{ path('app_profil_show', { id: reward.id }) }}">
-                <div class="card">
-                  <img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail" />
-                  <div class="card-body">
-                    <p class="card-text">{{ reward.title }}</p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
+			<div class="card">
+				<div class="card-body">
+					<h2 class="mb-4">Mes Récompenses de Quiz</h2>
+					<div class="row">
+						{% if app.user.reward is empty %}
+							<div class="col text-center">
+								<h5 class="text-muted">Vous n'avez pas encore de récompense. Continuez à participer aux quiz pour en gagner.</h5>
+							</div>
+						{% endif %}
+						{# Loop to display pictures of rewards #}
+						{% for reward in app.user.reward %}
+							<div class="col-md-3 mb-3">
+								<a href="{{ path('app_profil_show', { id: reward.id }) }}" class="text-decoration-none text-dark">
+									<div class="card h-100">
+										<img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail"/>
+										<div class="card-body">
+											<p class="card-text text-center">{{ reward.title }}</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}

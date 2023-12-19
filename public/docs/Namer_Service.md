@@ -32,11 +32,12 @@ class CustomNamer implements NamerInterface
         $cleanedTitle = preg_replace('/[^a-zA-Z0-9_-]/', '_', $limitedTitle);
 
         return $cleanedTitle . '_' . time() . '_' . uniqid() ;
+        // Ici, je peux définir le format d'entrée : .gif .png etc ....
     }
 }
 ```
 
-2. Modifier le fichier `services.yaml` dans le répertoire `config` pour inclure la configuration du service ( ici le service doit être public ):
+2. Modifier le fichier `services.yaml` dans le répertoire `config` pour inclure la configuration du service ( ici le service doit être en PUBLIC ):
 
 ```yaml
 App\Naming\CustomNamer:

@@ -106,7 +106,7 @@ class ArticleBackOfficeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $articleRepository->add($article, true);
-
+            $this->addFlash('success', 'Modifié avec succès !');
             return $this->redirectToRoute('app_back_articles');
         }
 

@@ -92,11 +92,7 @@ class QuizBackOfficeController extends AbstractController
         $form->handleRequest($request);
 
 
-
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-
 
             foreach ($question->getResponses() as $response) {
                 if ($response->getQuestion() === null) {
@@ -104,7 +100,7 @@ class QuizBackOfficeController extends AbstractController
                 }
             }
 
-
+            $this->addFlash('success', 'Ajout effectué avec succès !');
             $entityManager->persist($question);
             $entityManager->flush();
             return $this->redirectToRoute('app_back_quiz');
@@ -136,7 +132,7 @@ class QuizBackOfficeController extends AbstractController
                     $response->setQuestion($question);
                 }
             }
-
+            $this->addFlash('success', 'Modifié avec succès !');
 
             $entityManager->persist($question);
 

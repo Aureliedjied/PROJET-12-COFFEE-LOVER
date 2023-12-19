@@ -1,6 +1,6 @@
 {% for flashType, flashMessages in app.flashes %}
 	{% for flashMessage in flashMessages %}
-		<div class="alert alert-{{ flashType }}">
+		<div class="alert {% if flashType == 'error' %}alert-danger{% else %}alert-{{ flashType }}{% endif %}">
 			{{ flashMessage }}
 		</div>
 	{% endfor %}
