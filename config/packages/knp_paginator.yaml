@@ -6,6 +6,6 @@ knp_paginator:
     sort_direction_name: direction # Nom du paramètre de requête pour la direction de tri
     distinct: true # Si true, la pagination est effectuée sur des éléments distincts
   template:
-    pagination: "@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig" # sliding pagination controls template
-    sortable: "@KnpPaginator/Pagination/sortable_link.html.twig" # sort link template
-    filtration: "@KnpPaginator/Pagination/filtration.html.twig"
+    pagination: "@KnpPaginator/Pagination/materialize_pagination.html.twig" # sliding pagination controls template
+    sortable: "@KnpPaginator/Pagination/twitter_bootstrap_v3_sortable_link.html.twig" # sort link template
+    filtration: "@KnpPaginator/Pagination/bootstrap_v5_filtration.html.twig"
