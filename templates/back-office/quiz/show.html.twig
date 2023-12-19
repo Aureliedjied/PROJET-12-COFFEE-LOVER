@@ -29,8 +29,8 @@
           {% endfor %}
         </tbody>
       </table>
-      <div class="pagination">{{ knp_pagination_render(pagination) }}</div>
     </div>
+    <div class="pagination mx-auto">{{ knp_pagination_render(pagination) }}</div>
 
     <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_quiz_add') }}">Ajouter de nouvelle question</a>
   </section>

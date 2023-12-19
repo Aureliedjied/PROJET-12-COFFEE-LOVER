@@ -1,10 +1,11 @@
 knp_paginator:
-  page_range: 5 # Nombre de pages affichées dans la barre de pagination
+  page_range: 2 # Nombre de pages affichées dans la barre de pagination
   default_options:
     page_name: page # Nom du paramètre de requête pour la page
     sort_field_name: sort # Nom du paramètre de requête pour le tri
     sort_direction_name: direction # Nom du paramètre de requête pour la direction de tri
     distinct: true # Si true, la pagination est effectuée sur des éléments distincts
   template:
-    pagination: "@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig" # sliding pagination controls template
-    sortable: "@KnpPaginator/Pagination/bootstrap_v5_bi_sortable_link.html.twig" # sort link template
+    pagination: "@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig" # sliding pagination controls template
+    sortable: "@KnpPaginator/Pagination/sortable_link.html.twig" # sort link template
+    filtration: "@KnpPaginator/Pagination/filtration.html.twig"
