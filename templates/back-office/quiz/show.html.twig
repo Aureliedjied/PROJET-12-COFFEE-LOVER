@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-  <section class="features-section mb-4">
+  <section class="features-section m-4">
     <div class="container text mx-auto">
       <h2 class="section-title mb-8">Liste des questions</h2>
       <table class="justify-content-center table-hover">
@@ -20,7 +20,7 @@
           {% for question in pagination %}
             <tr>
               <th scope="row">{{ question.id }}</th>
-              <td class="text-secondary mb-3">{{ question.getTextQuestion }}</td>
+              <td class="text mb-3">{{ question.getTextQuestion }}</td>
               <td>
                 <a href="{{ path('app_back_quiz_edit', { id: question.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil mb-3"></a>
                 {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_quiz_delete', { quizId: quiz.id, questionId: question.id, quizTitle: quiz.title }), buttonLabel: '' } %}
