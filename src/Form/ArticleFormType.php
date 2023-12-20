@@ -32,12 +32,16 @@ class ArticleFormType extends AbstractType
             ],
             ])
             ->add('pictureFile', VichImageType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
                 'required' => false,
                 'allow_delete' => true,
-                'download_uri' => true,
-                'image_uri' => true,
+                'download_uri' => false,
+                'image_uri' => false,
             ])
             ->add('subtitle', TextType::class, [
+                'required' => false,
                 'attr' => [
                 'placeholder' => 'Ex: La méthode d\'extraction'
                 ],

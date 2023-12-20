@@ -5,30 +5,34 @@
 {% endblock %}
 
 {% block body %}
-  <div id="scroll-point" class="my-4">{{ '</br>'|raw }}</div>
- 
-  <section class="features-section m-4">
-
-    <div class="container text-center mx-auto ">
-      <h2 class="section-title my-16">{{ article.title }}</h2>
-      <div class="row justify-content-center">
-        <div class="col-15 col-lg-6 ">
-          <img src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" class="img-fluid my-4" />
-        </div>
+<div id="scroll-point" class="my-4">{{ '</br>'|raw }}</div>
+  <div class="container-fluid center mb-5" style="max-width: 80rem;">
+    <section class="features-section m-4">
+      <div class="container text-center mx-auto">
+        <h2 class="section-title my-16">{{ article.title }}</h2>
+          <div class="row justify-content-center">
+            <div class="col-15 col-lg-6 ">
+              {% if vich_uploader_asset(article, 'pictureFile') %}
+							  <img alt="Mobirise Website Builder" class="img-fluid  mb-4" src="{{ vich_uploader_asset(article, 'pictureFile') }}" alt="{{ article.title }}">
+					    {% else %}
+							  <img src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" class="img-fluid my-4" />
+				      {% endif %}    
+            </div>
+          </div>
       </div>
-    </div>
     <h3 class="section-subtitle my-4 text-center">{{ article.subtitle }}</h3>
-    <p class="section-text m-4">{{ article.content|nl2br }}</p>
-    <p class="text-secondary mb-1">
-      Publié le "{{ article.getCreatedAt|date('d-m-Y') }}"
-      {% if article.user %} Par 
-        {{ article.user.firstname }}
-        {{ article.user.lastname }}
-      {% endif %}
-    </p>
-
-    <div class="section-btn text-center mt-3">
-      <a href="{{ path('app_quiz_list') }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Venez tester vos connaissances</a>
-    </div>
-  </section>
+      <p class="section-text m-4">{{ article.content|nl2br }}</p>
+      <p class="text-secondary mb-1">
+        Publié le "{{ article.getCreatedAt|date('d-m-Y') }}"
+          {% if article.user %} Par 
+          {{ article.user.firstname }}
+          {{ article.user.lastname }}
+          {% endif %}
+      </p>
+      <div class="section-btn text-center mt-3">
+        <a href="{{ path('app_quiz_list') }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Venez tester vos connaissances</a>
+      </div>
+    </section>
+  </div>
+</div>
 {% endblock %}
