@@ -60,13 +60,8 @@ class SecurityController extends AbstractController
             $this->addFlash('success', 'Inscription réussie, connectez-vous.');
 
             return $this->redirectToRoute('app_home');
-        }
-
-        if ($form->isSubmitted() && !$form->isValid()) {
-            $errors = $form->getErrors(true, false);
-            foreach ($errors as $error) {
-                $this->addFlash('error', $error->getMessage());
-            }
+        }else {
+            dump($form->getErrors(true, false)); 
         }
 
         return $this->renderForm('security/register.html.twig', [
