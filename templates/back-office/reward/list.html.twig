@@ -1,0 +1,28 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}
+  Liste des récompenses
+{% endblock %}
+
+{% block body %}
+  <section class="features-section m-4">
+    <div class="container text mx-auto">
+      <h2 class="section-title mb-8">Liste des Récompenses</h2>
+      <div class="row">
+        {% for reward in rewards %}
+          <div class="col-md-4 mb-2">
+            <div class="card">
+              <img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="card-img-top img-thumbnail" />
+              <div class="card-body">
+                <h5 class="card-title">{{ reward.title }}</h5>
+                {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_reward_delete', { id: reward.id }), buttonLabel: '' } %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <a type="button" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_reward_add') }}">Ajouter une nouvelle récompense</a>
+    </div>
+  </section>
+{% endblock %}

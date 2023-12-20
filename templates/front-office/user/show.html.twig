@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Ma récompense
+{% endblock %}
+
+{% block body %}
+	<div id="scroll-point" class="my-4">{{ '<br>'|raw }}</div>
+	<section class="features-section m-4">
+		<div class="container text-center mx-auto">
+			<div id="rewardCarousel" class="carousel slide">
+				<div class="carousel-inner">
+					{% for reward in app.user.reward %}
+						<div class="carousel-item {% if loop.first %}active{% endif %}">
+							<img src="{{ vich_uploader_asset(reward, 'pictureFile') }}" alt="{{ reward.title }}" class="img-fluid rounded"/>
+							<div class="carousel-caption d-none d-md-block"></div>
+						</div>
+					{% endfor %}
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#rewardCarousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#rewardCarousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+		</div>
+		<div class="section-btn mt-3">
+			<a class="btn btn-rounded btn-quiz" data-mdb-ripple-color="white" data-mdb-ripple-init="" href="{{path('app_profil')}}">Retour au profil</a>
+		</div>
+	</section>
+{% endblock %}

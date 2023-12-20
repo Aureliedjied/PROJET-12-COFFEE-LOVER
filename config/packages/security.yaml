@@ -6,14 +6,23 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
-
+            provider: app_user_provider
+            form_login:
+                # "app_login" is the name of the route created previously
+                login_path: app_security_login
+                check_path: app_security_login
+            logout:
+                path: app_security_logout
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -23,8 +32,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/(les-quiz), roles: ROLE_USER }
+        #- { path: ^/back-office/(utilisateur), roles: ROLE_ADMIN }      
+        # Le plus large en dernier, si t'es manager t'aura accès à tout ce qui n'est pas précisé plus haut
+        #- { path: ^/back, roles: ROLE_MANAGER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_MANAGER
 
 when@test:
     security:

@@ -1,0 +1,19 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        reward_images:
+            uri_prefix: '/images/rewards'
+            upload_destination: '%kernel.project_dir%/public/images/rewards'
+            namer: App\Naming\CustomNamer
+        gif_images:
+            uri_prefix: '/images/gifs'
+            upload_destination: '%kernel.project_dir%/public/images/gifs'
+            namer: App\Naming\CustomNamer
+        soundstrack_images:
+            uri_prefix: '/images/soundstracks'
+            upload_destination: '%kernel.project_dir%/public/images/soundstracks'
+            namer: App\Naming\CustomNamerSoundstrack
+        article_images:
+            uri_prefix: '/images/articles'
+            upload_destination: '%kernel.project_dir%/public/images/articles'
+            namer: App\Naming\CustomNamer

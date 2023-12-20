@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+
+<div id="scroll-point" class="my-4">{{ ''|raw }}</div>
+    <section class="features-section m-4" >
+		<div class="container overflow-hidden" >
+			<div class="row g-4">
+              <h1 class="text-center fw-bolder text-dark p-5 mb-4">{{ category.title }}</h1>
+				{% for article in articles %}
+				<div class="col-12">
+					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5{% endif %} article-card mb-4">
+						<div class="col-xs-12 col-md-6">
+							<div class="img-wrapper position-relative bsb-hover-push ">
+								{% if vich_uploader_asset(article, 'pictureFile') %}
+									<a href="{{path('app_article_show',{'categorySlug':article.category.slug,'articleSlug':article.slug})}}"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="{{ vich_uploader_asset(article, 'pictureFile') }}" alt="{{ article.title }}"></a>
+								{% else %}
+									<a href="{{path('app_article_show',{'categorySlug':article.category.slug,'articleSlug':article.slug})}}"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="https://i.ibb.co/MBGNWWD/ibrick.png"></a>
+								{% endif %}
+								
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6">
+							<div>
+								<h2 class="h3 mb-3"><a class="link-dark text-decoration-none" href="#!">{{article.title}}</a></h2>
+									<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
+									<p class="text-secondary mb-1">Créé le : {{article.getCreatedAt|date("d-m-Y")}}</p>{% if article.getUpdatedAt %}
+									<p class="text-secondary mb-1">Mis à jour le : {{article.getUpdatedAt|date("d-m-Y")}}</p>{% endif %}
+									<div class="section-btn mt-3">
+										<a class="btn btn-rounded btn-quiz" data-mdb-ripple-color="white" data-mdb-ripple-init="" href="{{path('app_article_show',{'categorySlug':article.category.slug,'articleSlug':article.slug})}}">Lire la suite</a>
+									</div>
+							</div>
+						</div>
+
+					</div>{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+

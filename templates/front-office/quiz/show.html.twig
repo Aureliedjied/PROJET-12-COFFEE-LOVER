@@ -1,0 +1,59 @@
+{% extends 'front-office/quiz/basequiz.html.twig' %}
+
+{% block title %}
+  QUIZ/{{ quiz.title }}
+{% endblock %}
+{% block body %}
+  <section class="card-center mb-4 mx-auto" style="max-width: 800px;">
+    <form action="{{ path('app_quiz_submit', { id: quiz.id, title: quiz.title }) }}" method="post">
+      <div class="container my-4">
+        <h1 class="text-center fw-bolder text-dark ">Quiz :</h1>
+          <h2 class="text-center mb-2 fw-bolder text-dark ">{{ quiz.title }}</h2> 
+            <div class="card features-section"> 
+              <div class="card-body ">
+                <div class="mb-3">
+                  <h4 class="mb-4">{{ questions.getTextQuestion }}</h4>
+                  {% set responses = questions.responses|shuffle %}
+
+                  {% for response in responses %}
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="response" id="response{{ response.id }}" value="{{ response.id }}" />
+                        <label class="form-check-label" for="response{{ response.id }}">{{ response.getTextResponse }}</label>
+                    </div>
+                  {% endfor %}
+
+                </div>
+                  <div>
+                    <span id="display-score" class="position-absolute bottom-0 end-0 badge m-3 p-3">Question: {{ offset }} /10</span>
+                  </div>
+    
+                  <div class="d-flex align-items-center">
+                    {# Btn "suivant" is disable, until the user seletcs a response (js function) #}
+                    <button type="submit" class="btn btn-rounded btn-quiz" id="nextButton">suivant</button>
+                    <div id="alertMessage" class="ms-2" style="display: none; color: red;">Merci de choisir une réponse en premier.
+                    </div>
+                  </div>
+              </div>
+            </div>         
+      </div>
+      <div class="row">
+        <div class="col-auto mx-auto mb-4">
+          <div class="card" center style="width: 20rem;">
+            <a class= "btn btn-rounded-center btn-quiz" href="#">
+              <img src="https://i.ibb.co/vXdCWV7/ DALL-E-2023-11-22-15-53-02-A-charming-and-animated-scene-inspired-by-Pixar-s-style-showing-a-cartoon.png" class="card-img-top" alt="test" />
+                <div class="card-body">
+                  <p class="card-text fw-bold text-center">{{ quiz.title }}</p>
+                </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    
+    </form>
+  </section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('js/quiz-validation.js') }}"></script>
+{% endblock %}

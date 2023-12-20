@@ -1,0 +1,18 @@
+/* Search mobile CSS */
+
+.search-container {
+    position: relative;
+}
+   
+.search-result-item-mobile {
+    margin-bottom: 8px; 
+}
+
+.result-title-mobile {
+    color: #9e8f8c; 
+    text-decoration: none;
+}
+
+.result-title-mobile:hover {
+    text-decoration: underline;
+}

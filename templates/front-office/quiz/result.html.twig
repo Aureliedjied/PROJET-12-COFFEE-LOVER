@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Résultat du quiz
+{% endblock %}
+
+{% block body %}
+<section class=" container-fluid  center" >
+  <div class="container-fluid">
+    <div id="scroll-point" class="my-4">{{ '<br>'|raw }} {{ '</br>'|raw }}</div>
+
+      
+    <h1 class="text-center mb-4">Résultat de votre Quiz</h1>
+  <div class="col container-fluid mb-4 ">
+    <div class="card-center-fluid features-section mx-auto mb-4" style="max-width: 28rem;">
+      <p class="card-text text-center fw-bolder p-2 fs-1">résultat :
+        {{ score }}/10</p>
+      {% if score <= 6 %}
+        <p class="text-center p-1">Chat! C'est pas terrible tu peux faire mieux !</p>
+        <img src="{{ asset('images/gifs/defeat.png') }}" class="img-fluid h-auto w-auto" id="img-quiz" alt="defeat" />
+        <audio src="{{ asset('images/soundstracks/defeat_1703063012_6582ade46470d.mp3') }}" autoplay></audio>
+        <div class="card-body my-4 text-center">
+          <a href="{{ path('app_categorie', { categorySlug: quiz.link }) }}" class="btn btn-quiz">{{ quiz.title }}</a>
+        </div>
+      {% else %}
+     
+        <p class="text-center p-1">Miaou ! Chat c'est fort, tu as vraiment fait un bon score !</p>
+         <div class=" d-flex">
+        <img src="{{ asset('images/gifs/succes.png') }}" class="img-fluid h-auto w-auto" id="img-quiz" alt="succes" />
+        </div>
+        <div class="card-body my-4 text-center">
+          <p>Chatpristi! tu as gagné une magnifique récompense</p>
+          <a href="{{ path('app_profil') }}" class="btn btn-quiz">Mon profil</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+</section>
+{% endblock %}
