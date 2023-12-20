@@ -156,7 +156,7 @@ class QuizController extends AbstractController
 
         $this->saveUserScore($score, $quiz);
 
-        if ($score > 1) {
+        if ($score > 5) {
             $this->getReward($score, $quiz);
         }
 
