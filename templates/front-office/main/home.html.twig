@@ -17,9 +17,9 @@
 							<div class="img-wrapper position-relative bsb-hover-push">
 								
 								{% if vich_uploader_asset(article, 'pictureFile') %}
-									<a href="#!"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="{{ vich_uploader_asset(article, 'pictureFile') }}" alt="{{ article.title }}"></a>
+									<a href="{{ path('app_article_show', {'categorySlug': article.category.slug, 'articleSlug': article.slug}) }}"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="{{ vich_uploader_asset(article, 'pictureFile') }}" alt="{{ article.title }}"></a>
 								{% else %}
-									<a href="#!"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="https://i.ibb.co/MBGNWWD/ibrick.png"></a>
+									<a href="{{ path('app_article_show', {'categorySlug': article.category.slug, 'articleSlug': article.slug}) }}"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="https://i.ibb.co/MBGNWWD/ibrick.png"></a>
 								{% endif %}
 							</div>
 						</div>
