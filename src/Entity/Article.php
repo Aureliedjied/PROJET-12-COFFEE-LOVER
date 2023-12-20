@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  * @ORM\HasLifecycleCallbacks
+ * @ORM\Entity
+ * @Vich\Uploadable
  */
+
 class Article
 {
 
@@ -60,6 +65,16 @@ class Article
      */
     private $picture;
 
+     /**
+     * @Vich\UploadableField(mapping="article_images", fileNameProperty="picture")
+     * @var File|null
+     *
+     * @Assert\File(
+     *     maxSize = "30M",
+     *     maxSizeMessage = "Le fichier est trop volumineux. La taille maximale autorisée est {{ limit }}",
+     * )
+     */
+    private $pictureFile;
     /**
      * @ORM\Column(type="string", length=255,  nullable=true)
      */
@@ -222,6 +237,28 @@ class Article
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+    /**
+     * Get the value of pictureFile
+     *
+     * @return File|null
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * Set the value of pictureFile
+     *
+     * @param File|null $pictureFile
+     * @return self
+     */
+    public function setPictureFile(?File $pictureFile): self
+    {
+        $this->pictureFile = $pictureFile;
 
         return $this;
     }

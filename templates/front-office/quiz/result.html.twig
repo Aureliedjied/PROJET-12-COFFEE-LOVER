@@ -17,8 +17,8 @@
         {{ score }}/10</p>
       {% if score <= 6 %}
         <p class="text-center p-1">Chat! C'est pas terrible tu peux faire mieux !</p>
-        <img src="{{ asset('images/gifs/defeat2.png') }}" class="img-fluid h-auto w-auto" id="img-quiz" alt="defeat" />
-        <audio src="{{ asset('images/soundstracks/avocat_per_1702569485_657b260d14105.mp3') }}" autoplay></audio>
+        <img src="{{ asset('images/gifs/defeat.png') }}" class="img-fluid h-auto w-auto" id="img-quiz" alt="defeat" />
+        <audio src="{{ asset('images/soundstracks/defeat_1703063012_6582ade46470d.mp3') }}" autoplay></audio>
         <div class="card-body my-4 text-center">
           <a href="{{ path('app_categorie', { categorySlug: quiz.link }) }}" class="btn btn-quiz">{{ quiz.title }}</a>
         </div>

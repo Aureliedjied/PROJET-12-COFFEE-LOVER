@@ -67,9 +67,19 @@ class ArticleRepository extends ServiceEntityRepository
     ';
 
         $stmt = $conn->executeQuery($sql);
+        $ids = $stmt->fetchAllAssociative();
 
-        // Returns all results
-        return $stmt->fetchAllAssociative();
+        $articleRepository = $this->getEntityManager()->getRepository(Article::class);
+        $articles = [];
+
+        foreach ($ids as $id) {
+        $article = $articleRepository->find($id['id']);
+        if ($article) {
+            $articles[] = $article;
+        }
+    }
+
+    return $articles;
     }
 
     // Méthode pour la recherche d'articles :

@@ -14,11 +14,13 @@
 				<div class="col-12"> 
 					<div class="row align-items-center {% if loop.index is odd %}gx-md-4{% else %}flex-row-reverse gx-xl-5{% endif %} article-card">
 						<div class="col-xs-12 col-md-6">
-                        
 							<div class="img-wrapper position-relative bsb-hover-push">
-								<a href="#!">
-									<img class="img-fluid rounded mb-4" src="https://i.ibb.co/MBGNWWD/ibrick.png" alt="Mobirise Website Builder" >
-								</a>
+								
+								{% if vich_uploader_asset(article, 'pictureFile') %}
+									<a href="#!"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="{{ vich_uploader_asset(article, 'pictureFile') }}" alt="{{ article.title }}"></a>
+								{% else %}
+									<a href="#!"><img alt="Mobirise Website Builder" class="img-fluid rounded mb-4" src="https://i.ibb.co/MBGNWWD/ibrick.png"></a>
+								{% endif %}
 							</div>
 						</div>
 							<div class="col-xs-12 col-md-6">
@@ -27,12 +29,12 @@
 										<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 									</h2>
 									<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
-									<p class="text-secondary mb-1">Créée le : {{article.created_at|date("d-m-Y")}}</p>
-										{% if article.updated_at %}
-									<p class="text-secondary mb-1">Mis à jour le : {{article.updated_at|date("d-m-Y")}}</p>
+									<p class="text-secondary mb-1">Créée le : {{article.getCreatedAt|date("d-m-Y")}}</p>
+										{% if article.getUpdatedAt %}
+									<p class="text-secondary mb-1">Mis à jour le : {{article.getUpdatedAt|date("d-m-Y")}}</p>
 										{% endif %}
 										<div class="section-btn mt-3">
-											<a href="{{ path('app_article_show', {'categorySlug': article.category_slug, 'articleSlug': article.slug}) }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Lire la suite</a>
+											<a href="{{ path('app_article_show', {'categorySlug': article.category.slug, 'articleSlug': article.slug}) }}" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Lire la suite</a>
 										</div>
 								</div>
 							</div>
