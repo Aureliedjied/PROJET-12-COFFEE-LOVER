@@ -1,6 +1,8 @@
 twig:
-    default_path: '%kernel.project_dir%/templates'
-
+  default_path: "%kernel.project_dir%/templates"
+  globals:
+    cdn_base_url: "%env(CDN_BASE_URL)%"
 when@test:
-    twig:
-        strict_variables: true
+  twig:
+    strict_variables: true
+

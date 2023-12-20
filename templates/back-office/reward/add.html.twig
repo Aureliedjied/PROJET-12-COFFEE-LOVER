@@ -1,0 +1,35 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}Ajouter une Récompense
+{% endblock %}
+
+{% block body %}
+<div class="container center mb-5" style="max-width: 60rem;">
+	<section class="features-section m-4">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8">
+					<h1 class="text-center text-muted fw-bold mb-4">Ajouter une Récompense</h1>
+					{{ form_start(form) }}
+
+					<div class="mb-3">
+						{{ form_label(form.title, 'Titre', {'label_attr': {'class': 'form-label'}}) }}
+						{{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+					</div>
+
+					<div class="mb-3">
+						{{ form_label(form.pictureFile, 'Image', {'label_attr': {'class': 'form-label'}}) }}
+						{{ form_widget(form.pictureFile, {'attr': {'class': 'form-control'}}) }}
+					</div>
+
+					<div class="section-btn mt-3">
+						<button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Ajouter</button>
+					</div>
+
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+{% endblock %}

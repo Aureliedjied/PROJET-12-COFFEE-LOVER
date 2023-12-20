@@ -1,0 +1,40 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}
+  Liste des utilisateurs
+{% endblock %}
+
+{% block body %}
+
+ <div class="container center mb-5" style="max-width: 40rem;">
+    <section class="features-section px-1 mb-4">
+      <div class="container-fluid mx-auto">
+        <h2 class="section-title text-center mb-8">Liste des utilisateurs</h2>
+
+        <table class="container-fluid table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Email/Rôle</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+             {% for user in users %}
+              <tr class="table-group-divider py-1">
+                <td class="section mb-3"> {{ user.email }} | {{ user.roles ? user.roles|json_encode:'' }}</td>
+                <td>
+                  <a href="{{ path('app_back_users_edit', { id: user.id }) }}" class="btn btn-rounded btn-quiz bi bi-pencil m-2"></a>
+                  {% include 'fragments/_confirm_action.html.twig' with { confirmationMessage: 'Voulez-vous vraiment supprimer ?', actionUrl: path('app_back_users_delete', { id: user.id }), buttonLabel: '' } %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <div class="pagination mx-auto ms-2">{{ knp_pagination_render(users) }}</div>
+        {# <a type="button" class="btn btn-rounded btn-quiz ms-2" data-mdb-ripple-init data-mdb-ripple-color="dark" href="{{ path('app_back_users_add') }}">Ajouter un nouvel utilisateur</a> #}
+      </div>
+    </section>
+  </div>
+
+
+{% endblock %}

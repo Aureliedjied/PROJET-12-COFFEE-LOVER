@@ -1,0 +1,29 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}
+  Liste des quiz
+{% endblock %}
+
+{% block body %}
+  <div class="container center mb-5" style="max-width: 30rem;">
+    <section class="features-section px-1 m-3">
+      <div class="container-fluid mx-auto">
+        <h2 class="section-title text-center mb-8">Liste des quiz</h2>
+        <table class="justify-content-center table-hover">
+          <tbody class="table-group-divider">
+            {% for quiz in quizs %}
+              <tr class="table-group-divider py-1">
+                <td class="text mb-1" scope="row-dark">
+                  <p class="text mb-1" scope="row-dark">{{ quiz.id }}. {{ quiz.title }}</p>
+                </td>
+                <td class="align-middle">
+                  <a href="{{ path('app_back_quiz_show', { id: quiz.id, title: quiz.link }) }}" class="btn btn-rounded btn-quiz m-3">Voir</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+{% endblock %}

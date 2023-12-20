@@ -1,0 +1,42 @@
+{% extends 'back-office/base.html.twig' %}
+
+{% block title %}Modifier une question
+{% endblock %}
+
+{% block body %}
+<div class="container center mb-5" style="max-width: 60rem;">
+    <div class="container-center features-section m-4">
+        <div class="row justify-content-center ">
+            <div class="col-md-7">
+                <h1 class="text-center text-muted fw-bold mb-4">Modifier une question</h1>
+
+                {{ form_start(form) }}
+
+                <div class="mb-3">
+                    {{ form_label(form.quizzes, 'Quiz associés') }}
+                    {{ form_widget(form.quizzes, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.text_question, 'Titre') }}
+                    {{ form_widget(form.text_question, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {% for response in form.responses %}
+                <div class="mb-3">
+                    <label>Réponse {{ loop.index }}</label>
+                    {{ form_widget(response.text_response, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-check mt-2">
+                        {{ form_widget(response.is_correct) }}
+                        {{ form_label(response.is_correct, 'Bonne réponse ?') }}
+                    </div>
+                </div>
+                {% endfor %}
+
+				<div class="section-btn mt-3">
+					<button type="submit" class="btn btn-rounded btn-quiz" data-mdb-ripple-init data-mdb-ripple-color="white">Ajouter</button>
+				</div>
+              {{ form_end(form) }}   
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

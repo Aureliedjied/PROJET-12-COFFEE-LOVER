@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {% block title %}
+        Coffe Lover
+      {% endblock %}
+    </title>
+    <link rel="icon" href="{{ asset('favicone.png') }}" type="image/png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    {% block stylesheets %}
+      <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+      <link href="{{ asset('css/search.css') }}" rel="stylesheet" />
+    {% endblock %}
+  </head>
+  <body>
+    <div class="card text-bg-dark">
+      <div class="card-img-overlay d-none d-lg-block">
+        <h5 class="card-title text-center fs-1 fw-bolder">Coffee Lover</h5>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <div class="container-fluid">
+        <button class="navbar-toggler btn-outline" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="bi bi-list" style="font-size: 2rem"></span></button>
+        <div class="d-flex d-lg-none">
+          <div class="me-3">
+            <a href="{{ path('app_security_login') }}"><span class="bi bi-person-fill" style="font-size: 2rem"></span></a>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="d-flex d-lg-none">
+              <div class="me-3">
+                <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+              </div>
+            </div>
+            <li class="nav-item d-none d-lg-block">
+              <a href="{{ path('app_home') }}"><img src="{{ asset('logo.png') }}" alt="logo" title="accueil" id="logo" /></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'botanique-et-culture' }) }}">Botanique et culture</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'recolte-et-transformation' }) }}">Récolte et transformation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'cafe-de-specialite' }) }}">Café de spécialité</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ path('app_categorie', { categorySlug: 'torrefaction-et-methodes-d-extraction' }) }}">Torréfaction et méthodes d'extraction</a>
+            </li>
+            {% if app.user %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_quiz_list') }}">QUIZ</a>
+              </li>
+            {% endif %}
+          </ul>
+          {# search form for desktop device #}
+          <form class="d-none d-lg-flex form-inline ms-auto me-4" id="search-form">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="searchTerm" />
+            <button class="btn btn-rounded btn-quiz ms-2" type="submit">Recherche</button>
+          </form>
+          <ul class="navbar-nav">
+            {% if app.user %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon Profil</a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="navbar-color">
+                  <a class="dropdown-item" href="{{ path('app_profil') }}">Profil</a>
+                  <a class="dropdown-item" href="{{ path('app_security_logout') }}">Déconnexion</a>
+
+                  {% if 'ROLE_MANAGER' in app.user.roles or 'ROLE_ADMIN' in app.user.roles %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('app_back_office') }}">Backoffice</a>
+                  {% endif %}
+                </div>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_security_login') }}">Connexion</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {# ajout de la div container pour la recherche : #}
+    <div id="search-results"></div>
+    {% block body %}
+
+    {% endblock %}
+
+    <footer class="footer container-fluid py-8 border-top text-center">
+      <span class="text-white">
+        <div class="container p-4 pb-4">
+          <section class="mb-4">
+            <a class="btn btn-outline-light btn-floating m-1" href="!" role="button"><i class="bi bi-facebook"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="!" role="button"><i class="bi bi-twitter-x"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="!" role="button"><i class="bi bi-linkedin"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="!" role="button"><i class="bi bi-share-fill"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"><i class="bi bi-github"></i></a>
+          </section>
+          <a class="text-white" href="{{ path('app_mention_legal') }}">Mentions légales</a>
+          |
+          <a class="text-white" href="{{ path('app_contact') }}">Contactez nous</a>
+        </div>
+      </span>
+    </footer>
+    {% block javascripts %}
+      <script src="{{ asset('js/search.js') }}"></script>
+      <script src="{{ asset('js/scroll.js') }}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      <script src="{{ asset('js/app.js') }}"></script>
+    {% endblock %}
+  </body>
+</html>
