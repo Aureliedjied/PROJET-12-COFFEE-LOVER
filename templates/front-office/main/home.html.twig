@@ -29,7 +29,7 @@
 										<a class="link-dark text-decoration-none" href="#!">{{article.title}}</a>
 									</h2>
 									<p class="mb-3">{{ (article.content|slice(0, 150)) ~ '...' }}</p>
-									<p class="text-secondary mb-1">Créée le : {{article.getCreatedAt|date("d-m-Y")}}</p>
+									<p class="text-secondary mb-1">Créé le : {{article.getCreatedAt|date("d-m-Y")}}</p>
 										{% if article.getUpdatedAt %}
 									<p class="text-secondary mb-1">Mis à jour le : {{article.getUpdatedAt|date("d-m-Y")}}</p>
 										{% endif %}
