@@ -11,28 +11,39 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Psr\Log\LoggerInterface;
 
 class SecurityController extends AbstractController
 {
+    private $logger;
+
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * @Route("/connexion", name="app_security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
         // get the login error if there is one
-        if ($error = $authenticationUtils->getLastAuthenticationError()) {
-            $this->addFlash('error', $error->getMessage());
-        }
-        
+        $error = $authenticationUtils->getLastAuthenticationError();
+
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+
+        // Check if a login attempt was made (and if there is an error)
+        if ($lastUsername && $error) {
+            $this->addFlash('error', $error->getMessage());
+        }
 
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
     }
+
 
     /**
      * @Route("/logout", name="app_security_logout")
@@ -60,8 +71,12 @@ class SecurityController extends AbstractController
             $this->addFlash('success', 'Inscription réussie, connectez-vous.');
 
             return $this->redirectToRoute('app_home');
-        }else {
-            dump($form->getErrors(true, false)); 
+        } elseif ($form->isSubmitted() && !$form->isValid()) {
+            // add error message if the form is submitted but not valid
+            $this->addFlash('error', 'Une erreur s\'est produite lors de l\'inscription. Veuillez vérifier vos informations.');
+
+            // Log les erreurs détaillées pour une enquête ultérieure si nécessaire
+            $this->logger->error('Registration error: ' . $form->getErrors(true, false));
         }
 
         return $this->renderForm('security/register.html.twig', [

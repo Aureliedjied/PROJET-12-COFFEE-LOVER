@@ -56,7 +56,7 @@ function displaySearchResultsMobile(results) {
     } else {
         // No results found, display the message:
         const noResultMessageMobile = document.createElement('div');
-        noResultMessageMobile.textContent = 'No results found';
+        noResultMessageMobile.textContent = 'Aucun résultat trouvé.';
         // Attach this message to the parent div:
         searchResultsContainerMobile.appendChild(noResultMessageMobile);
     }

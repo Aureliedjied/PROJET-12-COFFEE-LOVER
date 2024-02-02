@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div id="scroll-point" class="my-4">{{ ''|raw }}</div>
-	<div class="container ">
+	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
 				<div class="card features-section m-4 ">
@@ -13,6 +13,13 @@
 						<h1 class="text-center mb-4">Inscription</h1>
 						<form action="{{ path('app_register') }}" method="post">
 							{{ form_start(form) }}
+
+							{# Affiche toutes les erreurs du formulaire #}
+							{% if form_errors(form)|length > 0 %}
+								<div class="alert alert-danger" role="alert">
+									{{ form_errors(form) }}
+								</div>
+							{% endif %}
 
 							<div class="mb-3">
 								{{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}

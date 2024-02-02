@@ -26,17 +26,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      * @Assert\Length(
      *     min=8,
      *     minMessage="Le mot de passe doit contenir au moins {{ limit }} caractères.",
@@ -47,6 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champ ne peut pas être vide.")
      */
     private $email;
 

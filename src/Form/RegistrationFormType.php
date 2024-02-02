@@ -20,15 +20,15 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('email', EmailType::class, [
-            'label' => 'Email',
-            'attr' => [
-                'placeholder' => 'olivertwist@bao.com',
-            ],
-            'constraints' => [
-                new NotBlank(['message' => 'L\'email ne peut pas être vide.']),
-                new Email(['message' => 'L\'email "{{ value }}" n\'est pas valide.']),
-            ],
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'attr' => [
+                    'placeholder' => 'olivertwist@bao.com',
+                ],
+                'constraints' => [
+                    new NotBlank(['message' => 'L\'email ne peut pas être vide.']),
+                    new Email(['message' => 'L\'email "{{ value }}" n\'est pas valide.']),
+                ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
@@ -45,13 +45,16 @@ class RegistrationFormType extends AbstractType
                     'placeholder' => 'Votre nom',
                 ],
                 'constraints' => [
-                    new NotBlank(['message' => 'Le prénom ne peut pas être vide.']),
+                    new NotBlank(['message' => 'Le nom ne peut pas être vide.']),
                 ],
             ]);
 
         // Check if the option "custom_option" is defined and egual to "edit"
         if (isset($options["custom_option"]) && $options["custom_option"] !== "edit") {
             $builder->add('password', RepeatedType::class, [
+                'attr' => [
+                    'placeholder' => '******',
+                ],
                 "type" => PasswordType::class,
                 'invalid_message' => 'Les mots de passes doivent être identiques',
                 'first_options'  => ['label' => 'Mot de passe'],
@@ -67,7 +70,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ]);
-        }   
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -59,7 +59,7 @@ function displaySearchResults(results) {
         noResultMessage.classList.add('search-result-item', 'no-result-message');
 
         const messageText = document.createElement('p');
-        messageText.textContent = 'No results found';
+        messageText.textContent = 'Aucun résultat trouvé';
 
         noResultMessage.appendChild(messageText);
         searchResultsContainer.appendChild(noResultMessage);
